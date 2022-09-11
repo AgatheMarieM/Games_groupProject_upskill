@@ -1,0 +1,17 @@
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+th, td {
+    border: 1px dotted black;
+    border-radius: 20%;
+    padding: 6px;
+}
+
+.table-container {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+
+}
