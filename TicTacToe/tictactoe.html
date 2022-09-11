@@ -3,8 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="tictactoe.css">
+
 </head>
 <body>
+    <div id="game_name">
+        <h3>Tic-Tac-Toe</h3>
+    </div>
+
+    <div id="timer">
+        12:03
+    </div>
+
+    <div id="players">
+        <div>Player 1</div>
+        <div> Ronda 1/5 </div>
+        <div> Player 2</div>
+    </div>
+
+    <div id="game">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
 
 </body>
+<script>
+    let time = document.getElementById("#timer")
+
+    }
+        let contador = 5;
+        function contar() {
+            console.log(contador);
+            if(contador <= 0) return;
+            contador--;
+            setTimeout(contar, 1000);
+        }
+        contar();
+
+</script>
 </html>

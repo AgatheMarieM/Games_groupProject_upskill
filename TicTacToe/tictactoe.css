@@ -1,0 +1,23 @@
+body{
+    align-items: center;
+    text-align: center;
+}
+
+#game_name {
+    background-color: aqua;
+}
+
+#players {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+#game > div {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background-color: blue;
+    border-style: inset;
+}
