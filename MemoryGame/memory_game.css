@@ -1,6 +1,29 @@
-.game-container{
+h1, h2, div, .player-name {
+    text-align: center;
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-container {
+    border-style: dotted;
+    border-color: gray;
+}
+
+.game-container {
     display: flex;
     justify-content: center;
+}
+
+.grid-type {
+    display: flex;
+    justify-content: center;
+}
+
+.type-item, .menu-button{
+    background-color: greenyellow;
+    border-style: outset;
+    padding: 10px;
+    border-radius: 12px;
 }
 
 .game-row {
@@ -8,5 +31,11 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.row-item {
+    background-color: greenyellow;
+    border-style: outset;
+    padding: 50px;
 }
 
