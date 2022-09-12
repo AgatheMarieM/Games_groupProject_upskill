@@ -14,6 +14,18 @@ h1, h2, div, .player-name {
     justify-content: center;
 }
 
+.grid-type {
+    display: flex;
+    justify-content: center;
+}
+
+.type-item, .menu-button{
+    background-color: greenyellow;
+    border-style: outset;
+    padding: 10px;
+    border-radius: 12px;
+}
+
 .game-row {
     display: flex;
     flex-wrap: wrap;
@@ -21,8 +33,8 @@ h1, h2, div, .player-name {
     justify-content: space-evenly;
 }
 
-.row-item{
-    background-color: lightgreen;
+.row-item {
+    background-color: greenyellow;
     border-style: outset;
     padding: 50px;
 }
