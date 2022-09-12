@@ -1,7 +1,17 @@
-.game-container{
+h1, h2, div, .player-name {
+    text-align: center;
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-container {
+    border-style: dotted;
+    border-color: gray;
+}
+
+.game-container {
     display: flex;
     justify-content: center;
-    width: 100%;
 }
 
 .game-row {
@@ -9,5 +19,11 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.row-item{
+    background-color: lightgreen;
+    border-style: outset;
+    padding: 50px;
 }
 

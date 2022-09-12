@@ -22,21 +22,9 @@ console.log(cards);
 
 card.addEventListener("click", function (e){
     card.innerHTML =
-        `<i class="fa-solid ${shuffleArray(cards[0])}"></i>`
+        `<i class="fa-solid ${shuffleArray(cards[0])} fa-4x"></i>`
 })
 
-// FP TESTE
-/*function getRandomList (list){
-    let gameGrid = [];
-    for (let i=0; i<list.length; i++) {
-        let randomCard = Math.floor(Math.random()*list.length);
-        console.log(randomCard)
-        gameGrid[i] = list[randomCard]
-    }
-    return gameGrid;
-}
-
-console.log(getRandomList(cards))*/
 
 /*CARDS
 <i class="fa-solid fa-dog"></i>
