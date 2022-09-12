@@ -1,6 +1,6 @@
 let column = document.querySelector(".div-col");
 
-//Create array of column cells and give them an initial state (eg black)
+//Create array of column A cells only and give them an initial state (eg black)
 let newArray = [];
 let id = "#";
 for (let i = 0; i <= 5; i++) {
@@ -26,8 +26,7 @@ let gridArrays = alphArray.map(function(letter){
 
 console.log(gridArrays);
 
-//on click color the last empty bottom cell of each column
-
+//on click, color the last empty bottom cell of one column:
 let i = newArray.length - 1;
 let currentEmpty = newArray[i];
 let newEmpty;
@@ -44,3 +43,8 @@ function colorBottomCell(e) {
 }
 
 column.addEventListener("click", colorBottomCell);
+
+//gridArrays.forEach: we want to apply the eventListener to all columns (arrays) of the game
+//loop through all the arrays from gridArrays
+
+
