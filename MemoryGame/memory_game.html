@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Memory Game</title>
+    <link rel="stylesheet" href="memory_game.css">
+    <script src="https://kit.fontawesome.com/977db594b1.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
 <!--PARTE 1 - MENU JOGO-->
@@ -11,22 +14,53 @@
     <h1>Memory game</h1>
     <h2>Who is playing?</h2>
     <div>INPUT PLAYER NAME</div>
-
     <div>
         <h2>Choose grid</h2>
-        <ul>
-            <li>Easy 3 x 4</li>
-            <li>Medium 4 x 4</li>
-            <li>Hard 4 x 5</li>
-        </ul>
+        <div>
+            <ul>
+                <li>Easy 3 x 4</li>
+                <li>Medium 4 x 4</li>
+                <li>Hard 4 x 5</li>
+            </ul>
+        </div>
     </div>
 
 <!--PARTE 2 - JOGO-->
 
     <div>
         <div>TIME COUNTING</div>
-        <div>
+        <div class="container">
 
+            <div class="game-container">
+
+                <!--GAME Easy 3 x 4-->
+                <div class="grid-easy">
+                    <div class="game-row">
+                        <div><i class="fa-solid fa-dog"></i></div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                    </div>
+                    <div class="game-row">
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                    </div>
+                    <div class="game-row">
+                        <div>9</div>
+                        <div>10</div>
+                        <div>11</div>
+                        <div>12</div>
+                    </div>
+                </div>
+
+                <!--GAME Medium 4 x 4-->
+                <div class="grid-medium"></div>
+
+                <!--GAME Hard 4 x 5-->
+                <div class="grid-hard"></div>
+            </div>
         </div>
     </div>
 
@@ -36,6 +70,8 @@
         <div>Congratulations!</div>
         <div>Menu</div>
     </div>
+
+<script src="memory_game.js" ></script>
 
 </body>
 </html>
