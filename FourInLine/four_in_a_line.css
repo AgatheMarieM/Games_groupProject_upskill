@@ -30,8 +30,6 @@ h1 {
 .div-cell {
     border: 1px dotted black;
     border-radius: 100%;
-    display: flex;
-    flex-basis: auto;
     padding: 8px;
     margin: 10px;
 
