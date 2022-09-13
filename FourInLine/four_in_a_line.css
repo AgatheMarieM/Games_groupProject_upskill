@@ -1,3 +1,7 @@
+h1, p {
+    font-family: "Verdana";
+}
+
 h1 {
     color: blue;
     text-align: center;
@@ -9,14 +13,14 @@ h1 {
 
 /*segunda tabela feita com div:*/
 .div-container {
+    background-color: blue;
     border: 1px dotted black;
     border-radius: 1%;
     display: flex;
     flex-direction: row;
     justify-content:  center;
     margin: 0 auto;
-    width: 60%;
-
+    width: 40%;
     }
 
 .div-col {
@@ -28,9 +32,19 @@ h1 {
 }
 
 .div-cell {
+    background-color: white;
     border: 1px dotted black;
     border-radius: 100%;
     padding: 8px;
     margin: 10px;
 
 }
+
+.player-names {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+    width: 40%;
+}
+

@@ -14,40 +14,31 @@ function colorBottomCell(coluna, indice_coluna) {
     emptyCell[indice_coluna].classList.add("player1");
 }
 */
-function colorBottomCell(column) {
-    console.log(column);
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells
-    console.log(cells);
-    for(let i = 0; i<cells.length; i++) {
-        if( i = cells.length - 1){
+
+
+function groupCells(column) {
+    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for each column
+    for (let i = cells.length-1; i >=0 ; i--) {
+        if (player === 1 ) {
+            cells[i].style.backgroundColor = "red";
             cells[i].classList.add("player1");
+
+        } else {
             cells[i].style.backgroundColor = "yellow";
+            cells[i].classList.add("player2")
+
         }
     }
-
 }
 
-//gridArrays: we want to apply the eventListener to all columns (arrays) of the game
-//loop through all the arrays from gridArrays
-let gridArrays = document.querySelectorAll(".div-col"); //creating array of columns
+//Initialize the game with the columns from the document,
+//initialize player;
+let player = 1; //start mock up with player1
+
+let gridArrays = document.querySelectorAll(".div-col");
 for (let i = 0; i < gridArrays.length; i++) {
-    gridArrays[i].addEventListener("click", colorBottomCell(gridArrays[i])) //adding event for each column of the array
+    gridArrays[i].addEventListener("click", groupCells(gridArrays[i])) //adding event for each column of the array
     ;
 }
 ;
 
-
-//Create arrays for the grid:
-/*
-let alphArray = ["A", "B", "C", "D", "E", "F", "G"];
-let numArray = [ 0, 1, 2, 3, 4, 5];
-
-let gridArrays = alphArray.map(function(letter){
-    let arrayLetter = [];
-    for(let i = 0; i < numArray.length; i++){
-        arrayLetter[i] = letter + numArray[i]; //populate the array
-    }
-    console.log(arrayLetter);
-    return arrayLetter;
-})
- */
