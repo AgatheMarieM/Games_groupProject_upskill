@@ -39,3 +39,15 @@ h1, h2, div, .player-name {
     padding: 50px;
 }
 
+.row-item i{
+    /*opacity: 0;*/
+    transition: 0.2s;
+}
+
+.test{
+    background-color: red;
+}
+
+.visible{
+    opacity: 1;
+}
