@@ -7,45 +7,66 @@
 
 </head>
 <body>
-    <div id="game_name">
-        <h3>Tic-Tac-Toe</h3>
-    </div>
+<div id="game_name">
+    <h3>Tic-Tac-Toe</h3>
+</div>
 
-    <div id="timer">
-        12:03
-    </div>
+<div id="timer">
+    12:03
+</div>
 
-    <div id="players">
-        <div>Player 1</div>
-        <div> Ronda 1/5 </div>
-        <div> Player 2</div>
-    </div>
+<div id="players">
+    <div class="player1">Player 1</div>
+    <div class="round"> Ronda 1/5</div>
+    <div class="player2"> Player 2</div>
+</div>
 
-    <div id="game">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
-    </div>
+<div id="game-container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+</div>
+
 
 </body>
 <script>
-    let time = document.getElementById("#timer")
 
+    let g = document.querySelectorAll("#game-container > div");
+    let playerTurn = true
+    let A = [""]
+    let B = [""]
+
+    function tictactoe() {
+            g.forEach(function (e) {
+                e.addEventListener("click", function () {
+                    if (playerTurn === true){
+                        A.push(document.querySelector("#game-container > div").innerText);
+                        console.log(A)
+                        e.innerHTML = `<img src="cruz.png"/>`;
+                        playerTurn = !playerTurn
+                    } else {
+                        B.push(document.querySelector("#game-container > div").innerText);
+                        console.log(B)
+                        e.innerHTML = `<img src="bola.png"/>`;
+                        playerTurn = !playerTurn
+                    }
+                }, { once: true })
+            }, { once: true })
     }
-        let contador = 5;
-        function contar() {
-            console.log(contador);
-            if(contador <= 0) return;
-            contador--;
-            setTimeout(contar, 1000);
-        }
-        contar();
+    console.log(tictactoe())
+
+
+
+    function winner(A, B){
+    }
+
+
 
 </script>
 </html>
