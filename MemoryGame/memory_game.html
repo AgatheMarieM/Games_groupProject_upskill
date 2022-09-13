@@ -3,39 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Memory Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="memory_game.css">
+    <script src="https://kit.fontawesome.com/977db594b1.js" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
 
 <!--PARTE 1 - MENU JOGO-->
 
-    <h1>Memory game</h1>
+<h1>Memory game</h1>
+<div class="main-container">
     <h2>Who is playing?</h2>
-    <div>INPUT PLAYER NAME</div>
-
+    <div class="player-name">
+        <input type="text" name="name" placeholder="Insert you name here">
+    </div>
     <div>
         <h2>Choose grid</h2>
-        <ul>
-            <li>Easy 3 x 4</li>
-            <li>Medium 4 x 4</li>
-            <li>Hard 4 x 5</li>
-        </ul>
+        <div class="grid-type">
+            <div class="type-item">Easy 3 x 4</div>
+            <div class="type-item">Medium 4 x 4</div>
+            <div class="type-item">Hard 4 x 5</div>
+        </div>
     </div>
+</div>
 
 <!--PARTE 2 - JOGO-->
 
-    <div>
-        <div>TIME COUNTING</div>
-        <div>
+<div class="main-container">
+    <div class="counter">TIME COUNTING</div>
+    <div class="game-container">
 
+        <!--GAME Easy 3 x 4-->
+        <div class="grid-easy">
+            <div class="game-row">
+                <div class="row-item" id="position0-0">01</div>
+                <div class="row-item" id="position0-1">02</div>
+                <div class="row-item" id="position0-2">03</div>
+                <div class="row-item" id="position0-3">04</div>
+            </div>
+            <div class="game-row">
+                <div class="row-item" id="position1-0">05</div>
+                <div class="row-item" id="position1-1">06</div>
+                <div class="row-item" id="position1-2">07</div>
+                <div class="row-item" id="position1-3">08</div>
+            </div>
+            <div class="game-row">
+                <div class="row-item" id="position2-0">09</div>
+                <div class="row-item" id="position2-1">10</div>
+                <div class="row-item" id="position2-2">11</div>
+                <div class="row-item" id="position2-3">12</div>
+            </div>
         </div>
+
+        <!--GAME Medium 4 x 4-->
+        <!--<div class="grid-medium"></div>-->
+        <!--GAME Hard 4 x 5-->
+        <!--<div class="grid-hard"></div>-->
+
     </div>
+</div>
 
 <!--PARTE 3 - FIM JOGO-->
 
-    <div>
-        <div>Congratulations!</div>
-        <div>Menu</div>
-    </div>
+<div class="main-container">
+    <div>Congratulations!</div>
+    <divc class="menu-button">Menu</divc>
+</div>
+
+<script src="memory_game.js"></script>
 
 </body>
 </html>
