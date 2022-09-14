@@ -1,24 +1,30 @@
-//let playerRed = "Red";
+//Initialize the page WITHOUT the game
+let landingPage = document.querySelector(".lp-4inline");
+let gamePage = document.querySelector(".game-4inline");
+gamePage.style.display = 'none';
+
+//get player names values (then we'll show them on game page):
+let playerRedName = document.querySelector("#playerRedName");
+let boxPlayerRed = document.querySelector("#name-playerRed");
+
+let playerYellowName = document.querySelector("#playerYellowName");
+let boxPlayerYellow = document.querySelector("#name-playerYellow");
+
+playerRedName.addEventListener("input", function(e){boxPlayerRed.innerHTML = e.target.value;})
+playerYellowName.addEventListener("input", function(e){boxPlayerYellow.innerHTML = e.target.value;})
+
+//On clicking start button, the landing-page disappears and the game is on display
+let startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", function displayBoardGame(e){
+    landingPage.style.display = 'none';
+    gamePage.style.display = "block";
+});
 
 
-//get player names and show them on the game page:
-let playerRedName = document.querySelector("#player1name");
-let playerYellowName = document.querySelector("#player2name");
-""
-let boxNamePlayerRed = document.querySelector("#name-player1");
-let boxNamePlayerYellow = document.querySelector("#name-player2");
-
-playerRedName.addEventListener("input", displayPlayerName(playerRedName));
-
-function displayPlayerName(event) {
-
-    boxNamePlayerRed.innerHTML = playerRedName.value;
-}
 
 
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
-//let playerYellow = "Yellow";
 let currentPlayer = playerRed;
 
 /*Primeira tentative complicada:
