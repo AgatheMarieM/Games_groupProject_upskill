@@ -6,19 +6,18 @@ let allCards = document.querySelectorAll(".row-item");
 // GAME - Create grid
 
 let gridsAvailable = document.querySelectorAll(".grid-item")
-console.log(gridsAvailable)
+let gridEasy = document.querySelectorAll(".grid-easy")
+console.log("grideasy", gridEasy)
 
-function selectGrid (array){
+function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
-        array[i].addEventListener("click", function (e) {
-            array[i].innerHTML = `<span>lala</span>`
+        gridsAvailable[i].addEventListener("click", function (e) {
+            setBoard(cardsEasy)
         })
     }
 }
 
-selectGrid(gridsAvailable)
-
-//MISSING PART
+selectGrid()
 
 // GAME - Grid easy (3 x 4 = 12)
 let cardsEasy = cards.slice(0, 12)
@@ -40,13 +39,23 @@ function shuffleArray(array) {
 // Function to create game grid with shuffled cards (using previous shuffle array function)
 function setBoard(array) {
     let shuffledCards = shuffleArray(array)
-    //console.log("Game grid with all shuffled shuffledCards", allCards);
+    let gameRow = document.querySelectorAll(".game-row")
+    console.log("gamerow", gameRow)
+
     for (let i = 0; i < shuffledCards.length; i++) {
-        allCards[i].innerHTML = `<span>${shuffledCards[i]}</span>`
+        gameRow[i].innerHTML = `
+            <div class="row-item">${shuffledCards[i]}</div>
+            <div class="row-item">${shuffledCards[i+1]}</div>
+            <div class="row-item">${shuffledCards[i+2]}</div>
+            <div class="row-item">${shuffledCards[i+3]}</div>`
+
+        //console.log("Game grid with all shuffled shuffledCards", allCards);
+        //allCards[i].innerHTML = `<span>${shuffledCards[i]}</span>`
     }
 }
 
-setBoard(cardsEasy)
+// Function already called inside function selectGrid
+//setBoard(cardsEasy)
 
 // Function to show each card each time it is clicked
 function showEachCard() {
