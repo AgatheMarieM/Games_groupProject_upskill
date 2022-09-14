@@ -23,7 +23,7 @@ playerYellowName.addEventListener("input", function (e) {
 let startButton = document.querySelector("#start-button");
 let timerElement = document.querySelector("#timer");
 let interval = null;
-let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
+let [hours, minutes, seconds, milliseconds] = [00, 00, 00, 00];
 
 
 startButton.addEventListener("click", function startPlaying(e) {
@@ -37,23 +37,19 @@ startButton.addEventListener("click", function startPlaying(e) {
         if (milliseconds == 1000) {
             milliseconds = 0;
             seconds++;
-            if (seconds < 10) {
-                seconds = '0' + seconds;
-                if (seconds == 60) {
-                    seconds = 0;
-                    minutes++;
-                    if (minutes < 10) {
-                        minutes = '0' + minutes;
-                        if (minutes == 60) {
-                            minutes = 0;
-                            hours++;
-                        }
-                    }
+
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+
+                if (minutes == 60) {
+                    minutes = 0;
+                    hours++;
                 }
             }
         }
-        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
 
+        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
     }
 
 });
