@@ -1,9 +1,8 @@
-h1, p {
+h1, p, timer {
     font-family: "Verdana";
 }
 
 h1 {
-    color: blue;
     text-align: center;
 }
 
@@ -44,3 +43,14 @@ h1 {
     width: 40%;
 }
 
+.timer {
+    text-align: center;
+}
+
+.redCell {
+    background-color: red;
+}
+
+.yellowCell {
+    background-color: yellow;
+}

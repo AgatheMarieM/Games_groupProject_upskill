@@ -6,75 +6,89 @@
     <link rel="stylesheet" href="four_in_a_line.css">
 </head>
 <body>
-<h1>Quatro em Linha</h1>
-<p>Timer</p>
-<p>Name player 1</p>
-<p>Name player 2</p>
-<div class="div-container">
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="A0">A0</div>
-        <div class="div-cell" style="background-color: " id="A1">A1</div>
-        <div class="div-cell" style="background-color: " id="A2">A2</div>
-        <div class="div-cell" style="background-color: " id="A3">A3</div>
-        <div class="div-cell" style="background-color: " id="A4">A4</div>
-        <div class="div-cell" style="background-color: " id="A5">A5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="B0">B0</div>
-        <div class="div-cell" style="background-color: " id="B1">B1</div>
-        <div class="div-cell" style="background-color: " id="B2">B2</div>
-        <div class="div-cell" style="background-color: " id="B3">B3</div>
-        <div class="div-cell" style="background-color: " id="B4">B4</div>
-        <div class="div-cell" style="background-color: " id="B5">B5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="C0">C0</div>
-        <div class="div-cell" style="background-color: " id="C1">C1</div>
-        <div class="div-cell" style="background-color: " id="C2">C2</div>
-        <div class="div-cell" style="background-color: " id="C3">C3</div>
-        <div class="div-cell" style="background-color: " id="C4">C4</div>
-        <div class="div-cell" style="background-color: " id="C5">C5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="D0">D0</div>
-        <div class="div-cell" style="background-color: " id="D1">D1</div>
-        <div class="div-cell" style="background-color: " id="D2">D2</div>
-        <div class="div-cell" style="background-color: " id="D3">D3</div>
-        <div class="div-cell" style="background-color: " id="D4">D4</div>
-        <div class="div-cell" style="background-color: " id="D5">D5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="E0">E0</div>
-        <div class="div-cell" style="background-color: " id="E1">E1</div>
-        <div class="div-cell" style="background-color: " id="E2">E2</div>
-        <div class="div-cell" style="background-color: " id="E3">E3</div>
-        <div class="div-cell" style="background-color: " id="E4">E4</div>
-        <div class="div-cell" style="background-color: " id="E5">E5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="F0">F0</div>
-        <div class="div-cell" style="background-color: " id="F1">F1</div>
-        <div class="div-cell" style="background-color: " id="F2">F2</div>
-        <div class="div-cell" style="background-color: " id="F3">F3</div>
-        <div class="div-cell" style="background-color: " id="F4">F4</div>
-        <div class="div-cell" style="background-color: " id="F5">F5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: " id="G0">G0</div>
-        <div class="div-cell" style="background-color: " id="G1">G1</div>
-        <div class="div-cell" style="background-color: " id="G2">G2</div>
-        <div class="div-cell" style="background-color: " id="G3">G3</div>
-        <div class="div-cell" style="background-color: " id="G4">G4</div>
-        <div class="div-cell" style="background-color: " id="G5">G5</div>
+<div class="lp-4inline">
+    <h1>Quatro em Linha</h1>
+    <p>Who is playing?</p>
+    <div class="player-names">
+        <input type="text" id="player1name" placeholder="name" name="player1">
+        <!--<button type="submit" id="inputPlayer1">enter</button>-->
+        <input type="text" id="player2name"  placeholder="name">
+        <!--<button type="submit" id="inputPlayer2">enter</button>-->
+        <button type="submit" id="start-button">Start Playing</button>
     </div>
 </div>
-<div class="player-names">
-    <input type="text" id="player1name" placeholder="name" name="player1">
-    <button type="submit" id="inputPlayer1">enter</button>
-    <input type="text" id="player2name"  placeholder="name">
-    <button type="submit" id="inputPlayer2">enter</button>
-    <button type="submit" id="start-button">Start Playing</button>
+
+
+<div class="game-4inline">
+    <h1>Quatro em Linha</h1>
+    <div class="timer">Timer</div>
+    <div class="current-players">
+        <div id="name-player1"></div>
+        <div id="name-player1"></div>
+    </div>
+    <div class="div-container">
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="A0">A0</div>
+            <div class="div-cell" style="background-color: " id="A1">A1</div>
+            <div class="div-cell" style="background-color: " id="A2">A2</div>
+            <div class="div-cell" style="background-color: " id="A3">A3</div>
+            <div class="div-cell" style="background-color: " id="A4">A4</div>
+            <div class="div-cell" style="background-color: " id="A5">A5</div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="B0">B0</div>
+            <div class="div-cell" style="background-color: " id="B1">B1</div>
+            <div class="div-cell" style="background-color: " id="B2">B2</div>
+            <div class="div-cell" style="background-color: " id="B3">B3</div>
+            <div class="div-cell" style="background-color: " id="B4">B4</div>
+            <div class="div-cell" style="background-color: " id="B5">B5</div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="C0">C0</div>
+            <div class="div-cell" style="background-color: " id="C1">C1</div>
+            <div class="div-cell" style="background-color: " id="C2">C2</div>
+            <div class="div-cell" style="background-color: " id="C3">C3</div>
+            <div class="div-cell" style="background-color: " id="C4">C4</div>
+            <div class="div-cell" style="background-color: " id="C5">C5</div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="D0">D0</div>
+            <div class="div-cell" style="background-color: " id="D1">D1</div>
+            <div class="div-cell" style="background-color: " id="D2">D2</div>
+            <div class="div-cell" style="background-color: " id="D3">D3</div>
+            <div class="div-cell" style="background-color: " id="D4">D4</div>
+            <div class="div-cell" style="background-color: " id="D5">D5</div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="E0">E0</div>
+            <div class="div-cell" style="background-color: " id="E1">E1</div>
+            <div class="div-cell" style="background-color: " id="E2">E2</div>
+            <div class="div-cell" style="background-color: " id="E3">E3</div>
+            <div class="div-cell" style="background-color: " id="E4">E4</div>
+            <div class="div-cell" style="background-color: " id="E5">E5</div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="F0">F0</div>
+            <div class="div-cell" style="background-color: " id="F1">F1</div>
+            <div class="div-cell" style="background-color: " id="F2">F2</div>
+            <div class="div-cell" style="background-color: " id="F3">F3</div>
+            <div class="div-cell" style="background-color: " id="F4">F4</div>
+            <div class="div-cell" style="background-color: " id="F5">F5</div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell" style="background-color: " id="G0">G0</div>
+            <div class="div-cell" style="background-color: " id="G1">G1</div>
+            <div class="div-cell" style="background-color: " id="G2">G2</div>
+            <div class="div-cell" style="background-color: " id="G3">G3</div>
+            <div class="div-cell" style="background-color: " id="G4">G4</div>
+            <div class="div-cell" style="background-color: " id="G5">G5</div>
+        </div>
+    </div>
+
+
 </div>
+
+
 
 <script src="four_in_line.js"></script src="four_in_line.js">
 </body>
