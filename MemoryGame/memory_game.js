@@ -49,20 +49,14 @@ setBoard(cardsEasy)
 function showEachCard() {
     //ONLY WORK WITH INTERNET
     //let allCardsElements = document.querySelectorAll(".row-item >i")
-    // WITHOUT INTERNET
-    let allCardsElements = document.querySelectorAll(".row-item")
-    //WITH INTERNET
     // console.log("allCards_i elements", allCardsElements)
-    //WITHOUT INTERNET
+    // WITHOUT INTERNET
+    let allCardsElements = document.querySelectorAll(".row-item") //THE SAME AS IN LINE 36?
     console.log("allCards elements", allCardsElements)
-    console.log(allCardsElements.length)
     for (let i = 0; i < allCardsElements.length; i++) {
         allCardsElements[i].addEventListener("click", function (e) {
-            //console.log("clicked card html", allCardsElements[i])
             allCardsElements[i].classList.toggle("visible")
             let visibleCards = document.querySelectorAll(".visible")
-            //console.log("visible cards", visibleCards)
-            // NOT WORKING YET - Call the function that checks if clicked cards are equal
             checkEqualCards(visibleCards)
         })
     }
@@ -70,31 +64,35 @@ function showEachCard() {
 
 showEachCard()
 
+let solvedCards = []
+
 //WITHOUT INTERNET
 function checkEqualCards(array) {
-    console.log(array.length)
-    console.log(array[0].innerHTML)
-    console.log(array[1].innerHTML)
-    setTimeout(function () {
-        if (array[0].innerHTML !== array[1].innerHTML) {
-            array[0].classList.remove("visible");
-            array[1].classList.remove("visible")
-        } else{
-            array[0].classList.add("solved");
-            array[1].classList.add("solved");
-            setTimeout(function (){
+    if (solvedCards.length >= 11) {
+        console.log("GANHOU!")
+    } else {
+        setTimeout(function () {
+            if (array[0].innerHTML !== array[1].innerHTML) {
                 array[0].classList.remove("visible");
-                array[1].classList.remove("visible");
-            },1000)
-            console.log(array)
-        }
-    },1500)
+                array[1].classList.remove("visible")
+            } else {
+                array[0].classList.add("solved");
+                array[1].classList.add("solved");
+                console.log("solved", array)
+                solvedCards.push(array[0])
+                solvedCards.push(array[1])
+                console.log("solvedcards", solvedCards)
+                setTimeout(function () {
+                    array[0].classList.remove("visible");
+                    array[1].classList.remove("visible");
+                }, 1000)
+            }
+        }, 1500)
+    }
 }
 
 // ______________________________________
-// ______________________________________
-
-/*CARDS - Free
+/*FONT AWESOME - Free icons
 <i class="fa-solid fa-dog"></i>
 <i class="fa-solid fa-cat"></i>
 <i class="fa-light fa-hippo"></i>
