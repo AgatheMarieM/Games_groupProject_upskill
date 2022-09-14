@@ -7,10 +7,6 @@ h1 {
     text-align: center;
 }
 
-/*tabela feita com <table>:*/
-
-
-
 /*segunda tabela feita com div:*/
 .div-container {
     background-color: blue;
@@ -18,9 +14,9 @@ h1 {
     border-radius: 1%;
     display: flex;
     flex-direction: row;
-    justify-content:  center;
+    justify-content: center;
     margin: 0 auto;
-    width: 40%;
+    max-width: 600px;
     }
 
 .div-col {

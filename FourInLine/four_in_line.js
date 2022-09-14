@@ -23,22 +23,19 @@ function colorBottomCell(coluna, indice_coluna) {
 
 function colorCells(column) {
     let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from gridArrays
-    let i = cells.length - 1; //targeting last cell of the array first;
-    let lastCell = cells[i];
-    while (i >= 0) {
-        if (currentPlayer === playerRed) {
-            lastCell.style.backgroundColor = "red";
-            lastCell.classList.add("redCell");
+    for(let i=cells.length-1; i>=0; i--){
+        if (currentPlayer === playerRed && !cells[i].classList.contains("redCell") && !cells[i].classList.contains("yellowCell")) {
+            cells[i].style.backgroundColor = "red";
+            cells[i].classList.add("redCell");
             currentPlayer = playerYellow;
-            i--;
-            lastCell = cells[i];
+            break;
 
-        } else {
-            lastCell.style.backgroundColor = "yellow";
-            lastCell.classList.add("yellow");
+        } else if(currentPlayer === playerYellow && !cells[i].classList.contains("redCell") && !cells[i].classList.contains("yellowCell"))
+        {
+            cells[i].style.backgroundColor = "yellow";
+            cells[i].classList.add("yellowCell");
             currentPlayer = playerRed;
-            i--;
-            lastCell = cells[i];
+            break;
         }
         ;
     }
