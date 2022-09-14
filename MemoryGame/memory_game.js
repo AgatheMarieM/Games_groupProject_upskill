@@ -35,10 +35,6 @@ function setBoard(array) {
 setBoard(cardsEasy)
 
 // Function to show each card each time it is clicked
-
-// MAYBE DELETE
-//let solvedCards = []
-
 function showEachCard() {
     //QUESTION - What is the limit of this cycle, when does it stop? I've set it to 1000 clicks...!?!
     for (let i = 0; i < 1000; i++) {
@@ -53,6 +49,7 @@ function showEachCard() {
 
 showEachCard()
 
+//Function to check if cards match
 function checkEqualCards(array) {
     setTimeout(function () {
         if (array[0].innerHTML !== array[1].innerHTML) {
@@ -62,20 +59,23 @@ function checkEqualCards(array) {
             array[0].classList.add("solved");
             array[1].classList.add("solved");
             //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
-            let test = document.querySelectorAll(".row-item.solved").length
-            console.log("test",test)
-            //console.log("solved", array)
-            //solvedCards.push(array[0])
-            //solvedCards.push(array[1]) //QUESTION - How to use this value to check if game has ended. Suggestion - array solved with 12 elements
-            //console.log("solvedcards", solvedCards)
-            setTimeout(function () {
-                array[0].classList.remove("visible");
-                array[1].classList.remove("visible");
-            }, 1000)
-            //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
-            return test
+            let cardsSolved = document.querySelectorAll(".row-item.solved").length
+            console.log("test", cardsSolved)
+            if (cardsSolved === 12) {
+                console.log("GANHOU")
+                window.alert("GANHOU!")
+            } else {
+                setTimeout(function () {
+                    array[0].classList.remove("visible");
+                    array[1].classList.remove("visible");
+                }, 1000)
+            }
         }
     }, 1500)
 }
 
-console.log(checkEqualCards(visibleCards))
+//QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
+//solvedCards.push(array[0])
+//solvedCards.push(array[1])
+// QUESTION - How to use this value to check if game has ended. Suggestion - array solved with 12 elements
+//console.log("solvedcards", solvedCards)
