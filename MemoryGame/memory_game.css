@@ -19,7 +19,7 @@ h1, h2, div, .player-name {
     justify-content: center;
 }
 
-.type-item, .menu-button{
+.grid-item, .menu-button{
     background-color: greenyellow;
     border-style: outset;
     padding: 10px;

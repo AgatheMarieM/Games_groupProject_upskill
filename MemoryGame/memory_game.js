@@ -4,6 +4,20 @@ let cards = ["☀️", "☀️", "🐻", "🐻", "👩‍", "👩‍", "🌍", "
 let allCards = document.querySelectorAll(".row-item");
 
 // GAME - Create grid
+
+let gridsAvailable = document.querySelectorAll(".grid-item")
+console.log(gridsAvailable)
+
+function selectGrid (array){
+    for (let i = 0; i < gridsAvailable.length; i++) {
+        array[i].addEventListener("click", function (e) {
+            array[i].innerHTML = `<span>lala</span>`
+        })
+    }
+}
+
+selectGrid(gridsAvailable)
+
 //MISSING PART
 
 // GAME - Grid easy (3 x 4 = 12)
