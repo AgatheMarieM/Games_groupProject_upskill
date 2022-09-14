@@ -1,7 +1,9 @@
+//VERSION THAT USES FONTAWESOME
+
 let card = document.querySelectorAll(".row-item");
 
 // All the available cards
-let cards = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10"]
+let cards = ["dog", "dog", "cat", "cat", "hippo", "hippo", "horse", "horse", "frog", "frog", "fish", "fish", "spider", "spider", "kiwi-bird", "kiwi-bird", "feather-pointed", "feather-pointed", "mosquito", "mosquito"]
 
 // GAME - Create grid
 //MISSING PART
@@ -32,7 +34,8 @@ function setBoard(array) {
     let allCards = document.querySelectorAll(".row-item");
     //console.log("Game grid with all shuffled shuffledCards", allCards);
     for (let i = 0; i < shuffledCards.length; i++) {
-        allCards[i].innerHTML = `<span>${shuffledCards[i]}</span>`
+        ONLY WORKS WITH INTERNET
+        allCards[i].innerHTML = `<i class="fa fa-${shuffledCards[i]} fa-4x"></i>`
     }
 }
 
@@ -40,7 +43,7 @@ setBoard(cardsEasy)
 
 // Function to show each card each time it is clicked
 function showEachCard() {
-    let allCardsElements = document.querySelectorAll(".row-item") //THE SAME AS IN LINE 36?
+    let allCardsElements = document.querySelectorAll(".row-item >i")
     console.log("allCards elements", allCardsElements)
     for (let i = 0; i < allCardsElements.length; i++) {
         allCardsElements[i].addEventListener("click", function (e) {
@@ -54,6 +57,8 @@ function showEachCard() {
 showEachCard()
 
 let solvedCards = []
+
+//TO BE CORRECTED FROM HERE ONWARDS
 
 function checkEqualCards(array) {
     if (solvedCards.length >= 11) {
@@ -78,3 +83,20 @@ function checkEqualCards(array) {
         }, 1500)
     }
 }
+
+// ______________________________________
+/*FONT AWESOME - Free icons
+<i class="fa-solid fa-dog"></i>
+<i class="fa-solid fa-cat"></i>
+<i class="fa-light fa-hippo"></i>
+<i class="fa-light fa-horse"></i>
+<i class="fa-solid fa-frog"></i>
+<i class="fa-solid fa-fish"></i>
+<i class="fa-solid fa-spider"></i>
+<i class="fa-solid fa-kiwi-bird"></i>
+<i class="fa-solid fa-feather-pointed"></i>
+<i class="fa-solid fa-mosquito"></i>
+
+Other animals https://fontawesome.com/icons/categories/animals
+Other icons https://www.w3schools.com/icons/
+ */
