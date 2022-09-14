@@ -10,24 +10,55 @@ let boxPlayerRed = document.querySelector("#name-playerRed");
 let playerYellowName = document.querySelector("#playerYellowName");
 let boxPlayerYellow = document.querySelector("#name-playerYellow");
 
-playerRedName.addEventListener("input", function(e){boxPlayerRed.innerHTML = e.target.value;})
-playerYellowName.addEventListener("input", function(e){boxPlayerYellow.innerHTML = e.target.value;})
+playerRedName.addEventListener("input", function (e) {
+    boxPlayerRed.innerHTML = e.target.value;
+})
+playerYellowName.addEventListener("input", function (e) {
+    boxPlayerYellow.innerHTML = e.target.value;
+})
 
 //On clicking start button, the landing-page disappears and the game is on display
-//startButton also starts the stopwatch(timer)
+//startButton also starts the stopwatch(timer)!
 
 let startButton = document.querySelector("#start-button");
-let [hours, minutes, seconds] = [0,0,0];
-startButton.addEventListener("click", function startPlaying(e){
+let timerElement = document.querySelector("#timer");
+let interval = null;
+let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
+
+
+startButton.addEventListener("click", function startPlaying(e) {
     landingPage.style.display = 'none';
     gamePage.style.display = "block";
+    interval = setInterval(updateTimer, 10);//the delay is set to 10.
+    // if delay not specified the timer runs too fast. WHY?
 
+    function updateTimer() {
+        milliseconds += 10;
+        if (milliseconds == 1000) {
+            milliseconds = 0;
+            seconds++;
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+                if (seconds == 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes < 10) {
+                        minutes = '0' + minutes;
+                        if (minutes == 60) {
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+                }
+            }
+        }
+        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+
+    }
 
 });
 
-
-
-
+//Playing 4 in line:
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
 let currentPlayer = playerRed;
