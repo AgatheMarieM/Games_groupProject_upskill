@@ -36,18 +36,19 @@ h1, h2, div, .player-name {
 .row-item {
     background-color: greenyellow;
     border-style: outset;
+    border-radius: 12px;
     padding: 50px;
 }
 
-.row-item i{
-    /*opacity: 0;*/
-    transition: 0.2s;
+.row-item span{
+    opacity: 0;
 }
 
-.test{
-    background-color: red;
+.solved{
+    background-color: grey;
+
 }
 
-.visible{
+.row-item.visible span{
     opacity: 1;
 }
