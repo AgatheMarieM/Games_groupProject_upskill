@@ -1,22 +1,22 @@
-h1, p, timer {
+h1, p, #timer, #winner-name, #name-playerRed, #name-playerYellow {
     font-family: "Verdana";
 }
 
-h1 {
+h1, p {
     text-align: center;
 }
 
 /*segunda tabela feita com div:*/
-.div-container {
-    background-color: blue;
+.game-container {
+    background-color: rgba(0, 0, 255, 0.8);
     border: 1px dotted black;
     border-radius: 1%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 0 auto;
+    margin: 50px auto 30px;
     max-width: 600px;
-    }
+}
 
 .div-col {
     display: flex;
@@ -35,7 +35,30 @@ h1 {
 
 }
 
-.player-names {
+.current-players {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+}
+
+#name-playerRed {
+    background-color: rgba(255, 0, 0, 0.65);
+    border-radius: 10px;
+    display: flex;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#name-playerYellow {
+    background-color: rgba(255, 255, 0, 0.65);
+    border-radius: 10px;
+    display: flex;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.player-names,  {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,7 +66,15 @@ h1 {
     width: 40%;
 }
 
-.timer {
+#playerRedName, #playerYellowName {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px auto ;
+    width: 20%;
+}
+
+#timer {
     text-align: center;
 }
 
@@ -53,4 +84,32 @@ h1 {
 
 .yellowCell {
     background-color: yellow;
+}
+
+#start-button {
+    background-color: rgba(48, 81, 236, 0.68);
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    margin: 50px auto 0;
+    padding: 10px;
+    width: 20%;
+}
+
+#timer, #winner-name {
+    text-align: center;
+}
+
+
+#timer {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 25%;
+
 }

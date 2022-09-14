@@ -14,10 +14,15 @@ playerRedName.addEventListener("input", function(e){boxPlayerRed.innerHTML = e.t
 playerYellowName.addEventListener("input", function(e){boxPlayerYellow.innerHTML = e.target.value;})
 
 //On clicking start button, the landing-page disappears and the game is on display
+//startButton also starts the stopwatch(timer)
+
 let startButton = document.querySelector("#start-button");
-startButton.addEventListener("click", function displayBoardGame(e){
+let [hours, minutes, seconds] = [0,0,0];
+startButton.addEventListener("click", function startPlaying(e){
     landingPage.style.display = 'none';
     gamePage.style.display = "block";
+
+
 });
 
 
@@ -57,6 +62,7 @@ function colorCells(column) {
             break;
         }
     }
+    getWinner();
 }
 
 
