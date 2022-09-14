@@ -56,33 +56,8 @@ function showEachCard() {
 
 showEachCard()
 
-let solvedCards = []
+//TO BE CREATED FROM HERE ONWARDS
 
-//TO BE CORRECTED FROM HERE ONWARDS
-
-function checkEqualCards(array) {
-    if (solvedCards.length >= 11) {
-        console.log("GANHOU!")
-    } else {
-        setTimeout(function () {
-            if (array[0].innerHTML !== array[1].innerHTML) {
-                array[0].classList.remove("visible");
-                array[1].classList.remove("visible")
-            } else {
-                array[0].classList.add("solved");
-                array[1].classList.add("solved");
-                console.log("solved", array)
-                solvedCards.push(array[0])
-                solvedCards.push(array[1])
-                console.log("solvedcards", solvedCards)
-                setTimeout(function () {
-                    array[0].classList.remove("visible");
-                    array[1].classList.remove("visible");
-                }, 1000)
-            }
-        }, 1500)
-    }
-}
 
 // ______________________________________
 /*FONT AWESOME - Free icons
