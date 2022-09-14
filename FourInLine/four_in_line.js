@@ -1,4 +1,9 @@
-/*
+let playerRed = "Red";
+let playerYellow = "Yellow";
+let currentPlayer = playerRed;
+
+
+/*Primeira tentative complicada:
 let emptyCell = [];
 
 function colorBottomCell(coluna, indice_coluna) {
@@ -16,29 +21,39 @@ function colorBottomCell(coluna, indice_coluna) {
 */
 
 
-function groupCells(column) {
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for each column
-    for (let i = cells.length-1; i >=0 ; i--) {
-        if (player === 1 ) {
-            cells[i].style.backgroundColor = "red";
-            cells[i].classList.add("player1");
+function colorCells(column) {
+    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from gridArrays
+    let i = cells.length - 1; //targeting last cell of the array first;
+    let lastCell = cells[i];
+    while (i >= 0) {
+        if (currentPlayer === playerRed) {
+            lastCell.style.backgroundColor = "red";
+            lastCell.classList.add("redCell");
+            currentPlayer = playerYellow;
+            i--;
+            lastCell = cells[i];
 
         } else {
-            cells[i].style.backgroundColor = "yellow";
-            cells[i].classList.add("player2")
-
+            lastCell.style.backgroundColor = "yellow";
+            lastCell.classList.add("yellow");
+            currentPlayer = playerRed;
+            i--;
+            lastCell = cells[i];
         }
+        ;
     }
 }
 
-//Initialize the game with the columns from the document,
-//initialize player;
-let player = 1; //start mock up with player1
 
-let gridArrays = document.querySelectorAll(".div-col");
-for (let i = 0; i < gridArrays.length; i++) {
-    gridArrays[i].addEventListener("click", groupCells(gridArrays[i])) //adding event for each column of the array
-    ;
-}
-;
+//Initialize the game with the columns from the document
+let gridArrays = document.querySelectorAll(".div-col");//array with 7 columns
+
+gridArrays.forEach(function (column) {
+    column.addEventListener("click", function () {
+        colorCells(column)
+    });
+    //event for each column of the array
+    //anonymous function needed to prevent the default behavior;
+})
+
 
