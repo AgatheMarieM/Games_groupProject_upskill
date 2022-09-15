@@ -137,7 +137,10 @@ function getWinner() {
         }
     }
 
-    //Horizontal victory:!
+    //Horizontal victory:
+
+
+
 
 }
 
