@@ -150,7 +150,7 @@ function getWinner() {
                 gameOver = true;
                 return;
             }
-            // Diagonal up->down victory:
+            // Diagonal up to bottom diagonal
             if (colCellsList[i][j].classList.contains(playerRed)
                 && colCellsList[i + 1][j + 1].classList.contains(playerRed)
                 && colCellsList[i + 2][j + 2].classList.contains(playerRed)
