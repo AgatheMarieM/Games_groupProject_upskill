@@ -8,6 +8,10 @@ body {
     background-color: aqua;
 }
 
+#rounds {
+    background-color: azure;
+}
+
 #players {
     background-color: aquamarine;
     display: flex;

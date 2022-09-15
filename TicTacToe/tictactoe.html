@@ -12,14 +12,18 @@
 </div>
 
 <div id="timer">
-    12:03
+
+</div>
+
+<div id="rounds">
+    <div class="count-round"> Round 1/5</div>
 </div>
 
 <div id="players">
     <div class="player1">Player 1</div>
-    <div class="round"> Ronda 1/5</div>
     <div class="player2"> Player 2</div>
 </div>
+
 
 <div id="game-container">
     <div>1</div>
@@ -37,34 +41,69 @@
 </body>
 <script>
 
+
     let g = document.querySelectorAll("#game-container > div");
     let playerTurn = true
-    let A = [""]
-    let B = [""]
+    let A = []
+    let B = []
 
     function tictactoe() {
-            g.forEach(function (e) {
-                e.addEventListener("click", function () {
-                    if (playerTurn === true){
-                        A.push(document.querySelector("#game-container > div").innerText);
-                        console.log(A)
-                        e.innerHTML = `<img src="cruz.png"/>`;
-                        playerTurn = !playerTurn
-                    } else {
-                        B.push(document.querySelector("#game-container > div").innerText);
-                        console.log(B)
-                        e.innerHTML = `<img src="bola.png"/>`;
-                        playerTurn = !playerTurn
-                    }
-                }, { once: true })
-            }, { once: true })
+        g.forEach(function (e) {
+            e.addEventListener("click", function () {
+                if (playerTurn === true) {
+                    A.push(e.innerText);
+                    console.log(A)
+                    e.innerHTML = `<img src="cruz.png"/>`;
+                    winner(A)
+                    playerTurn = !playerTurn
+                } else {
+                    B.push(e.innerText);
+                    console.log(B)
+                    e.innerHTML = `<img src="bola.png"/>`;
+                    winner(B)
+                    playerTurn = !playerTurn
+                }
+            }, {once: true})
+        }, {once: true})
     }
+
     console.log(tictactoe())
 
 
+    function winner(list) {
 
-    function winner(A, B){
+        let win_comb = [
+            ["1", "2", "3"],
+            ["4", "5", "6"],
+            ["7", "8", "9"],
+            ["1", "4", "7"],
+            ["2", "5", "8"],
+            ["3", "6", "9"],
+            ["1", "5", "9"],
+            ["3", "5", "7"]
+        ]
+        win_comb.forEach(function (comb) {
+            console.log(comb)
+                    if (list.includes(comb[0]) && list.includes(comb[1]) && list.includes(comb[2])){
+                        console.log(`Player ${list.name} wins`)
+
+                    } else {
+                        console.log("Try again")
+                }
+         })
     }
+
+
+    let time = document.getElementById("timer")
+    for(let i = 1; i <= 60; i=i+1) {
+            setTimeout(function() {
+                time.innerHTML = i;
+        }, 1000 * i)
+    }
+
+
+
+
 
 
 
