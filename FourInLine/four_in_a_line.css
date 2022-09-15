@@ -88,7 +88,7 @@ h1, p {
     padding: 10px;
 }
 
-.player-names  {
+.player-names {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,12 +96,24 @@ h1, p {
     width: 40%;
 }
 
+.winner-name {
+    color: blue;
+    font-family: 'Silkscreen', cursive;
+    font-size: 30px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+
+}
+
+
 #playerRedName, #playerYellowName {
+    box-sizing: content-box;
     display: flex;
     justify-content: center;
     padding: 10px;
     margin: 10px auto ;
-    width: 20%;
+    width: 40%;
 }
 #playerRedName {
     border: 2px solid red;
@@ -120,11 +132,11 @@ h1, p {
 
 
 #start-button{
-    background-color: white;
+    background-color: blue;
     border: 2px solid blue;
     border-radius: 10px;
     box-sizing: content-box;
-    color: blue;
+    color: white;
     cursor: pointer;
     display: flex;
     font-family: 'Silkscreen', cursive;
@@ -132,12 +144,12 @@ h1, p {
     justify-content: center;
     margin: 50px auto;
     padding: 10px 40px;
-    width: 20%;
+    width: 40%;
 }
 
 #start-button:hover {
-    background-color: blue;
-    color: white;
+    background-color: white;
+    color: blue;
 }
 
 #timer, #winner-name {
