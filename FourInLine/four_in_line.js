@@ -3,6 +3,9 @@ let landingPage = document.querySelector(".lp-4inline");
 let gamePage = document.querySelector(".game-4inline");
 gamePage.style.display = 'none';
 
+let winnerName = document.querySelector(".winner-name");
+winnerName.style.display = 'none';
+
 //get player names values (then we'll show them on game page):
 let playerRedName = document.querySelector("#playerRedName");
 let boxPlayerRed = document.querySelector("#name-playerRed");
@@ -29,21 +32,18 @@ let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
 startButton.addEventListener("click", function startPlaying() {
     landingPage.style.display = 'none';
     gamePage.style.display = "block";
-    /*gameGrid.style.display = "block";
-    displayGrid();*/
-    interval = setInterval(updateTimer, 10);//the delay is set to 10.
-    // if delay not specified the timer runs too fast. WHY?
+    interval = setInterval(updateTimer, 1000);//the delay is set to 1000 ms (1sc)
 
     function updateTimer() {
-        milliseconds += 10;
+        milliseconds += 1000;
         if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
             if (seconds < 10) {
                 seconds = '0' + seconds;
                 if (seconds === 60) {
-                    seconds = 0;
                     minutes++;
+                    seconds = 0;
                     if (minutes === 60) {
                         minutes = 0;
                         hours++;
@@ -123,7 +123,7 @@ function getWinner() {
                 && colArrays[i][j - 3].classList.contains(playerRed)) {
                 console.log("Red Player wins");
                 displayWinnerName(`${playerRedName.value} wins!`);
-                return ;
+                return;
             }
             if (colArrays[i][j].classList.contains(playerYellow)
                 && colArrays[i][j - 1].classList.contains(playerYellow)
@@ -133,48 +133,18 @@ function getWinner() {
                 displayWinnerName(`${playerYellowName.value} wins!`);
                 return;
             }
-            
         }
     }
 
     //Horizontal victory:!
 
 }
+
 //Display winner name on screen:
-function displayWinnerName(str){
-    let winnerName = document.querySelector("#winner-name");
+function displayWinnerName(str) {
+    winnerName.style.display = 'flex';
     winnerName.innerHTML = str;
 }
 
-
-
-
-
-
-// trying to print the board game with javascript and work with rowArray and colArray since the beginning:
-
-/*
-let gameGrid = document.querySelector(".game-grid");
-gameGrid.style.display = 'none';
-let rows = 6;
-let cols = 7;
-let colArray = [];
-
-function displayGrid() {
-    for (let i = 0; i < cols; i++) {
-        gameGrid.innerHTML += `
-        <div class="div-col">
-            <div class="div-cell"></div>
-            <div class="div-cell"></div>
-            <div class="div-cell"></div>
-            <div class="div-cell"></div>
-            <div class="div-cell"></div>
-            <div class="div-cell"></div>
-        </div>`;
-        colArray[i] = gameGrid.innerHTML;
-        console.log(colArray[i]);
-    }
-}
-*/
 
 
