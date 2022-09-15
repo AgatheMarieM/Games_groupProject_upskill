@@ -1,4 +1,4 @@
-//Initialize the page WITHOUT the game
+//Load landing page WITHOUT the game
 let landingPage = document.querySelector(".lp-4inline");
 let gamePage = document.querySelector(".game-4inline");
 gamePage.style.display = 'none';
@@ -42,7 +42,7 @@ startButton.addEventListener("click", function startPlaying() {
             if (seconds < 10) {
                 seconds = '0' + seconds;
                 if (seconds === 60) {
-                    seconds =   0;
+                    seconds = 0;
                     minutes++;
                     if (minutes === 60) {
                         minutes = 0;
@@ -57,33 +57,20 @@ startButton.addEventListener("click", function startPlaying() {
 
 });
 
-//Playing 4 in line:
+//Clicking cells and playing the game:
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
 let currentPlayer = playerRed;
+//Selection all columns from document:
+let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
 
-
-function getWinner() {
-    //victoria horizontal
-    //4 cellulas identicas horizontalmente: AO-BO-CO-DO por exemplo
-    //Checking victories:
-
-    let colArrays = [];
-// let rowArrays = [];
-    /*for (let i = 0; i < rows; i++) {
-        rowArrays[i] = [];
-        for (let j = 0; j < columnNodeList.length; j++) {
-            rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
-        }
-    }*/
-
-    for (let j = 0; j < columnNodeList.length; j++) {
-        colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
-        console.log(colArrays[j]);
-    }
-
-}
-
+columnNodeList.forEach(function (column) {
+    column.addEventListener("click", function () {
+        colorCells(column)
+    });
+    //event for each column of the array
+    //anonymous function needed to prevent the default behavior;
+})
 
 function colorCells(column) {
     let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnNodeList
@@ -100,27 +87,64 @@ function colorCells(column) {
     getWinner();
 }
 
+//creating arrays of cells from the document to access state of each cell and get winner
+let colArrays = [];
+for (let j = 0; j < columnNodeList.length; j++) {
+    colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
+}
 
+/*console.log(colArrays.length);
+console.log(colArrays[0][2]);
+console.log(colArrays[1][2]);*/
 
-//Selection all columns from document:
-let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
-console.log(columnNodeList);
+function getWinner() {
+    //victoria horizontal
+    /* let rowArrays = [];
+        for (let i = 0; i < rows; i++) {
+        rowArrays[i] = [];
+        for (let j = 0; j < columnNodeList.length; j++) {
+            rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
+        }
+    }*/
+    //Checking if vertical victory:
+    for (let i = 0; i < colArrays.length; i++) {
+        for (let j = (colArrays[i].length - 1); j >= 0; j--) {
+            // console.log(colArrays[i].length);
+            /*if (colArrays[i][j - 3] == colArrays[i][j - 2]) {
+                if (colArrays[i][j - 2] == colArrays[i][j - 1]) {
+                    if (colArrays[i][j - 1] == colArrays[i][j]) {
+                        console.log("winner");
+                    }
+                }
+            }*/
+            if (colArrays[i][j].classList.contains(playerRed)
+                && colArrays[i][j - 1].classList.contains(playerRed)
+                && colArrays[i][j - 2].classList.contains(playerRed)
+                && colArrays[i][j - 3].classList.contains(playerRed)) {
+                console.log("Red Player wins");
+                displayWinnerName(`${playerRedName.value} wins!`);
+                return ;
+            }
+            if (colArrays[i][j].classList.contains(playerYellow)
+                && colArrays[i][j - 1].classList.contains(playerYellow)
+                && colArrays[i][j - 2].classList.contains(playerYellow)
+                && colArrays[i][j - 3].classList.contains(playerYellow)) {
+                console.log("Yellow player wins");
+                displayWinnerName(`${playerYellowName.value} wins!`);
+                return;
+            }
+            
+        }
+    }
 
-columnNodeList.forEach(function (column) {
-    column.addEventListener("click", function () {
-        colorCells(column)
-    });
-    //event for each column of the array
-    //anonymous function needed to prevent the default behavior;
-})
+    //Horizontal victory:!
 
-
-
-
-
-
-
-
+}
+//Display winner name on screen:
+function displayWinnerName(str){
+    let winnerName = document.querySelector("#winner-name");
+    winnerName.innerHTML = str;
+}
 
 
 
