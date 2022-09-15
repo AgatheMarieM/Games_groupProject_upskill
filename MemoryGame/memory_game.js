@@ -9,7 +9,7 @@ let cardsForGrids = [cards.slice(0, 12), cards.slice(0, 16), cards]
 function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
-            console.log("clickedgridsize",cardsForGrids[i].length)
+            console.log("clickedgridsize", cardsForGrids[i].length)
             startGame(cardsForGrids[i])
         })
     }
@@ -17,7 +17,20 @@ function selectGrid() {
 
 selectGrid()
 
-function startGame(cards_board){
+function startGame(cards_board) {
+
+    //Counter - Inspiration gotten from the www (https://www.delftstack.com/howto/javascript/javascript-count-up-timer/)
+    setInterval(countUpTime, 1000)
+    let start = 0
+    function countUpTime() {
+        start++
+        let hours = Math.floor(start / 3600)
+        let minutes = Math.floor(start/ 60)
+        let seconds = start- (hours * 3600 + minutes * 60);
+        document.querySelector(".counter p").innerHTML = `${hours}:${minutes}:${seconds}`
+        //console.log(hours,minutes,seconds)
+    }
+
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
         //DELETE - Is defining that the cards show in original array order
@@ -58,7 +71,7 @@ function startGame(cards_board){
                 allCards[i].classList.add("visible")
                 let visibleCards = document.querySelectorAll(".visible")
                 checkEqualCards(visibleCards)
-                console.log("visiblecards",visibleCards)
+                console.log("visiblecards", visibleCards)
             })
         }
     }
@@ -89,3 +102,7 @@ function startGame(cards_board){
         }, 1500)
     }
 }
+
+
+
+
