@@ -11,13 +11,14 @@
     <h3>Tic-Tac-Toe</h3>
 </div>
 
-<div id="timer">
-
-</div>
-
 <div id="rounds">
     <div class="count-round"> Round 1/5</div>
 </div>
+
+<div id="timer">
+    Let's start the game!
+</div>
+
 
 <div id="players">
     <div class="player1">Player 1</div>
@@ -37,9 +38,21 @@
     <div>9</div>
 </div>
 
+<div class="popup">
+    <div class="popup-content">
+        <img src="silver-close-button.png" alt="Close" class="close">
+        <input type="text" placeholder="Player 1">
+        <input type="text" placeholder="Player 2">
+        <a href="#" class="button">START</a>
+    </div>
+</div>
 
 </body>
 <script>
+
+    document.querySelector(".button").addEventListener("click", function (){
+        document.querySelector(".popup").style.display = "none";
+    })
 
 
     let g = document.querySelectorAll("#game-container > div");
@@ -100,6 +113,8 @@
                 time.innerHTML = i;
         }, 1000 * i)
     }
+
+
 
 
 
