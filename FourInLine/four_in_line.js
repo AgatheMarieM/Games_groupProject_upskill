@@ -64,18 +64,19 @@ let playerYellow = "yellowCell";
 let currentPlayer = playerRed; //we start with red
 // ASK PLAYERS WHO WANTS TO START?
 
-//Selection all columns from document and iterating through them:
+//new variable columnList that stores all columns from document
+//adding an event for each column (calling colorCells() function)
 let columnList = document.querySelectorAll(".div-col");//array with 7 columns
 columnList.forEach(function (column) {
     column.addEventListener("click", function () {
         colorCells(column)
     });
-    //event for each column of the array
     //anonymous function needed to prevent the default behavior;
 })
 
 function colorCells(column) {
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnList
+    //creating locally an array of cells for the column from columnList:
+    let cells = column.querySelectorAll(".div-cell");
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
@@ -89,14 +90,13 @@ function colorCells(column) {
     getWinner();
 }
 
-//creating arrays of cells from the document to access later the state of each cell (condition red or yellow)
+//new variable colCellsList that store for each column its n cells
+//allows us to access later the state of each cell (red or yellow?)
 let colCellsList = [];
 for (let j = 0; j < columnList.length; j++) {
     colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
 }
 
-console.log(columnList);
-console.log(colCellsList);
 
 function getWinner() {
     //victoria horizontal
