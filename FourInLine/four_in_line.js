@@ -150,20 +150,55 @@ function getWinner() {
                 gameOver = true;
                 return;
             }
-            //Diagonal victory:
-      /*     /if (colCellsList[i][j].classList.contains(playerRed)
+            // Diagonal up->down victory:
+            if (colCellsList[i][j].classList.contains(playerRed)
                 && colCellsList[i + 1][j + 1].classList.contains(playerRed)
                 && colCellsList[i + 2][j + 2].classList.contains(playerRed)
                 && colCellsList[i + 3][j + 3].classList.contains(playerRed)) {
                 displayWinnerName(`${playerRedName.value} wins!`);
                 return;
             }
+            if (colCellsList[i][j].classList.contains(playerYellow)
+                && colCellsList[i + 1][j + 1].classList.contains(playerYellow)
+                && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
+                && colCellsList[i + 3][j + 3].classList.contains(playerYellow)) {
+                displayWinnerName(`${playerYellowName.value} wins!`);
+                return;
+            }
+            if (colCellsList[i][j+1].classList.contains(playerRed)
+                && colCellsList[i + 1][j + 2].classList.contains(playerRed)
+                && colCellsList[i + 2][j + 3].classList.contains(playerRed)
+                && colCellsList[i + 3][j + 4].classList.contains(playerRed)) {
+                displayWinnerName(`${playerRedName.value} wins!`);
+                return;
+            }
+            if (colCellsList[i][j+1].classList.contains(playerYellow)
+                && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
+                && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
+                && colCellsList[i + 3][j + 4].classList.contains(playerYellow)) {
+                displayWinnerName(`${playerYellowName.value} wins!`);
+                return;
+            }          
+                       
+            if (colCellsList[i][j+2].classList.contains(playerRed)
+                && colCellsList[i + 1][j + 3].classList.contains(playerRed)
+                && colCellsList[i + 2][j + 4].classList.contains(playerRed)
+                && colCellsList[i + 3][j + 5].classList.contains(playerRed)) {
+                displayWinnerName(`${playerRedName.value} wins!`);
+                return;
+            }
+            if (colCellsList[i][j+2].classList.contains(playerYellow)
+                && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
+                && colCellsList[i + 2][j + 4].classList.contains(playerYellow)
+                && colCellsList[i + 3][j + 5].classList.contains(playerYellow)) {
+                displayWinnerName(`${playerYellowName.value} wins!`);
+                return;
+            }
+            // Diagonal down->up victory:
 
-*/
+
         }
     }
-
-
 }
 
 //Display winner name on screen:
