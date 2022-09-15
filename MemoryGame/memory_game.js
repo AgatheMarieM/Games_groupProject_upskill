@@ -1,6 +1,6 @@
 // All the available cards
 //let cards = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10"]
-let cards = ["☀️", "☀️", "🐻", "🐻", "👩‍", "👩‍", "🌍", "🌍", "🌻", "🌻", "🐶", "🐶", "😸", "😸", "🦴", "🦴", "🐸", "🐸", "🐣", "🐣"]
+let cards = ["☀️", "☀️", "🐻", "🐻","🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "👩‍", "👩‍", "🌍", "🌍", "🌻", "🌻", "🦴", "🦴" ]
 
 // GAME - Create grid
 let gridsAvailable = document.querySelectorAll(".grid-item")
@@ -69,10 +69,7 @@ function startGame(cards_board) {
             allCards[i].addEventListener("click", function (e) {
                 //QUESTION - Changed "toggle" to "add". What would be better?
                 //QUESTION - This condition can only verify if !== visible, or both?
-                if (allCards[i].classList === "solved") {
-                    console.log("teste",allCards[i].classList)
-                    return;
-                } else {
+                if (allCards[i].classList !== "solved") {
                     allCards[i].classList.add("visible")
                     let visibleCards = document.querySelectorAll(".visible")
                     checkEqualCards(visibleCards)
