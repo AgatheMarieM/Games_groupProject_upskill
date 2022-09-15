@@ -40,14 +40,14 @@ function startGame(cards_board){
         let shuffledCards = shuffleArray(array)
         for (let i = 0; i < shuffledCards.length; i++) {
             gridGame.innerHTML += `
-                <div class="row-item"><span>${shuffledCards[i]}</span></div>`;
+                <div class="game-item"><span>${shuffledCards[i]}</span></div>`;
         }
         console.log(gridGame)
     }
 
     setBoard(cards_board)
 
-    let allCards = document.querySelectorAll(".row-item");
+    let allCards = document.querySelectorAll(".game-item");
     console.log("allcards", allCards)
 
     // Function to show each card each time it is clicked
@@ -75,7 +75,7 @@ function startGame(cards_board){
                 array[0].classList.add("solved");
                 array[1].classList.add("solved");
                 //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
-                let cardsSolved = document.querySelectorAll(".row-item.solved").length
+                let cardsSolved = document.querySelectorAll(".game-item.solved").length
                 console.log("howmanycardsSolved", cardsSolved)
                 if (cardsSolved === allCards.length) {
                     window.alert("GANHOU!")

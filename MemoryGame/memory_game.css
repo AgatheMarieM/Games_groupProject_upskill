@@ -14,10 +14,12 @@ h1, h2, div, .player-name {
     justify-content: center;
 }
 
-.grid-type {
+.grid-type, .grid-game {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
+
 
 .grid-item, .menu-button{
     background-color: greenyellow;
@@ -26,32 +28,26 @@ h1, h2, div, .player-name {
     border-radius: 12px;
 }
 
-.game-row {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.row-item {
+.game-item {
     background-color: greenyellow;
     border-style: outset;
     border-radius: 12px;
-    /*padding: 50px;*/
+    padding: 50px;
 }
 
-.row-item span{
-    /*opacity: 0;*/
+.game-item span{
+    /*Inverted just for testing
+    opacity: 0;*/
     opacity: 1;
-    /*font-size: 60px;*/
+    font-size: 60px;
 }
 
 .solved{
-    background-color: grey;
-
+    background-color: lightgrey;
 }
 
-.row-item.visible span{
-    /*opacity: 1;*/
+.game-item.visible span{
+    /*Inverted just for testing
+    opacity: 1;*/
     opacity: 0;
 }
