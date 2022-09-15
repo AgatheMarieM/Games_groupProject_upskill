@@ -1,27 +1,30 @@
 // All the available cards
 //let cards = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10"]
 let cards = ["☀️", "☀️", "🐻", "🐻", "👩‍", "👩‍", "🌍", "🌍", "🌻", "🌻", "🐶", "🐶", "😸", "😸", "🦴", "🦴", "🐸", "🐸", "🐣", "🐣"]
+//VERIFICAR SE ESTOU A USAR?!?
 let allCards = document.querySelectorAll(".row-item");
 
 // GAME - Create grid
-
 let gridsAvailable = document.querySelectorAll(".grid-item")
-let gridEasy = document.querySelectorAll(".grid-easy")
-console.log("grideasy", gridEasy)
+let cardsForGrids = [cards.slice(0, 12), cards.slice(0, 16), cards]
 
 function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
-            setBoard(cardsEasy)
+            setBoard(cardsForGrids[i])
+            console.log(cardsForGrids[i].length)
         })
     }
 }
 
-selectGrid()
+/*for (let i = 0; i < gridsAvailable.length; i++) {
+    gridsAvailable[i].addEventListener("click", function (e) {
+        setBoard(cardsEasy)
+    })
+}*/
 
-// GAME - Grid easy (3 x 4 = 12)
-let cardsEasy = cards.slice(0, 12)
-//console.log("All cards - Grid easy(3x4)", cardsEasy)
+
+selectGrid()
 
 // Function to shuffle obtained in the www
 function shuffleArray(array) {
@@ -36,22 +39,17 @@ function shuffleArray(array) {
     return array;
 }
 
+let gridEasy = document.querySelector(".grid-easy")
+console.log("grideasy", gridEasy)
+
 // Function to create game grid with shuffled cards (using previous shuffle array function)
 function setBoard(array) {
     let shuffledCards = shuffleArray(array)
-    let gameRow = document.querySelectorAll(".game-row")
-    console.log("gamerow", gameRow)
-
     for (let i = 0; i < shuffledCards.length; i++) {
-        gameRow[i].innerHTML = `
-            <div class="row-item">${shuffledCards[i]}</div>
-            <div class="row-item">${shuffledCards[i+1]}</div>
-            <div class="row-item">${shuffledCards[i+2]}</div>
-            <div class="row-item">${shuffledCards[i+3]}</div>`
-
-        //console.log("Game grid with all shuffled shuffledCards", allCards);
-        //allCards[i].innerHTML = `<span>${shuffledCards[i]}</span>`
+        gridEasy.innerHTML += `
+                <div class="row-item">${shuffledCards[i]}</div>`;
     }
+    console.log(gridEasy)
 }
 
 // Function already called inside function selectGrid
