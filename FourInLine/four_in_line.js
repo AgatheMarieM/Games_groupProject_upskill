@@ -77,9 +77,13 @@ columnList.forEach(function (column) {
 function colorCells(column) {
     //creating locally an array of cells for the column from columnList:
     let cells = column.querySelectorAll(".div-cell");
+    console.log(cells);
+    //looping through all cells:
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
+            //reading document from bottom to top: if the last indice of the cells array doesn't contain class
+            // with player color, then we add it: playerRed or playerYellow
             if (currentPlayer === playerRed)
                 currentPlayer = playerYellow;
             else
@@ -107,10 +111,9 @@ function getWinner() {
             rowArrays[i][j] = columnList[j].querySelectorAll(".div-cell")[i];
         }
     }*/
-    //Vertical victory:
-    for (let i = 0; i < colCellsList.length; i++) { // 7 columns, i goes until 6
+    for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
         for (let j = (colCellsList[i].length - 1); j >= 0; j--) { // each column has 6 elements, j goes to 5
-
+            //Vertical victory:
             if (colCellsList[i][j].classList.contains(playerRed)
                 && colCellsList[i][j - 1].classList.contains(playerRed)
                 && colCellsList[i][j - 2].classList.contains(playerRed)
@@ -127,10 +130,27 @@ function getWinner() {
                 displayWinnerName(`${playerYellowName.value} wins!`);
                 return;
             }
+            //Horizontal victory:
+            if (colCellsList[i][j].classList.contains(playerRed)
+                && colCellsList[i+1][j].classList.contains(playerRed)
+                && colCellsList[i+2][j].classList.contains(playerRed)
+                && colCellsList[i+3][j].classList.contains(playerRed)) {
+                displayWinnerName(`${playerRedName.value} wins!`);
+                return;
+            }
+            if (colCellsList[i][j].classList.contains(playerYellow)
+                && colCellsList[i+1][j].classList.contains(playerYellow)
+                && colCellsList[i+2][j].classList.contains(playerYellow)
+                && colCellsList[i+3][j].classList.contains(playerYellow)) {
+                displayWinnerName(`${playerYellowName.value} wins!`);
+                return;
+            }
+
+
+
         }
     }
 
-    //Horizontal victory:
 
 
 
