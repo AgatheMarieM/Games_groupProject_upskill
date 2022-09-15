@@ -61,11 +61,12 @@ startButton.addEventListener("click", function startPlaying() {
 //Clicking cells and playing the game:
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
-let currentPlayer = playerRed;
-//Selection all columns from document:
-let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
+let currentPlayer = playerRed; //we start with red
+// ASK PLAYERS WHO WANTS TO START?
 
-columnNodeList.forEach(function (column) {
+//Selection all columns from document and iterating through them:
+let columnList = document.querySelectorAll(".div-col");//array with 7 columns
+columnList.forEach(function (column) {
     column.addEventListener("click", function () {
         colorCells(column)
     });
@@ -74,7 +75,7 @@ columnNodeList.forEach(function (column) {
 })
 
 function colorCells(column) {
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnNodeList
+    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnList
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
@@ -88,49 +89,41 @@ function colorCells(column) {
     getWinner();
 }
 
-//creating arrays of cells from the document to access state of each cell and get winner
-let colArrays = [];
-for (let j = 0; j < columnNodeList.length; j++) {
-    colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
+//creating arrays of cells from the document to access later the state of each cell (condition red or yellow)
+let colCellsList = [];
+for (let j = 0; j < columnList.length; j++) {
+    colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
 }
 
-/*console.log(colArrays.length);
-console.log(colArrays[0][2]);
-console.log(colArrays[1][2]);*/
+console.log(columnList);
+console.log(colCellsList);
 
 function getWinner() {
     //victoria horizontal
     /* let rowArrays = [];
         for (let i = 0; i < rows; i++) {
         rowArrays[i] = [];
-        for (let j = 0; j < columnNodeList.length; j++) {
-            rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
+        for (let j = 0; j < columnList.length; j++) {
+            rowArrays[i][j] = columnList[j].querySelectorAll(".div-cell")[i];
         }
     }*/
-    //Checking if vertical victory:
-    for (let i = 0; i < colArrays.length; i++) {
-        for (let j = (colArrays[i].length - 1); j >= 0; j--) {
-            // console.log(colArrays[i].length);
-            /*if (colArrays[i][j - 3] == colArrays[i][j - 2]) {
-                if (colArrays[i][j - 2] == colArrays[i][j - 1]) {
-                    if (colArrays[i][j - 1] == colArrays[i][j]) {
-                        console.log("winner");
-                    }
-                }
-            }*/
-            if (colArrays[i][j].classList.contains(playerRed)
-                && colArrays[i][j - 1].classList.contains(playerRed)
-                && colArrays[i][j - 2].classList.contains(playerRed)
-                && colArrays[i][j - 3].classList.contains(playerRed)) {
-                console.log("Red Player wins");
+    //Vertical victory:
+    for (let i = 0; i < colCellsList.length; i++) { // 7 columns, i goes until 6
+        for (let j = (colCellsList[i].length - 1); j >= 0; j--) { // each column has 6 elements, j goes to 5
+
+            if (colCellsList[i][j].classList.contains(playerRed)
+                && colCellsList[i][j - 1].classList.contains(playerRed)
+                && colCellsList[i][j - 2].classList.contains(playerRed)
+                && colCellsList[i][j - 3].classList.contains(playerRed)) {
+                // console.log("Red Player wins");
                 displayWinnerName(`${playerRedName.value} wins!`);
                 return;
             }
-            if (colArrays[i][j].classList.contains(playerYellow)
-                && colArrays[i][j - 1].classList.contains(playerYellow)
-                && colArrays[i][j - 2].classList.contains(playerYellow)
-                && colArrays[i][j - 3].classList.contains(playerYellow)) {
-                console.log("Yellow player wins");
+            if (colCellsList[i][j].classList.contains(playerYellow)
+                && colCellsList[i][j - 1].classList.contains(playerYellow)
+                && colCellsList[i][j - 2].classList.contains(playerYellow)
+                && colCellsList[i][j - 3].classList.contains(playerYellow)) {
+                // console.log("Yellow player wins");
                 displayWinnerName(`${playerYellowName.value} wins!`);
                 return;
             }
