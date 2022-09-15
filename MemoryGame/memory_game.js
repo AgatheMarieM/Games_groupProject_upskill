@@ -1,7 +1,6 @@
 // All the available cards
 //let cards = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10"]
 let cards = ["☀️", "☀️", "🐻", "🐻", "👩‍", "👩‍", "🌍", "🌍", "🌻", "🌻", "🐶", "🐶", "😸", "😸", "🦴", "🦴", "🐸", "🐸", "🐣", "🐣"]
-//VERIFICAR SE ESTOU A USAR?!?
 
 // GAME - Create grid
 let gridsAvailable = document.querySelectorAll(".grid-item")
@@ -21,7 +20,7 @@ selectGrid()
 function startGame(cards_board){
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
-        //DELETE - Is definig that the cards show in original array order
+        //DELETE - Is defining that the cards show in original array order
         return array;
         let curId = array.length;
         while (0 !== curId) { // There remain elements to shuffle
@@ -34,16 +33,16 @@ function startGame(cards_board){
         return array;
     }
 
-    let gridEasy = document.querySelector(".grid-easy")
+    let gridGame = document.querySelector(".grid-game")
 
     // Function to create game grid with shuffled cards (using previous shuffle array function)
     function setBoard(array) {
         let shuffledCards = shuffleArray(array)
         for (let i = 0; i < shuffledCards.length; i++) {
-            gridEasy.innerHTML += `
+            gridGame.innerHTML += `
                 <div class="row-item"><span>${shuffledCards[i]}</span></div>`;
         }
-        console.log(gridEasy)
+        console.log(gridGame)
     }
 
     setBoard(cards_board)
@@ -59,6 +58,7 @@ function startGame(cards_board){
                 allCards[i].classList.add("visible")
                 let visibleCards = document.querySelectorAll(".visible")
                 checkEqualCards(visibleCards)
+                console.log("visiblecards",visibleCards)
             })
         }
     }
@@ -76,9 +76,8 @@ function startGame(cards_board){
                 array[1].classList.add("solved");
                 //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
                 let cardsSolved = document.querySelectorAll(".row-item.solved").length
-                console.log("test", cardsSolved)
-                if (cardsSolved === 12) {
-                    console.log("GANHOU")
+                console.log("howmanycardsSolved", cardsSolved)
+                if (cardsSolved === allCards.length) {
                     window.alert("GANHOU!")
                 } else {
                     setTimeout(function () {

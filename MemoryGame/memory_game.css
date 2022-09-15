@@ -37,13 +37,13 @@ h1, h2, div, .player-name {
     background-color: greenyellow;
     border-style: outset;
     border-radius: 12px;
-    padding: 50px;
+    /*padding: 50px;*/
 }
 
 .row-item span{
     /*opacity: 0;*/
     opacity: 1;
-    font-size: 60px;
+    /*font-size: 60px;*/
 }
 
 .solved{
