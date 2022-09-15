@@ -3,6 +3,7 @@ let landingPage = document.querySelector(".lp-4inline");
 let gamePage = document.querySelector(".game-4inline");
 gamePage.style.display = 'none';
 
+let playerNames = document.querySelector(".current-players");
 let winnerName = document.querySelector(".winner-name");
 winnerName.style.display = 'none';
 
@@ -144,6 +145,7 @@ function getWinner() {
 function displayWinnerName(str) {
     winnerName.style.display = 'flex';
     winnerName.innerHTML = str;
+    playerNames.style.display ='none';
 }
 
 
