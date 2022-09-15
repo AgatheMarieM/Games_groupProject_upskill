@@ -13,7 +13,7 @@
 
 <body>
 
-<!--PARTE 1 - MENU JOGO-->
+<!--PART 1 - GAME MENU-->
 
 <h1>Memory game</h1>
 <div class="main-container">
@@ -24,54 +24,30 @@
     <div>
         <h2>Choose grid</h2>
         <div class="grid-type">
-            <div class="type-item">Easy 3 x 4</div>
-            <div class="type-item">Medium 4 x 4</div>
-            <div class="type-item">Hard 4 x 5</div>
+            <div class="grid-item">Easy 3 x 4</div>
+            <div class="grid-item">Medium 4 x 4</div>
+            <div class="grid-item">Hard 4 x 5</div>
         </div>
     </div>
 </div>
 
-<!--PARTE 2 - JOGO-->
+<!--PART 2 - GAME-->
 
 <div class="main-container">
-    <div class="counter">TIME COUNTING</div>
+    <div class="counter">
+        <h2>TIME COUNTING</h2>
+        <p></p>
+    </div>
     <div class="game-container">
-
-        <!--GAME Easy 3 x 4-->
-        <div class="grid-easy">
-            <div class="game-row">
-                <div class="row-item" id="position0-0">01</div>
-                <div class="row-item" id="position0-1">02</div>
-                <div class="row-item" id="position0-2">03</div>
-                <div class="row-item" id="position0-3">04</div>
-            </div>
-            <div class="game-row">
-                <div class="row-item" id="position1-0">05</div>
-                <div class="row-item" id="position1-1">06</div>
-                <div class="row-item" id="position1-2">07</div>
-                <div class="row-item" id="position1-3">08</div>
-            </div>
-            <div class="game-row">
-                <div class="row-item" id="position2-0">09</div>
-                <div class="row-item" id="position2-1">10</div>
-                <div class="row-item" id="position2-2">11</div>
-                <div class="row-item" id="position2-3">12</div>
-            </div>
-        </div>
-
-        <!--GAME Medium 4 x 4-->
-        <!--<div class="grid-medium"></div>-->
-        <!--GAME Hard 4 x 5-->
-        <!--<div class="grid-hard"></div>-->
-
+        <div class="grid-game"></div>
     </div>
 </div>
 
-<!--PARTE 3 - FIM JOGO-->
+<!--PART 3 - END OF GAME-->
 
 <div class="main-container">
     <div>Congratulations!</div>
-    <divc class="menu-button">Menu</divc>
+    <div class="menu-button">Menu</div>
 </div>
 
 <script src="memory_game.js"></script>

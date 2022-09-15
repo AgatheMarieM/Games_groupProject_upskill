@@ -14,40 +14,40 @@ h1, h2, div, .player-name {
     justify-content: center;
 }
 
-.grid-type {
+.grid-type, .grid-game {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-.type-item, .menu-button{
+
+.grid-item, .menu-button{
     background-color: greenyellow;
     border-style: outset;
     padding: 10px;
     border-radius: 12px;
 }
 
-.game-row {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.row-item {
+.game-item {
     background-color: greenyellow;
     border-style: outset;
+    border-radius: 12px;
     padding: 50px;
 }
 
-.row-item i{
-    /*opacity: 0;*/
-    transition: 0.2s;
+.game-item span{
+    /*Inverted just for testing
+    opacity: 0;*/
+    opacity: 0;
+    font-size: 60px;
 }
 
-.test{
-    background-color: red;
+.solved{
+    background-color: lightgrey;
 }
 
-.visible{
+.game-item.visible span{
+    /*Inverted just for testing
+    opacity: 1;*/
     opacity: 1;
 }

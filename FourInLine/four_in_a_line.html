@@ -4,68 +4,90 @@
     <meta charset="UTF-8">
     <title>Four in a Line</title>
     <link rel="stylesheet" href="four_in_a_line.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Four in a Line Game</h1>
-
-<div class="div-container">
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="A0">A0</div>
-        <div class="div-cell" style="background-color: white" id="A1">A1</div>
-        <div class="div-cell" style="background-color: white" id="A2">A2</div>
-        <div class="div-cell" style="background-color: white" id="A3">A3</div>
-        <div class="div-cell" style="background-color: white" id="A4">A4</div>
-        <div class="div-cell" style="background-color: white" id="A5">A5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="B0">B0</div>
-        <div class="div-cell" style="background-color: white" id="B1">B1</div>
-        <div class="div-cell" style="background-color: white" id="B2">B2</div>
-        <div class="div-cell" style="background-color: white" id="B3">B3</div>
-        <div class="div-cell" style="background-color: white" id="B4">B4</div>
-        <div class="div-cell" style="background-color: white" id="B5">B5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="C0">C0</div>
-        <div class="div-cell" style="background-color: white" id="C1">C1</div>
-        <div class="div-cell" style="background-color: white" id="C2">C2</div>
-        <div class="div-cell" style="background-color: white" id="C3">C3</div>
-        <div class="div-cell" style="background-color: white" id="C4">C4</div>
-        <div class="div-cell" style="background-color: white" id="C5">C5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="D0">D0</div>
-        <div class="div-cell" style="background-color: white" id="D1">D1</div>
-        <div class="div-cell" style="background-color: white" id="D2">D2</div>
-        <div class="div-cell" style="background-color: white" id="D3">D3</div>
-        <div class="div-cell" style="background-color: white" id="D4">D4</div>
-        <div class="div-cell" style="background-color: white" id="D5">D5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="E0">E0</div>
-        <div class="div-cell" style="background-color: white" id="E1">E1</div>
-        <div class="div-cell" style="background-color: white" id="E2">E2</div>
-        <div class="div-cell" style="background-color: white" id="E3">E3</div>
-        <div class="div-cell" style="background-color: white" id="E4">E4</div>
-        <div class="div-cell" style="background-color: white" id="E5">E5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="F0">F0</div>
-        <div class="div-cell" style="background-color: white" id="F1">F1</div>
-        <div class="div-cell" style="background-color: white" id="F2">F2</div>
-        <div class="div-cell" style="background-color: white" id="F3">F3</div>
-        <div class="div-cell" style="background-color: white" id="F4">F4</div>
-        <div class="div-cell" style="background-color: white" id="F5">F5</div>
-    </div>
-    <div class="div-col">
-        <div class="div-cell" style="background-color: white" id="G0">G0</div>
-        <div class="div-cell" style="background-color: white" id="G1">G1</div>
-        <div class="div-cell" style="background-color: white" id="G2">G2</div>
-        <div class="div-cell" style="background-color: white" id="G3">G3</div>
-        <div class="div-cell" style="background-color: white" id="G4">G4</div>
-        <div class="div-cell" style="background-color: white" id="G5">G5</div>
+<div class="lp-4inline">
+    <h1>Quatro em Linha</h1>
+    <p>Who is playing?</p>
+    <div class="player-names">
+        <input type="text" id="playerRedName" placeholder="player red">
+        <input type="text" id="playerYellowName" placeholder="player yellow">
+        <button type="submit" id="start-button">Start Playing!</button>
     </div>
 </div>
-<script src="four_in_line.js"></script src="four_in_line.js">
+
+<div class="game-4inline">
+    <h1>Quatro em Linha</h1>
+    <div id="timer"></div>
+    <div class="winner-name"></div>
+    <div class="current-players">
+        <div id="name-playerRed"></div>
+        <div id="name-playerYellow"></div>
+    </div>
+    <div class="game-container">
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>
+    </div>
+
+
+<script src="four_in_line.js"></script>
+</div>
 </body>
 </html>

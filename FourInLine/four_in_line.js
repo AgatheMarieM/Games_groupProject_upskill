@@ -1,53 +1,155 @@
-/*
-let emptyCell = [];
+//Load landing page WITHOUT the game
+let landingPage = document.querySelector(".lp-4inline");
+let gamePage = document.querySelector(".game-4inline");
+gamePage.style.display = 'none';
 
-function colorBottomCell(coluna, indice_coluna) {
-    let cells = Array.from(coluna.querySelectorAll(".div-cell")); //creating array of cells
-    let i = cells.length - 1;
-    if (!emptyCell[indice_coluna])
-        emptyCell[indice_coluna] = cells[i];
+let playerNames = document.querySelector(".current-players");
+let winnerName = document.querySelector(".winner-name");
+winnerName.style.display = 'none';
 
-    if (emptyCell[indice_coluna].style.backgroundColor === "red") {
-        emptyCell[indice_coluna] = cells[cells.indexOf(emptyCell[indice_coluna]) - 1];
+//get player names values (then we'll show them on game page):
+let playerRedName = document.querySelector("#playerRedName");
+let boxPlayerRed = document.querySelector("#name-playerRed");
+
+let playerYellowName = document.querySelector("#playerYellowName");
+let boxPlayerYellow = document.querySelector("#name-playerYellow");
+
+playerRedName.addEventListener("input", function (e) {
+    boxPlayerRed.innerHTML = e.target.value;
+})
+playerYellowName.addEventListener("input", function (e) {
+    boxPlayerYellow.innerHTML = e.target.value;
+})
+
+//On clicking start button, the landing-page disappears and the game is on display
+//startButton also starts the stopwatch(timer)!
+
+let startButton = document.querySelector("#start-button");
+let timerElement = document.querySelector("#timer");
+let interval = null;
+let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
+
+
+startButton.addEventListener("click", function startPlaying() {
+    landingPage.style.display = 'none';
+    gamePage.style.display = "block";
+    interval = setInterval(updateTimer, 1000);//the delay is set to 1000 ms (1sc)
+
+    function updateTimer() {
+        milliseconds += 1000;
+        if (milliseconds === 1000) {
+            milliseconds = 0;
+            seconds++;
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+                if (seconds === 60) {
+                    minutes++;
+                    seconds = 0;
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+            }
+        }
+
+        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
     }
-    emptyCell[indice_coluna].style.backgroundColor = "red";
-    emptyCell[indice_coluna].classList.add("player1");
+
+});
+
+//Clicking cells and playing the game:
+let playerRed = "redCell";
+let playerYellow = "yellowCell";
+let currentPlayer = playerRed;
+//Selection all columns from document:
+let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
+
+columnNodeList.forEach(function (column) {
+    column.addEventListener("click", function () {
+        colorCells(column)
+    });
+    //event for each column of the array
+    //anonymous function needed to prevent the default behavior;
+})
+
+function colorCells(column) {
+    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnNodeList
+    for (let i = cells.length - 1; i >= 0; i--) {
+        if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
+            cells[i].classList.add(currentPlayer);
+            if (currentPlayer === playerRed)
+                currentPlayer = playerYellow;
+            else
+                currentPlayer = playerRed;
+            break;
+        }
+    }
+    getWinner();
 }
-*/
-function colorBottomCell(column) {
-    console.log(column);
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells
-    console.log(cells);
-    for(let i = 0; i<cells.length; i++) {
-        if( i = cells.length - 1){
-            cells[i].classList.add("player1");
-            cells[i].style.backgroundColor = "yellow";
+
+//creating arrays of cells from the document to access state of each cell and get winner
+let colArrays = [];
+for (let j = 0; j < columnNodeList.length; j++) {
+    colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
+}
+
+/*console.log(colArrays.length);
+console.log(colArrays[0][2]);
+console.log(colArrays[1][2]);*/
+
+function getWinner() {
+    //victoria horizontal
+    /* let rowArrays = [];
+        for (let i = 0; i < rows; i++) {
+        rowArrays[i] = [];
+        for (let j = 0; j < columnNodeList.length; j++) {
+            rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
+        }
+    }*/
+    //Checking if vertical victory:
+    for (let i = 0; i < colArrays.length; i++) {
+        for (let j = (colArrays[i].length - 1); j >= 0; j--) {
+            // console.log(colArrays[i].length);
+            /*if (colArrays[i][j - 3] == colArrays[i][j - 2]) {
+                if (colArrays[i][j - 2] == colArrays[i][j - 1]) {
+                    if (colArrays[i][j - 1] == colArrays[i][j]) {
+                        console.log("winner");
+                    }
+                }
+            }*/
+            if (colArrays[i][j].classList.contains(playerRed)
+                && colArrays[i][j - 1].classList.contains(playerRed)
+                && colArrays[i][j - 2].classList.contains(playerRed)
+                && colArrays[i][j - 3].classList.contains(playerRed)) {
+                console.log("Red Player wins");
+                displayWinnerName(`${playerRedName.value} wins!`);
+                return;
+            }
+            if (colArrays[i][j].classList.contains(playerYellow)
+                && colArrays[i][j - 1].classList.contains(playerYellow)
+                && colArrays[i][j - 2].classList.contains(playerYellow)
+                && colArrays[i][j - 3].classList.contains(playerYellow)) {
+                console.log("Yellow player wins");
+                displayWinnerName(`${playerYellowName.value} wins!`);
+                return;
+            }
         }
     }
 
+    //Horizontal victory:
+
+
+
+
 }
 
-//gridArrays: we want to apply the eventListener to all columns (arrays) of the game
-//loop through all the arrays from gridArrays
-let gridArrays = document.querySelectorAll(".div-col"); //creating array of columns
-for (let i = 0; i < gridArrays.length; i++) {
-    gridArrays[i].addEventListener("click", colorBottomCell(gridArrays[i])) //adding event for each column of the array
-    ;
+//Display winner name on screen:
+function displayWinnerName(str) {
+    winnerName.style.display = 'flex';
+    winnerName.innerHTML = str;
+    playerNames.style.display ='none';
 }
-;
 
 
-//Create arrays for the grid:
-/*
-let alphArray = ["A", "B", "C", "D", "E", "F", "G"];
-let numArray = [ 0, 1, 2, 3, 4, 5];
 
-let gridArrays = alphArray.map(function(letter){
-    let arrayLetter = [];
-    for(let i = 0; i < numArray.length; i++){
-        arrayLetter[i] = letter + numArray[i]; //populate the array
-    }
-    console.log(arrayLetter);
-    return arrayLetter;
-})
- */
