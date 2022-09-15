@@ -39,14 +39,15 @@ startButton.addEventListener("click", function startPlaying() {
         if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
-
-            if (seconds === 60) {
-                seconds = 0;
-                minutes++;
-
-                if (minutes === 60) {
-                    minutes = 0;
-                    hours++;
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+                if (seconds === 60) {
+                    seconds =   0;
+                    minutes++;
+                    if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
                 }
             }
         }
@@ -61,27 +62,28 @@ let playerRed = "redCell";
 let playerYellow = "yellowCell";
 let currentPlayer = playerRed;
 
-/*Primeira tentative complicada:
-let emptyCell = [];
-
-function colorBottomCell(coluna, indice_coluna) {
-    let cells = Array.from(coluna.querySelectorAll(".div-cell")); //creating array of cells
-    let i = cells.length - 1;
-    if (!emptyCell[indice_coluna])
-        emptyCell[indice_coluna] = cells[i];
-
-    if (emptyCell[indice_coluna].style.backgroundColor === "red") {
-        emptyCell[indice_coluna] = cells[cells.indexOf(emptyCell[indice_coluna]) - 1];
-    }
-    emptyCell[indice_coluna].style.backgroundColor = "red";
-    emptyCell[indice_coluna].classList.add("player1");
-}
-*/
 
 function getWinner() {
     //victoria horizontal
     //4 cellulas identicas horizontalmente: AO-BO-CO-DO por exemplo
+    //Checking victories:
+
+    let colArrays = [];
+// let rowArrays = [];
+    /*for (let i = 0; i < rows; i++) {
+        rowArrays[i] = [];
+        for (let j = 0; j < columnNodeList.length; j++) {
+            rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
+        }
+    }*/
+
+    for (let j = 0; j < columnNodeList.length; j++) {
+        colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
+        console.log(colArrays[j]);
+    }
+
 }
+
 
 function colorCells(column) {
     let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnNodeList
@@ -99,26 +101,10 @@ function colorCells(column) {
 }
 
 
+
 //Selection all columns from document:
 let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
 console.log(columnNodeList);
-
-//Selecting all rows:
-// let rowArrays = [];
-let colArrays = [];
-
-/*for (let i = 0; i < rows; i++) {
-    rowArrays[i] = [];
-    for (let j = 0; j < columnNodeList.length; j++) {
-        rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
-    }
-}*/
-
-for (let j = 0; j < columnNodeList.length; j++) {
-    colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
-    console.log(colArrays[j]);
-}
-
 
 columnNodeList.forEach(function (column) {
     column.addEventListener("click", function () {
@@ -129,8 +115,19 @@ columnNodeList.forEach(function (column) {
 })
 
 
-// trying to print the board game with javascript and work with rowArray and colArray since the beginning:
 
+
+
+
+
+
+
+
+
+
+
+
+// trying to print the board game with javascript and work with rowArray and colArray since the beginning:
 
 /*
 let gameGrid = document.querySelector(".game-grid");
