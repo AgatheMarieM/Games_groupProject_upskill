@@ -23,26 +23,28 @@ playerYellowName.addEventListener("input", function (e) {
 let startButton = document.querySelector("#start-button");
 let timerElement = document.querySelector("#timer");
 let interval = null;
-let [hours, minutes, seconds, milliseconds] = [00, 00, 00, 00];
+let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
 
 
-startButton.addEventListener("click", function startPlaying(e) {
+startButton.addEventListener("click", function startPlaying() {
     landingPage.style.display = 'none';
     gamePage.style.display = "block";
+    /*gameGrid.style.display = "block";
+    displayGrid();*/
     interval = setInterval(updateTimer, 10);//the delay is set to 10.
     // if delay not specified the timer runs too fast. WHY?
 
     function updateTimer() {
         milliseconds += 10;
-        if (milliseconds == 1000) {
+        if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
 
-            if (seconds == 60) {
+            if (seconds === 60) {
                 seconds = 0;
                 minutes++;
 
-                if (minutes == 60) {
+                if (minutes === 60) {
                     minutes = 0;
                     hours++;
                 }
@@ -76,9 +78,13 @@ function colorBottomCell(coluna, indice_coluna) {
 }
 */
 
+function getWinner() {
+    //victoria horizontal
+    //4 cellulas identicas horizontalmente: AO-BO-CO-DO por exemplo
+}
 
 function colorCells(column) {
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from gridArrays
+    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnNodeList
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
@@ -93,10 +99,28 @@ function colorCells(column) {
 }
 
 
-//Initialize the game with the columns from the document
-let gridArrays = document.querySelectorAll(".div-col");//array with 7 columns
+//Selection all columns from document:
+let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
+console.log(columnNodeList);
 
-gridArrays.forEach(function (column) {
+//Selecting all rows:
+// let rowArrays = [];
+let colArrays = [];
+
+/*for (let i = 0; i < rows; i++) {
+    rowArrays[i] = [];
+    for (let j = 0; j < columnNodeList.length; j++) {
+        rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
+    }
+}*/
+
+for (let j = 0; j < columnNodeList.length; j++) {
+    colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
+    console.log(colArrays[j]);
+}
+
+
+columnNodeList.forEach(function (column) {
     column.addEventListener("click", function () {
         colorCells(column)
     });
@@ -104,5 +128,32 @@ gridArrays.forEach(function (column) {
     //anonymous function needed to prevent the default behavior;
 })
 
+
+// trying to print the board game with javascript and work with rowArray and colArray since the beginning:
+
+
+/*
+let gameGrid = document.querySelector(".game-grid");
+gameGrid.style.display = 'none';
+let rows = 6;
+let cols = 7;
+let colArray = [];
+
+function displayGrid() {
+    for (let i = 0; i < cols; i++) {
+        gameGrid.innerHTML += `
+        <div class="div-col">
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+            <div class="div-cell"></div>
+        </div>`;
+        colArray[i] = gameGrid.innerHTML;
+        console.log(colArray[i]);
+    }
+}
+*/
 
 
