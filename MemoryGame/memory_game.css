@@ -9,10 +9,9 @@ h1, h2, div, .player-name {
     border-color: gray;
 }
 
-.game-container {
+/*.game-container {
     display: flex;
-    justify-content: center;
-}
+}*/
 
 .grid-type, .grid-game {
     display: flex;
@@ -20,8 +19,7 @@ h1, h2, div, .player-name {
     justify-content: center;
 }
 
-
-.grid-item, .menu-button{
+.grid-item {
     background-color: greenyellow;
     border-style: outset;
     padding: 10px;
@@ -29,10 +27,12 @@ h1, h2, div, .player-name {
 }
 
 .game-item {
+    display: flex;
     background-color: greenyellow;
     border-style: outset;
     border-radius: 12px;
-    padding: 50px;
+    width: 20%;
+    /*padding: 10px;*/
 }
 
 .game-item span{
@@ -50,4 +50,12 @@ h1, h2, div, .player-name {
     /*Inverted just for testing
     opacity: 1;*/
     opacity: 1;
+}
+
+/*menu-button is only used in the end of the game*/
+.menu-button{
+    background-color: greenyellow;
+    border-style: outset;
+    padding: 10px;
+    border-radius: 12px;
 }
