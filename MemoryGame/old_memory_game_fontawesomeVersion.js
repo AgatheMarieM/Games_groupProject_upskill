@@ -1,6 +1,6 @@
 //VERSION THAT USES FONTAWESOME
 
-let card = document.querySelectorAll(".row-item");
+let card = document.querySelectorAll(".game-item");
 
 // All the available cards
 let cards = ["dog", "dog", "cat", "cat", "hippo", "hippo", "horse", "horse", "frog", "frog", "fish", "fish", "spider", "spider", "kiwi-bird", "kiwi-bird", "feather-pointed", "feather-pointed", "mosquito", "mosquito"]
@@ -31,7 +31,7 @@ function shuffleArray(array) {
 // Function to create game grid with shuffled cards (using previous shuffle array function)
 function setBoard(array) {
     let shuffledCards = shuffleArray(array)
-    let allCards = document.querySelectorAll(".row-item");
+    let allCards = document.querySelectorAll(".game-item");
     //console.log("Game grid with all shuffled shuffledCards", allCards);
     for (let i = 0; i < shuffledCards.length; i++) {
         ONLY WORKS WITH INTERNET
@@ -43,7 +43,7 @@ setBoard(cardsEasy)
 
 // Function to show each card each time it is clicked
 function showEachCard() {
-    let allCardsElements = document.querySelectorAll(".row-item >i")
+    let allCardsElements = document.querySelectorAll(".game-item >i")
     console.log("allCards elements", allCardsElements)
     for (let i = 0; i < allCardsElements.length; i++) {
         allCardsElements[i].addEventListener("click", function (e) {

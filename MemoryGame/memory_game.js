@@ -1,6 +1,6 @@
 // All the available cards
 //let cards = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10"]
-let cards = ["☀️", "☀️", "🐻", "🐻","🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "👩‍", "👩‍", "🌍", "🌍", "🌻", "🌻", "🦴", "🦴" ]
+let cards = ["☀️", "☀️", "🐻", "🐻", "🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "🌻", "🌻", "🦴", "🦴", "🌍", "🌍", "👩‍", "👩‍"]
 
 // GAME - Create grid
 let gridsAvailable = document.querySelectorAll(".grid-item")
@@ -20,7 +20,7 @@ selectGrid()
 function startGame(cards_board) {
 
     //TIME COUNTER - Inspiration gotten from the www (https://www.delftstack.com/howto/javascript/javascript-count-up-timer/)
-    /*    setInterval(countUpTime, 1000)
+    setInterval(countUpTime, 1000)
         let start = 0
         function countUpTime() {
             start++
@@ -29,7 +29,7 @@ function startGame(cards_board) {
             let seconds = start- (hours * 3600 + minutes * 60);
             document.querySelector(".counter p").innerHTML = `${hours}:${minutes}:${seconds}`
             //console.log(hours,minutes,seconds)
-        }*/
+        }
 
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
@@ -69,10 +69,10 @@ function startGame(cards_board) {
             allCards[i].addEventListener("click", function (e) {
                 //QUESTION - Changed "toggle" to "add". What would be better?
                 //QUESTION - This condition can only verify if !== visible, or both?
-                if (allCards[i].classList !== "solved") {
-                    allCards[i].classList.add("visible")
-                    let visibleCards = document.querySelectorAll(".visible")
-                    checkEqualCards(visibleCards)
+                if (!allCards[i].classList.contains("solved")) {
+                    allCards[i].classList.add("visible");
+                    let visibleCards = document.querySelectorAll(".visible");
+                    checkEqualCards(visibleCards);
                     console.log("visiblecards", visibleCards)
                 }
             })
@@ -92,6 +92,7 @@ function startGame(cards_board) {
                 array[1].classList.add("solved");
                 //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
                 let cardsSolved = document.querySelectorAll(".game-item.solved")
+                //CHECK if the game is over
                 if (cardsSolved.length !== allCards.length) {
                     setTimeout(function () {
                         array[0].classList.remove("visible");
@@ -106,7 +107,7 @@ function startGame(cards_board) {
                     }, 1)
                 }
             }
-        }, 1)
+        }, 500)
     }
 }
 
