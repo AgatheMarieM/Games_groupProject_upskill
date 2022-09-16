@@ -40,15 +40,12 @@ startButton.addEventListener("click", function startPlaying() {
         if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
-            if (seconds < 10) {
-                seconds = '0' + seconds;
-                if (seconds === 60) {
-                    minutes++;
-                    seconds = 0;
-                    if (minutes === 60) {
-                        minutes = 0;
-                        hours++;
-                    }
+            if (seconds === 60) {
+                minutes++;
+                seconds = 0;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
                 }
             }
         }
@@ -63,8 +60,6 @@ let playerRed = "redCell";
 let playerYellow = "yellowCell";
 let currentPlayer = playerRed; //we start with red
 let gameOver = false;
-let rows = 6;
-let columns = 7;
 // ASK PLAYERS WHO WANTS TO START?
 
 //new variable columnList that stores all columns from document
@@ -80,11 +75,12 @@ columnList.forEach(function (column) {
 function colorCells(column) {
     //creating locally an array of cells for the column from columnList:
     let cells = column.querySelectorAll(".div-cell");
-    console.log(cells);
     //looping through all cells:
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
+            cells[i].setAttribute("player_color", currentPlayer);
+            console.log(cells[i]);
             //reading document from bottom to top: if the last indice of the cells array doesn't contain class
             // with player color, then we add it: playerRed or playerYellow
             if (currentPlayer === playerRed)
@@ -104,135 +100,148 @@ for (let j = 0; j < columnList.length; j++) {
     colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
 }
 
-console.log(colCellsList[0]);
 
 function getWinner() {
-    //victoria horizontal
     for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
-        for (let j = 0; j < (colCellsList[i].length); j++) { // each column has 6 elements, j goes to 5
-            //Vertical victory:
-             /* if (colCellsList[i][j].classList.contains(playerRed)
-                  && colCellsList[i][j + 1].classList.contains(playerRed)
-                  && colCellsList[i][j + 2].classList.contains(playerRed)
-                  && colCellsList[i][j + 3].classList.contains(playerRed)) {
-                  displayWinnerName(`${playerRedName.value} wins!`);
-                  return;
-              }*/
-            if (colCellsList[i][j].classList.contains(playerYellow)
-                && colCellsList[i][j + 1].classList.contains(playerYellow)
-                && colCellsList[i][j + 2].classList.contains(playerYellow)
-                && colCellsList[i][j + 3].classList.contains(playerYellow)) {
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }
-             
-            //Horizontal victory:
-    /*        if (colCellsList[i][j].classList.contains(playerRed)
-                && colCellsList[i + 1][j].classList.contains(playerRed)
-                && colCellsList[i + 2][j].classList.contains(playerRed)
-                && colCellsList[i + 3][j].classList.contains(playerRed)) {
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j].classList.contains(playerYellow)
-                && colCellsList[i + 1][j].classList.contains(playerYellow)
-                && colCellsList[i + 2][j].classList.contains(playerYellow)
-                && colCellsList[i + 3][j].classList.contains(playerYellow)) {
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }*/
+        for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
 
-            /*// Up to bottom diagonal
-            if (colCellsList[i][j].classList.contains(playerRed)
-                && colCellsList[i + 1][j + 1].classList.contains(playerRed)
-                && colCellsList[i + 2][j + 2].classList.contains(playerRed)
-                && colCellsList[i + 3][j + 3].classList.contains(playerRed)) {
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j].classList.contains(playerYellow)
-                && colCellsList[i + 1][j + 1].classList.contains(playerYellow)
-                && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
-                && colCellsList[i + 3][j + 3].classList.contains(playerYellow)) {
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j + 1].classList.contains(playerRed)
-                && colCellsList[i + 1][j + 2].classList.contains(playerRed)
-                && colCellsList[i + 2][j + 3].classList.contains(playerRed)
-                && colCellsList[i + 3][j + 4].classList.contains(playerRed)) {
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j + 1].classList.contains(playerYellow)
-                && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
-                && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
-                && colCellsList[i + 3][j + 4].classList.contains(playerYellow)) {
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }
+            // console.log(colCellsList[i][j].getAttribute("player_color") , colCellsList[i][j + 1].getAttribute("player_color"));
+            console.log(colCellsList[i][j], colCellsList[i][j].getAttribute('player_color'));
 
-            if (colCellsList[i][j + 2].classList.contains(playerRed)
-                && colCellsList[i + 1][j + 3].classList.contains(playerRed)
-                && colCellsList[i + 2][j + 4].classList.contains(playerRed)
-                && colCellsList[i + 3][j + 5].classList.contains(playerRed)) {
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j + 2].classList.contains(playerYellow)
-                && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
-                && colCellsList[i + 2][j + 4].classList.contains(playerYellow)
-                && colCellsList[i + 3][j + 5].classList.contains(playerYellow)) {
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }*/
-            // Bottom->Up diagonal
-            /*if (colCellsList[i][j + 3].classList.contains(playerRed)
-                && colCellsList[i + 1][j + 2].classList.contains(playerRed)
-                && colCellsList[i + 2][j + 1].classList.contains(playerRed)
-                && colCellsList[i + 3][j].classList.contains(playerRed)){
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j + 3].classList.contains(playerYellow)
-                && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
-                && colCellsList[i + 2][j + 1].classList.contains(playerYellow)
-                && colCellsList[i + 3][j].classList.contains(playerYellow)) {
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }
 
-            if (colCellsList[i][j + 4].classList.contains(playerRed)
-                && colCellsList[i + 1][j + 3].classList.contains(playerRed)
-                && colCellsList[i + 2][j + 2].classList.contains(playerRed)
-                && colCellsList[i + 3][j + 1].classList.contains(playerRed)){
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                //Vertical victory:
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i][j + 1].getAttribute('player_color')
+                    && colCellsList[i][j + 1].getAttribute('player_color') === colCellsList[i][j + 2].getAttribute('player_color')
+                    && colCellsList[i][j + 2].getAttribute('player_color') === colCellsList[i][j + 3].getAttribute('player_color')) {
+                    displayWinnerName(`${colCellsList[i][j].getAttribute('player_color')} wins`);
+                    return;
+                }
             }
-            if (colCellsList[i][j + 4].classList.contains(playerYellow)
-                && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
-                && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
-                && colCellsList[i + 3][j + 1].classList.contains(playerYellow)){
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }
-
-            if (colCellsList[i][j + 5].classList.contains(playerRed)
-                && colCellsList[i + 1][j + 4].classList.contains(playerRed)
-                && colCellsList[i + 2][j + 3].classList.contains(playerRed)
-                && colCellsList[i + 3][j + 2].classList.contains(playerRed)){
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colCellsList[i][j + 5].classList.contains(playerYellow)
-                && colCellsList[i + 1][j + 4].classList.contains(playerYellow)
-                && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
-                && colCellsList[i + 3][j + 2].classList.contains(playerYellow)){
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
-            }*/
         }
     }
+    //Horizontal victory:
+    for (let j = 0; j < 6; j++) {
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j].getAttribute('player_color')
+                    && colCellsList[i + 1][j].getAttribute('player_color') === colCellsList[i + 2][j].getAttribute('player_color')
+                    && colCellsList[i + 2][j].getAttribute('player_color') === colCellsList[i + 3][j].getAttribute('player_color')) {
+                    displayWinnerName(`${colCellsList[i][j].getAttribute('player_color')} wins`);
+                    return;
+                }
+            }
+        }
+    }
+
+
+
+
+    /*  //Horizontal victory:
+       if (colCellsList[i][j].classList.contains(playerRed)
+           && colCellsList[i + 1][j].classList.contains(playerRed)
+           && colCellsList[i + 2][j].classList.contains(playerRed)
+           && colCellsList[i + 3][j].classList.contains(playerRed)) {
+           displayWinnerName(`${playerRedName.value} wins!`);
+           return;
+       }
+       if (colCellsList[i][j].classList.contains(playerYellow)
+           && colCellsList[i + 1][j].classList.contains(playerYellow)
+           && colCellsList[i + 2][j].classList.contains(playerYellow)
+           && colCellsList[i + 3][j].classList.contains(playerYellow)) {
+           displayWinnerName(`${playerYellowName.value} wins!`);
+           return;
+       }*/
+    // Up to bottom diagonal
+    /*if (colCellsList[i][j].classList.contains(playerRed)
+        && colCellsList[i + 1][j + 1].classList.contains(playerRed)
+        && colCellsList[i + 2][j + 2].classList.contains(playerRed)
+        && colCellsList[i + 3][j + 3].classList.contains(playerRed)) {
+        displayWinnerName(`${playerRedName.value} wins!`);
+        return;
+    }
+    if (colCellsList[i][j].classList.contains(playerYellow)
+        && colCellsList[i + 1][j + 1].classList.contains(playerYellow)
+        && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
+        && colCellsList[i + 3][j + 3].classList.contains(playerYellow)) {
+        displayWinnerName(`${playerYellowName.value} wins!`);
+        return;
+    }
+    if (colCellsList[i][j + 1].classList.contains(playerRed)
+        && colCellsList[i + 1][j + 2].classList.contains(playerRed)
+        && colCellsList[i + 2][j + 3].classList.contains(playerRed)
+        && colCellsList[i + 3][j + 4].classList.contains(playerRed)) {
+        displayWinnerName(`${playerRedName.value} wins!`);
+        return;
+    }
+    if (colCellsList[i][j + 1].classList.contains(playerYellow)
+        && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
+        && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
+        && colCellsList[i + 3][j + 4].classList.contains(playerYellow)) {
+        displayWinnerName(`${playerYellowName.value} wins!`);
+        return;
+    }
+
+    if (colCellsList[i][j + 2].classList.contains(playerRed)
+        && colCellsList[i + 1][j + 3].classList.contains(playerRed)
+        && colCellsList[i + 2][j + 4].classList.contains(playerRed)
+        && colCellsList[i + 3][j + 5].classList.contains(playerRed)) {
+        displayWinnerName(`${playerRedName.value} wins!`);
+        return;
+    }
+    if (colCellsList[i][j + 2].classList.contains(playerYellow)
+        && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
+        && colCellsList[i + 2][j + 4].classList.contains(playerYellow)
+        && colCellsList[i + 3][j + 5].classList.contains(playerYellow)) {
+        displayWinnerName(`${playerYellowName.value} wins!`);
+        return;
+    }*/
+    // Bottom->Up diagonal
+    /* if (colCellsList[i][j + 3].classList.contains(playerRed)
+         && colCellsList[i + 1][j + 2].classList.contains(playerRed)
+         && colCellsList[i + 2][j + 1].classList.contains(playerRed)
+         && colCellsList[i + 3][j].classList.contains(playerRed)){
+         displayWinnerName(`${playerRedName.value} wins!`);
+         return;
+     }
+     if (colCellsList[i][j + 3].classList.contains(playerYellow)
+         && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
+         && colCellsList[i + 2][j + 1].classList.contains(playerYellow)
+         && colCellsList[i + 3][j].classList.contains(playerYellow)) {
+         displayWinnerName(`${playerYellowName.value} wins!`);
+         return;
+     }
+
+     if (colCellsList[i][j + 4].classList.contains(playerRed)
+         && colCellsList[i + 1][j + 3].classList.contains(playerRed)
+         && colCellsList[i + 2][j + 2].classList.contains(playerRed)
+         && colCellsList[i + 3][j + 1].classList.contains(playerRed)){
+         displayWinnerName(`${playerRedName.value} wins!`);
+         return;
+     }
+     if (colCellsList[i][j + 4].classList.contains(playerYellow)
+         && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
+         && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
+         && colCellsList[i + 3][j + 1].classList.contains(playerYellow)){
+         displayWinnerName(`${playerYellowName.value} wins!`);
+         return;
+     }
+
+     if (colCellsList[i][j + 5].classList.contains(playerRed)
+         && colCellsList[i + 1][j + 4].classList.contains(playerRed)
+         && colCellsList[i + 2][j + 3].classList.contains(playerRed)
+         && colCellsList[i + 3][j + 2].classList.contains(playerRed)){
+         displayWinnerName(`${playerRedName.value} wins!`);
+         return;
+     }
+     if (colCellsList[i][j + 5].classList.contains(playerYellow)
+         && colCellsList[i + 1][j + 4].classList.contains(playerYellow)
+         && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
+         && colCellsList[i + 3][j + 2].classList.contains(playerYellow)){
+         displayWinnerName(`${playerYellowName.value} wins!`);
+         return;
+     }*/
+
 
 }
 
@@ -243,5 +252,10 @@ function displayWinnerName(str) {
     playerNames.style.display = 'none';
 }
 
+/*function displayWinnerName(value) {
+    winnerName.style.display = 'flex';
+    winnerName.innerHTML = `${value}`;
+    playerNames.style.display = 'none';
+}*/
 
 
