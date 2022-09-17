@@ -102,6 +102,7 @@ for (let j = 0; j < columnList.length; j++) {
 
 
 function getWinner() {
+
     for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
         for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
 
@@ -114,7 +115,7 @@ function getWinner() {
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i][j + 1].getAttribute('player_color')
                     && colCellsList[i][j + 1].getAttribute('player_color') === colCellsList[i][j + 2].getAttribute('player_color')
                     && colCellsList[i][j + 2].getAttribute('player_color') === colCellsList[i][j + 3].getAttribute('player_color')) {
-                    displayWinnerName(`${colCellsList[i][j].getAttribute('player_color')} wins`);
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
                     return;
                 }
             }
@@ -127,7 +128,7 @@ function getWinner() {
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j].getAttribute('player_color')
                     && colCellsList[i + 1][j].getAttribute('player_color') === colCellsList[i + 2][j].getAttribute('player_color')
                     && colCellsList[i + 2][j].getAttribute('player_color') === colCellsList[i + 3][j].getAttribute('player_color')) {
-                    displayWinnerName(`${colCellsList[i][j].getAttribute('player_color')} wins`);
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
                     return;
                 }
             }
@@ -246,10 +247,17 @@ function getWinner() {
 }
 
 //Display winner name on screen:
-function displayWinnerName(str) {
+function displayWinnerName(cell) {
+    let redWinner = boxPlayerRed.innerHTML;
+    let yellowWinner = boxPlayerYellow.innerHTML;
     winnerName.style.display = 'flex';
-    winnerName.innerHTML = str;
+
     playerNames.style.display = 'none';
+    if(cell === 'redCell'){
+        winnerName.innerHTML = `${redWinner} wins`;
+    } else {
+        winnerName.innerHTML = `${yellowWinner} wins`;
+    }
 }
 
 /*function displayWinnerName(value) {
