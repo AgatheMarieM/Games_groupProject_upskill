@@ -40,12 +40,15 @@ startButton.addEventListener("click", function startPlaying() {
         if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
-            if (seconds === 60) {
-                minutes++;
-                seconds = 0;
-                if (minutes === 60) {
-                    minutes = 0;
-                    hours++;
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+                if (seconds == 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes == 60) {
+                        minutes = 0;
+                        hours++;
+                    }
                 }
             }
         }
@@ -59,7 +62,6 @@ startButton.addEventListener("click", function startPlaying() {
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
 let currentPlayer = playerRed; //we start with red
-let gameOver = false;
 // ASK PLAYERS WHO WANTS TO START?
 
 //new variable columnList that stores all columns from document
@@ -102,14 +104,11 @@ for (let j = 0; j < columnList.length; j++) {
 
 
 function getWinner() {
-
+    let rowsLength = 6; // creating a variable for rows, as the piece falls, useful to iterate through rows
+    //Vertical win
     for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
         for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
-
-            // console.log(colCellsList[i][j].getAttribute("player_color") , colCellsList[i][j + 1].getAttribute("player_color"));
-            console.log(colCellsList[i][j], colCellsList[i][j].getAttribute('player_color'));
-
-
+            // console.log(colCellsList[i][j], colCellsList[i][j].getAttribute('player_color'));
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
                 //Vertical victory:
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i][j + 1].getAttribute('player_color')
@@ -121,8 +120,8 @@ function getWinner() {
             }
         }
     }
-    //Horizontal victory:
-    for (let j = 0; j < 6; j++) {
+    //Horizontal win
+    for (let j = 0; j < rowsLength; j++) {
         for (let i = 0; i < colCellsList.length - 3; i++) {
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j].getAttribute('player_color')
@@ -134,116 +133,32 @@ function getWinner() {
             }
         }
     }
-
-
-
-
-    /*  //Horizontal victory:
-       if (colCellsList[i][j].classList.contains(playerRed)
-           && colCellsList[i + 1][j].classList.contains(playerRed)
-           && colCellsList[i + 2][j].classList.contains(playerRed)
-           && colCellsList[i + 3][j].classList.contains(playerRed)) {
-           displayWinnerName(`${playerRedName.value} wins!`);
-           return;
-       }
-       if (colCellsList[i][j].classList.contains(playerYellow)
-           && colCellsList[i + 1][j].classList.contains(playerYellow)
-           && colCellsList[i + 2][j].classList.contains(playerYellow)
-           && colCellsList[i + 3][j].classList.contains(playerYellow)) {
-           displayWinnerName(`${playerYellowName.value} wins!`);
-           return;
-       }*/
-    // Up to bottom diagonal
-    /*if (colCellsList[i][j].classList.contains(playerRed)
-        && colCellsList[i + 1][j + 1].classList.contains(playerRed)
-        && colCellsList[i + 2][j + 2].classList.contains(playerRed)
-        && colCellsList[i + 3][j + 3].classList.contains(playerRed)) {
-        displayWinnerName(`${playerRedName.value} wins!`);
-        return;
+    // Up to Bottom Diagonal: \
+    for (let j = 0; j < rowsLength - 3; j++) { // the last 3 rows cannot give diagonal 4 in line
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j + 1].getAttribute('player_color')
+                    && colCellsList[i + 1][j + 1].getAttribute('player_color') === colCellsList[i + 2][j + 2].getAttribute('player_color')
+                    && colCellsList[i + 2][j + 2].getAttribute('player_color') === colCellsList[i + 3][j + 3].getAttribute('player_color')) {
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
+                    return;
+                }
+            }
+        }
     }
-    if (colCellsList[i][j].classList.contains(playerYellow)
-        && colCellsList[i + 1][j + 1].classList.contains(playerYellow)
-        && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
-        && colCellsList[i + 3][j + 3].classList.contains(playerYellow)) {
-        displayWinnerName(`${playerYellowName.value} wins!`);
-        return;
+    //Bottom - Up diagonal: /
+    for (let j = rowsLength - 3; j < rowsLength; j++) {// the first 3 rows cannot give diagonal 4 in line
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j - 1].getAttribute('player_color')
+                    && colCellsList[i + 1][j - 1].getAttribute('player_color') === colCellsList[i + 2][j - 2].getAttribute('player_color')
+                    && colCellsList[i + 2][j - 2].getAttribute('player_color') === colCellsList[i + 3][j - 3].getAttribute('player_color')) {
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
+                    return;
+                }
+            }
+        }
     }
-    if (colCellsList[i][j + 1].classList.contains(playerRed)
-        && colCellsList[i + 1][j + 2].classList.contains(playerRed)
-        && colCellsList[i + 2][j + 3].classList.contains(playerRed)
-        && colCellsList[i + 3][j + 4].classList.contains(playerRed)) {
-        displayWinnerName(`${playerRedName.value} wins!`);
-        return;
-    }
-    if (colCellsList[i][j + 1].classList.contains(playerYellow)
-        && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
-        && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
-        && colCellsList[i + 3][j + 4].classList.contains(playerYellow)) {
-        displayWinnerName(`${playerYellowName.value} wins!`);
-        return;
-    }
-
-    if (colCellsList[i][j + 2].classList.contains(playerRed)
-        && colCellsList[i + 1][j + 3].classList.contains(playerRed)
-        && colCellsList[i + 2][j + 4].classList.contains(playerRed)
-        && colCellsList[i + 3][j + 5].classList.contains(playerRed)) {
-        displayWinnerName(`${playerRedName.value} wins!`);
-        return;
-    }
-    if (colCellsList[i][j + 2].classList.contains(playerYellow)
-        && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
-        && colCellsList[i + 2][j + 4].classList.contains(playerYellow)
-        && colCellsList[i + 3][j + 5].classList.contains(playerYellow)) {
-        displayWinnerName(`${playerYellowName.value} wins!`);
-        return;
-    }*/
-    // Bottom->Up diagonal
-    /* if (colCellsList[i][j + 3].classList.contains(playerRed)
-         && colCellsList[i + 1][j + 2].classList.contains(playerRed)
-         && colCellsList[i + 2][j + 1].classList.contains(playerRed)
-         && colCellsList[i + 3][j].classList.contains(playerRed)){
-         displayWinnerName(`${playerRedName.value} wins!`);
-         return;
-     }
-     if (colCellsList[i][j + 3].classList.contains(playerYellow)
-         && colCellsList[i + 1][j + 2].classList.contains(playerYellow)
-         && colCellsList[i + 2][j + 1].classList.contains(playerYellow)
-         && colCellsList[i + 3][j].classList.contains(playerYellow)) {
-         displayWinnerName(`${playerYellowName.value} wins!`);
-         return;
-     }
-
-     if (colCellsList[i][j + 4].classList.contains(playerRed)
-         && colCellsList[i + 1][j + 3].classList.contains(playerRed)
-         && colCellsList[i + 2][j + 2].classList.contains(playerRed)
-         && colCellsList[i + 3][j + 1].classList.contains(playerRed)){
-         displayWinnerName(`${playerRedName.value} wins!`);
-         return;
-     }
-     if (colCellsList[i][j + 4].classList.contains(playerYellow)
-         && colCellsList[i + 1][j + 3].classList.contains(playerYellow)
-         && colCellsList[i + 2][j + 2].classList.contains(playerYellow)
-         && colCellsList[i + 3][j + 1].classList.contains(playerYellow)){
-         displayWinnerName(`${playerYellowName.value} wins!`);
-         return;
-     }
-
-     if (colCellsList[i][j + 5].classList.contains(playerRed)
-         && colCellsList[i + 1][j + 4].classList.contains(playerRed)
-         && colCellsList[i + 2][j + 3].classList.contains(playerRed)
-         && colCellsList[i + 3][j + 2].classList.contains(playerRed)){
-         displayWinnerName(`${playerRedName.value} wins!`);
-         return;
-     }
-     if (colCellsList[i][j + 5].classList.contains(playerYellow)
-         && colCellsList[i + 1][j + 4].classList.contains(playerYellow)
-         && colCellsList[i + 2][j + 3].classList.contains(playerYellow)
-         && colCellsList[i + 3][j + 2].classList.contains(playerYellow)){
-         displayWinnerName(`${playerYellowName.value} wins!`);
-         return;
-     }*/
-
-
 }
 
 //Display winner name on screen:
@@ -251,19 +166,11 @@ function displayWinnerName(cell) {
     let redWinner = boxPlayerRed.innerHTML;
     let yellowWinner = boxPlayerYellow.innerHTML;
     winnerName.style.display = 'flex';
-
     playerNames.style.display = 'none';
-    if(cell === 'redCell'){
+    if (cell === 'redCell') {
         winnerName.innerHTML = `${redWinner} wins`;
     } else {
         winnerName.innerHTML = `${yellowWinner} wins`;
     }
 }
-
-/*function displayWinnerName(value) {
-    winnerName.style.display = 'flex';
-    winnerName.innerHTML = `${value}`;
-    playerNames.style.display = 'none';
-}*/
-
 
