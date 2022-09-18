@@ -42,10 +42,10 @@ startButton.addEventListener("click", function startPlaying() {
             seconds++;
             if (seconds < 10) {
                 seconds = '0' + seconds;
-                if (seconds == 60) {
+                if (seconds === 60) {
                     seconds = 0;
                     minutes++;
-                    if (minutes == 60) {
+                    if (minutes === 60) {
                         minutes = 0;
                         hours++;
                     }
@@ -148,7 +148,7 @@ function getWinner() {
     }
     //Bottom - Up diagonal: /
     for (let j = rowsLength - 3; j < rowsLength; j++) {// the first 3 rows cannot give diagonal 4 in line
-        for (let i = 0; i < colCellsList.length - 3; i++) {
+        for (let i = 0; i < colCellsList.length - 3; i++) { //i<colCellsList.length otherwise
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j - 1].getAttribute('player_color')
                     && colCellsList[i + 1][j - 1].getAttribute('player_color') === colCellsList[i + 2][j - 2].getAttribute('player_color')
