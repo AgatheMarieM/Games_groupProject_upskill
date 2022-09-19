@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="memory_game.css">
-    <script src="https://kit.fontawesome.com/977db594b1.js" crossorigin="anonymous"></script>
+<!--NOT BEING USED ANYMORE. IF CONFIRMED, DELETE
+<script src="https://kit.fontawesome.com/977db594b1.js" crossorigin="anonymous"></script>-->
 
 </head>
 
@@ -18,15 +19,15 @@
 <h1>Memory game</h1>
 <div class="main-container">
     <h2>Who is playing?</h2>
-    <div class="player-name">
-        <input type="text" name="name" placeholder="Insert you name here">
+    <div>
+        <input id="player-name" type="text" name="name" placeholder="Insert you name here">
     </div>
     <div>
         <h2>Choose grid</h2>
         <div class="grid-type">
             <div class="grid-item">Easy 3 x 4</div>
             <div class="grid-item">Medium 4 x 4</div>
-            <div class="grid-item">Hard 4 x 5</div>
+            <div class="grid-item">Hard 5 x 4</div>
         </div>
     </div>
 </div>
@@ -34,8 +35,8 @@
 <!--PART 2 - GAME-->
 
 <div class="main-container">
+    <h2 class="player"></h2>
     <div class="counter">
-        <h2>TIME COUNTING</h2>
         <p></p>
     </div>
     <div class="game-container">

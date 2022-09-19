@@ -16,6 +16,7 @@ let boxPlayerYellow = document.querySelector("#name-playerYellow");
 
 playerRedName.addEventListener("input", function (e) {
     boxPlayerRed.innerHTML = e.target.value;
+
 })
 playerYellowName.addEventListener("input", function (e) {
     boxPlayerYellow.innerHTML = e.target.value;
@@ -34,7 +35,6 @@ startButton.addEventListener("click", function startPlaying() {
     landingPage.style.display = 'none';
     gamePage.style.display = "block";
     interval = setInterval(updateTimer, 1000);//the delay is set to 1000 ms (1sc)
-
     function updateTimer() {
         milliseconds += 1000;
         if (milliseconds === 1000) {
@@ -43,8 +43,8 @@ startButton.addEventListener("click", function startPlaying() {
             if (seconds < 10) {
                 seconds = '0' + seconds;
                 if (seconds === 60) {
-                    minutes++;
                     seconds = 0;
+                    minutes++;
                     if (minutes === 60) {
                         minutes = 0;
                         hours++;
@@ -61,95 +61,153 @@ startButton.addEventListener("click", function startPlaying() {
 //Clicking cells and playing the game:
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
-let currentPlayer = playerRed;
-//Selection all columns from document:
-let columnNodeList = document.querySelectorAll(".div-col");//array with 7 columns
 
-columnNodeList.forEach(function (column) {
+//The initial CurrentPlayer is defined by random number:
+let currentPlayer;
+let randomNumber = Math.random() * 10;
+if (randomNumber < 5) {
+    currentPlayer = playerRed;
+    boxPlayerRed.style.backgroundColor = "red";
+
+} else {
+    currentPlayer = playerYellow;
+    boxPlayerYellow.style.backgroundColor = "yellow";
+}
+
+//new variable columnList that stores all columns from document
+//adding an event for each column (calling colorCells() function)
+let columnList = document.querySelectorAll(".div-col");//array with 7 columns
+columnList.forEach(function (column) {
     column.addEventListener("click", function () {
         colorCells(column)
     });
-    //event for each column of the array
     //anonymous function needed to prevent the default behavior;
 })
 
 function colorCells(column) {
-    let cells = column.querySelectorAll(".div-cell"); //creating array of cells for the column from columnNodeList
+    //creating locally an array of cells for the column from columnList:
+    let cells = column.querySelectorAll(".div-cell");
+    //looping through all cells:
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
-            if (currentPlayer === playerRed)
+            cells[i].setAttribute("player_color", currentPlayer);
+            /*reading document from bottom to top: if the last indice of the cells array doesn't contain class
+            with player color, then we add it: playerRed or playerYellow*/
+            if (currentPlayer === playerRed) {
                 currentPlayer = playerYellow;
-            else
+                boxPlayerYellow.style.backgroundColor = "yellow";
+                boxPlayerRed.style.backgroundColor = "white";
+
+            } else {
                 currentPlayer = playerRed;
+                boxPlayerRed.style.backgroundColor = "red";
+                boxPlayerYellow.style.backgroundColor = "white";
+            }
             break;
         }
     }
     getWinner();
 }
 
-//creating arrays of cells from the document to access state of each cell and get winner
-let colArrays = [];
-for (let j = 0; j < columnNodeList.length; j++) {
-    colArrays[j] = columnNodeList[j].querySelectorAll(".div-cell");
+//new variable colCellsList that store for each column its n cells
+//allows us to access later the state of each cell (red or yellow?)
+let colCellsList = [];
+for (let j = 0; j < columnList.length; j++) {
+    colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
 }
 
-/*console.log(colArrays.length);
-console.log(colArrays[0][2]);
-console.log(colArrays[1][2]);*/
 
 function getWinner() {
-    //victoria horizontal
-    /* let rowArrays = [];
-        for (let i = 0; i < rows; i++) {
-        rowArrays[i] = [];
-        for (let j = 0; j < columnNodeList.length; j++) {
-            rowArrays[i][j] = columnNodeList[j].querySelectorAll(".div-cell")[i];
-        }
-    }*/
-    //Checking if vertical victory:
-    for (let i = 0; i < colArrays.length; i++) {
-        for (let j = (colArrays[i].length - 1); j >= 0; j--) {
-            // console.log(colArrays[i].length);
-            /*if (colArrays[i][j - 3] == colArrays[i][j - 2]) {
-                if (colArrays[i][j - 2] == colArrays[i][j - 1]) {
-                    if (colArrays[i][j - 1] == colArrays[i][j]) {
-                        console.log("winner");
-                    }
+    let rowsLength = 6; // creating a variable for rows, to iterate through them easily
+    //Vertical four in line
+    for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
+        for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
+            // console.log(colCellsList[i][j], colCellsList[i][j].getAttribute('player_color'));
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                //Vertical victory:
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i][j + 1].getAttribute('player_color')
+                    && colCellsList[i][j + 1].getAttribute('player_color') === colCellsList[i][j + 2].getAttribute('player_color')
+                    && colCellsList[i][j + 2].getAttribute('player_color') === colCellsList[i][j + 3].getAttribute('player_color')) {
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
+                    return;
                 }
-            }*/
-            if (colArrays[i][j].classList.contains(playerRed)
-                && colArrays[i][j - 1].classList.contains(playerRed)
-                && colArrays[i][j - 2].classList.contains(playerRed)
-                && colArrays[i][j - 3].classList.contains(playerRed)) {
-                console.log("Red Player wins");
-                displayWinnerName(`${playerRedName.value} wins!`);
-                return;
-            }
-            if (colArrays[i][j].classList.contains(playerYellow)
-                && colArrays[i][j - 1].classList.contains(playerYellow)
-                && colArrays[i][j - 2].classList.contains(playerYellow)
-                && colArrays[i][j - 3].classList.contains(playerYellow)) {
-                console.log("Yellow player wins");
-                displayWinnerName(`${playerYellowName.value} wins!`);
-                return;
             }
         }
     }
-
-    //Horizontal victory:
-
-
-
-
+    //Horizontal four in line
+    for (let j = 0; j < rowsLength; j++) {
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j].getAttribute('player_color')
+                    && colCellsList[i + 1][j].getAttribute('player_color') === colCellsList[i + 2][j].getAttribute('player_color')
+                    && colCellsList[i + 2][j].getAttribute('player_color') === colCellsList[i + 3][j].getAttribute('player_color')) {
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
+                    return;
+                }
+            }
+        }
+    }
+    // Up to Bottom Diagonal four in line: \
+    for (let j = 0; j < rowsLength - 3; j++) { // the last 3 rows cannot give diagonal 4 in line
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j + 1].getAttribute('player_color')
+                    && colCellsList[i + 1][j + 1].getAttribute('player_color') === colCellsList[i + 2][j + 2].getAttribute('player_color')
+                    && colCellsList[i + 2][j + 2].getAttribute('player_color') === colCellsList[i + 3][j + 3].getAttribute('player_color')) {
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
+                    return;
+                }
+            }
+        }
+    }
+    //Bottom - Up diagonal four in line: /
+    for (let j = rowsLength - 3; j < rowsLength; j++) {// the first 3 rows cannot give diagonal 4 in line
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            //i<colCellsList.length - 3  otherwise loop breaks, the 3 last columns of each row can never give 4inLine diagonally
+            if (colCellsList[i][j].getAttribute('player_color') !== null) {
+                if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j - 1].getAttribute('player_color')
+                    && colCellsList[i + 1][j - 1].getAttribute('player_color') === colCellsList[i + 2][j - 2].getAttribute('player_color')
+                    && colCellsList[i + 2][j - 2].getAttribute('player_color') === colCellsList[i + 3][j - 3].getAttribute('player_color')) {
+                    displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
+                    return;
+                }
+            }
+        }
+    }
 }
 
-//Display winner name on screen:
-function displayWinnerName(str) {
+//Display winner name on screen and go back to Menu or Play Again:
+function displayWinnerName(cell) {
+    let redWinner = boxPlayerRed.innerHTML;
+    let yellowWinner = boxPlayerYellow.innerHTML;
     winnerName.style.display = 'flex';
-    winnerName.innerHTML = str;
-    playerNames.style.display ='none';
+    playerNames.style.display = 'none';
+    if (cell === 'redCell') {
+        winnerName.innerHTML = `<div>
+                                    ${redWinner} wins! 
+                                </div>   
+                                <a href="/index.html">
+                                    Menu
+                                </a>
+                                <a href="four_in_a_line.html">
+                                    Play again?
+                                </a>                            
+                                `;
+        currentPlayer = playerRed; //tried to change currentPlayer value with winner color
+    } else {
+
+        winnerName.innerHTML = `<div>
+                                    ${yellowWinner} wins! 
+                                </div> 
+                                <a href="/index.html">
+                                    Menu
+                                </a>   
+                                <a href="four_in_a_line.html">
+                                    Play again?
+                                </a>                           
+                                `;
+        currentPlayer = playerYellow;//tried to change currentPlayer value with winner color
+    }
 }
-
-
 

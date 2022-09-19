@@ -1,15 +1,27 @@
-// All the available cards
-//let cards = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10"]
-let cards = ["☀️", "☀️", "🐻", "🐻","🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "👩‍", "👩‍", "🌍", "🌍", "🌻", "🌻", "🦴", "🦴" ]
+//PART 1 - GAME MENU
 
-// GAME - Create grid
+//Get the name inserted by the player
+let name = document.querySelector("#player-name")
+name.addEventListener("input",function (e){
+    console.log(name.value)
+})
+
+//PART 2 - GAME
+
+//Show the name of who is playing
+let showPlayer = document.querySelector(".player").innerHTML += name.value
+console.log(showPlayer)
+
+// All the available cards
+let cards = ["☀️", "☀️", "🐻", "🐻", "🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "🌻", "🌻", "🦴", "🦴", "🌍", "🌍", "👩‍", "👩‍"]
+
+//Create grid
 let gridsAvailable = document.querySelectorAll(".grid-item")
 let cardsForGrids = [cards.slice(0, 12), cards.slice(0, 16), cards]
-
 function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
-            console.log("clickedgridsize", cardsForGrids[i].length)
+            document.querySelector(".player").innerHTML = `${name.value} is now playing`
             startGame(cardsForGrids[i])
         })
     }
@@ -19,8 +31,8 @@ selectGrid()
 
 function startGame(cards_board) {
 
-    //TIME COUNTER - Inspiration gotten from the www (https://www.delftstack.com/howto/javascript/javascript-count-up-timer/)
-    /*    setInterval(countUpTime, 1000)
+    //Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
+    setInterval(countUpTime, 1000)
         let start = 0
         function countUpTime() {
             start++
@@ -28,12 +40,11 @@ function startGame(cards_board) {
             let minutes = Math.floor(start/ 60)
             let seconds = start- (hours * 3600 + minutes * 60);
             document.querySelector(".counter p").innerHTML = `${hours}:${minutes}:${seconds}`
-            //console.log(hours,minutes,seconds)
-        }*/
+        }
 
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
-        //DELETE - Is defining that the cards show in original array order
+        //DELETE - Used only for testing and is defining that the cards show in original array order
         return array;
         let curId = array.length;
         while (0 !== curId) { // There remain elements to shuffle
@@ -55,13 +66,11 @@ function startGame(cards_board) {
             gridGame.innerHTML += `
                 <div class="game-item"><span>${shuffledCards[i]}</span></div>`;
         }
-        console.log(gridGame)
     }
 
     setBoard(cards_board)
 
     let allCards = document.querySelectorAll(".game-item");
-    console.log("allcards", allCards)
 
     // Function to show each card each time it is clicked
     function showEachCard() {
@@ -69,10 +78,10 @@ function startGame(cards_board) {
             allCards[i].addEventListener("click", function (e) {
                 //QUESTION - Changed "toggle" to "add". What would be better?
                 //QUESTION - This condition can only verify if !== visible, or both?
-                if (allCards[i].classList !== "solved") {
-                    allCards[i].classList.add("visible")
-                    let visibleCards = document.querySelectorAll(".visible")
-                    checkEqualCards(visibleCards)
+                if (!allCards[i].classList.contains("solved")) {
+                    allCards[i].classList.add("visible");
+                    let visibleCards = document.querySelectorAll(".visible");
+                    checkEqualCards(visibleCards);
                     console.log("visiblecards", visibleCards)
                 }
             })
@@ -92,6 +101,7 @@ function startGame(cards_board) {
                 array[1].classList.add("solved");
                 //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
                 let cardsSolved = document.querySelectorAll(".game-item.solved")
+                //CHECK if the game is over
                 if (cardsSolved.length !== allCards.length) {
                     setTimeout(function () {
                         array[0].classList.remove("visible");
@@ -106,9 +116,11 @@ function startGame(cards_board) {
                     }, 1)
                 }
             }
-        }, 1)
+        }, 500)
     }
 }
+
+//PART 3 - END OF GAME
 
 
 
