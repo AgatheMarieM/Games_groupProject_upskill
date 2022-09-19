@@ -61,8 +61,14 @@ startButton.addEventListener("click", function startPlaying() {
 //Clicking cells and playing the game:
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
-let currentPlayer = playerRed; //we start with red
-// ASK PLAYERS WHO WANTS TO START?
+//CurrentPlayer defined by random number
+let currentPlayer;
+let randomNumber = Math.random()*10;
+if(randomNumber<5){
+    currentPlayer = playerRed;
+} else {
+    currentPlayer = playerYellow;
+}
 
 //new variable columnList that stores all columns from document
 //adding an event for each column (calling colorCells() function)
@@ -174,16 +180,25 @@ function displayWinnerName(cell) {
                                 </div>   
                                 <a href="/index.html">
                                     Menu
-                                </a>                           
+                                </a>
+                                <a href="four_in_a_line.html">
+                                    Play again?
+                                </a>                            
                                 `;
+        currentPlayer = playerRed; //tried to change currentPlayer value with winner color
     } else {
+
         winnerName.innerHTML = `<div>
                                     ${yellowWinner} wins! 
                                 </div> 
                                 <a href="/index.html">
                                     Menu
-                                </a>                              
+                                </a>   
+                                <a href="four_in_a_line.html">
+                                    Play again?
+                                </a>                           
                                 `;
+        currentPlayer = playerYellow;
     }
 }
 
