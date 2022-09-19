@@ -148,7 +148,8 @@ function getWinner() {
     }
     //Bottom - Up diagonal: /
     for (let j = rowsLength - 3; j < rowsLength; j++) {// the first 3 rows cannot give diagonal 4 in line
-        for (let i = 0; i < colCellsList.length - 3; i++) { //i<colCellsList.length otherwise
+        for (let i = 0; i < colCellsList.length - 3; i++) {
+            //i<colCellsList.length - 3  otherwise loop breaks, the 3 last columns of each row can never give 4inLine diagonally
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i + 1][j - 1].getAttribute('player_color')
                     && colCellsList[i + 1][j - 1].getAttribute('player_color') === colCellsList[i + 2][j - 2].getAttribute('player_color')
@@ -168,9 +169,21 @@ function displayWinnerName(cell) {
     winnerName.style.display = 'flex';
     playerNames.style.display = 'none';
     if (cell === 'redCell') {
-        winnerName.innerHTML = `${redWinner} wins`;
+        winnerName.innerHTML = `<div>
+                                    ${redWinner} wins! 
+                                </div>   
+                                <a href="/index.html">
+                                    Menu
+                                </a>                           
+                                `;
     } else {
-        winnerName.innerHTML = `${yellowWinner} wins`;
+        winnerName.innerHTML = `<div>
+                                    ${yellowWinner} wins! 
+                                </div> 
+                                <a href="/index.html">
+                                    Menu
+                                </a>                              
+                                `;
     }
 }
 

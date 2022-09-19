@@ -97,12 +97,14 @@ h1, p {
 
 .winner-name {
     color: blue;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     font-family: 'Silkscreen', cursive;
     font-size: 30px;
     justify-content: center;
     margin-top: 20px;
     padding: 10px;
-
 }
 
 
@@ -152,7 +154,7 @@ h1, p {
     color: blue;
 }
 
-#timer, #winner-name {
+#timer {
     text-align: center;
 }
 
