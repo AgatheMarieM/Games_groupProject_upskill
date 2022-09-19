@@ -16,6 +16,7 @@ let boxPlayerYellow = document.querySelector("#name-playerYellow");
 
 playerRedName.addEventListener("input", function (e) {
     boxPlayerRed.innerHTML = e.target.value;
+
 })
 playerYellowName.addEventListener("input", function (e) {
     boxPlayerYellow.innerHTML = e.target.value;
@@ -34,7 +35,6 @@ startButton.addEventListener("click", function startPlaying() {
     landingPage.style.display = 'none';
     gamePage.style.display = "block";
     interval = setInterval(updateTimer, 1000);//the delay is set to 1000 ms (1sc)
-
     function updateTimer() {
         milliseconds += 1000;
         if (milliseconds === 1000) {
@@ -61,13 +61,17 @@ startButton.addEventListener("click", function startPlaying() {
 //Clicking cells and playing the game:
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
-//CurrentPlayer defined by random number
+
+//The initial CurrentPlayer is defined by random number:
 let currentPlayer;
-let randomNumber = Math.random()*10;
-if(randomNumber<5){
+let randomNumber = Math.random() * 10;
+if (randomNumber < 5) {
     currentPlayer = playerRed;
+    boxPlayerRed.style.backgroundColor = "red";
+
 } else {
     currentPlayer = playerYellow;
+    boxPlayerYellow.style.backgroundColor = "yellow";
 }
 
 //new variable columnList that stores all columns from document
@@ -88,13 +92,18 @@ function colorCells(column) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
             cells[i].setAttribute("player_color", currentPlayer);
-            console.log(cells[i]);
-            //reading document from bottom to top: if the last indice of the cells array doesn't contain class
-            // with player color, then we add it: playerRed or playerYellow
-            if (currentPlayer === playerRed)
+            /*reading document from bottom to top: if the last indice of the cells array doesn't contain class
+            with player color, then we add it: playerRed or playerYellow*/
+            if (currentPlayer === playerRed) {
                 currentPlayer = playerYellow;
-            else
+                boxPlayerYellow.style.backgroundColor = "yellow";
+                boxPlayerRed.style.backgroundColor = "white";
+
+            } else {
                 currentPlayer = playerRed;
+                boxPlayerRed.style.backgroundColor = "red";
+                boxPlayerYellow.style.backgroundColor = "white";
+            }
             break;
         }
     }
@@ -110,8 +119,8 @@ for (let j = 0; j < columnList.length; j++) {
 
 
 function getWinner() {
-    let rowsLength = 6; // creating a variable for rows, as the piece falls, useful to iterate through rows
-    //Vertical win
+    let rowsLength = 6; // creating a variable for rows, to iterate through them easily
+    //Vertical four in line
     for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
         for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
             // console.log(colCellsList[i][j], colCellsList[i][j].getAttribute('player_color'));
@@ -126,7 +135,7 @@ function getWinner() {
             }
         }
     }
-    //Horizontal win
+    //Horizontal four in line
     for (let j = 0; j < rowsLength; j++) {
         for (let i = 0; i < colCellsList.length - 3; i++) {
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
@@ -139,7 +148,7 @@ function getWinner() {
             }
         }
     }
-    // Up to Bottom Diagonal: \
+    // Up to Bottom Diagonal four in line: \
     for (let j = 0; j < rowsLength - 3; j++) { // the last 3 rows cannot give diagonal 4 in line
         for (let i = 0; i < colCellsList.length - 3; i++) {
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
@@ -152,7 +161,7 @@ function getWinner() {
             }
         }
     }
-    //Bottom - Up diagonal: /
+    //Bottom - Up diagonal four in line: /
     for (let j = rowsLength - 3; j < rowsLength; j++) {// the first 3 rows cannot give diagonal 4 in line
         for (let i = 0; i < colCellsList.length - 3; i++) {
             //i<colCellsList.length - 3  otherwise loop breaks, the 3 last columns of each row can never give 4inLine diagonally
@@ -168,7 +177,7 @@ function getWinner() {
     }
 }
 
-//Display winner name on screen:
+//Display winner name on screen and go back to Menu or Play Again:
 function displayWinnerName(cell) {
     let redWinner = boxPlayerRed.innerHTML;
     let yellowWinner = boxPlayerYellow.innerHTML;
@@ -198,7 +207,7 @@ function displayWinnerName(cell) {
                                     Play again?
                                 </a>                           
                                 `;
-        currentPlayer = playerYellow;
+        currentPlayer = playerYellow;//tried to change currentPlayer value with winner color
     }
 }
 

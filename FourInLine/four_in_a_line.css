@@ -70,7 +70,7 @@ h1, p {
 
 
 #name-playerRed {
-    background-color: red;
+    border: 1px solid red;
     border-radius: 10px;
     display: flex;
     font-family: 'Silkscreen', cursive;
@@ -79,7 +79,7 @@ h1, p {
 }
 
 #name-playerYellow {
-    background-color: yellow;
+    border: 1px solid yellow;
     border-radius: 10px;
     display: flex;
     font-family: 'Silkscreen', cursive;
