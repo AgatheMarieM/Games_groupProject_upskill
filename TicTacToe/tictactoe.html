@@ -12,7 +12,7 @@
 </div>
 
 <div id="rounds">
-    <div class="count-round"> Round 1/5</div>
+    <div class="count-round"> Round </div>
 </div>
 
 <div id="timer">
@@ -27,32 +27,56 @@
 
 
 <div id="game-container">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
+    <div number="1"></div>
+    <div number="2"></div>
+    <div number="3"></div>
+    <div number="4"></div>
+    <div number="5"></div>
+    <div number="6"></div>
+    <div number="7"></div>
+    <div number="8"></div>
+    <div number="9"></div>
 </div>
 
 <div class="popup">
     <div class="popup-content">
         <img src="silver-close-button.png" alt="Close" class="close">
-        <input type="text" placeholder="Player 1">
-        <input type="text" placeholder="Player 2">
+        <input type="text" placeholder="Player 1" class="player-name1">
+        <input type="text" placeholder="Player 2" class="player-name2">
         <a href="#" class="button">START</a>
+    </div>
+</div>
+
+<div class="popup2">
+    <div class="winner-content">
+        <p> The winner is </p>
+        <a href="#" class="button2" >Play again</a>
     </div>
 </div>
 
 </body>
 <script>
 
-    document.querySelector(".button").addEventListener("click", function (){
-        document.querySelector(".popup").style.display = "none";
+    let input_name1 = document.querySelector(".player-name1");
+    let input_name2 = document.querySelector(".player-name2");
+
+    document.querySelector(".button").addEventListener("click", function () {
+        if(input_name1.value === '' || input_name2=== '') {
+            return;
+        } else {
+            document.querySelector(".popup").style.display = "none";
+            document.querySelector(".player1").innerHTML = input_name1.value;
+            document.querySelector(".player2").innerHTML = input_name2.value;
+        }
     })
+
+
+    let time = document.getElementById("timer")
+    for(let i = 1; i <= 60; i=i+1) {
+        setTimeout(function() {
+            time.innerHTML = i;
+        }, 1000 * i)
+    }
 
 
     let g = document.querySelectorAll("#game-container > div");
@@ -64,13 +88,13 @@
         g.forEach(function (e) {
             e.addEventListener("click", function () {
                 if (playerTurn === true) {
-                    A.push(e.innerText);
+                    A.push(e.getAttribute("number"));
                     console.log(A)
                     e.innerHTML = `<img src="cruz.png"/>`;
                     winner(A)
                     playerTurn = !playerTurn
                 } else {
-                    B.push(e.innerText);
+                    B.push(e.getAttribute("number"));
                     console.log(B)
                     e.innerHTML = `<img src="bola.png"/>`;
                     winner(B)
@@ -96,29 +120,44 @@
             ["3", "5", "7"]
         ]
         win_comb.forEach(function (comb) {
+            let nameWin = " "
             console.log(comb)
                     if (list.includes(comb[0]) && list.includes(comb[1]) && list.includes(comb[2])){
-                        console.log(`Player ${list.name} wins`)
-
+                        if (playerTurn === true){
+                            console.log(`${input_name1.value} wins!`);
+                            document.querySelector(".popup2").style.display = "flex";
+                            nameWin = input_name2.value
+                        } else {
+                            console.log(`${input_name2.value} wins!`);
+                            document.querySelector(".popup2").style.display = "flex";
+                            nameWin = input_name2.value
+                        }
                     } else {
                         console.log("Try again")
                 }
          })
     }
 
+    document.querySelector(".button2").addEventListener("click", function () {
+        document.querySelector(".popup2").style.display = "none";
+            A.length = 0
+            B.length = 0
+                g.forEach(function (e) {
+                    e.innerHTML=""
+             })
+    })
 
-    let time = document.getElementById("timer")
-    for(let i = 1; i <= 60; i=i+1) {
-            setTimeout(function() {
-                time.innerHTML = i;
-        }, 1000 * i)
+
+    /*
+    let time = document.getElementById("rounds")
+    for(let i = 1; i <= 5; i=i+1) {
+        time.innerHTML = i = +i;
     }
 
 
 
 
-
-
+     */
 
 
 

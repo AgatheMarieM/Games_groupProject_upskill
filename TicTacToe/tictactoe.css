@@ -24,6 +24,27 @@ body {
     position: relative;
 }
 
+.popup2 {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.winner-content {
+    height: 200px;
+    width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    font-size: 30px;
+}
+
 .button {
     background: lightgray;
     padding: 10px 15px;
@@ -39,6 +60,25 @@ body {
     background: forestgreen;
     color: white;
 }
+
+.button2 {
+    background: lightgray;
+    padding: 10px 15px;
+    color: black;
+    font-weight: bolder;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-decoration: none;
+    transition: 0.4s;
+    font-size: 20px
+}
+
+.button:hover{
+    background: coral;
+    color: white;
+}
+
+
 
 .close{
     position: absolute;
@@ -85,6 +125,11 @@ input {
     place-items: center;
     border-style: solid;
 }
+
+#game-container > div > p {
+    visibility: hidden;
+}
+
 
 img {
     width: 50px;
