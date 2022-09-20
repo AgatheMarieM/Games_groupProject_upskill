@@ -1,0 +1,10 @@
+/* Four in Line*/
+.fourinline-container-historico {
+    align-items: center;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    margin: 0 auto;
+
+}
