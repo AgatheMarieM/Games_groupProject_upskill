@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Historico</title>
-  <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
@@ -11,20 +11,26 @@
 <!--Jogo do Galo Historico -->
 
 
-
-
 <!--Jogo da Memoria Historico -->
 
 
-
-
 <!--Quatro em Linha Historico -->
-<div class="fourinline-container-historico">
-  <div>Quatro em Linha</div>
-  <div id="fourinline-date-game">dd/mm/2022</div>
-  <div id="fourinline-time-game">hours:minutes</div>
-  <div id="fourinline-last-winner">Winner name</div>
-</div>
+<div id="fourinline-container-historico"></div>
+
+
+<script>
+    <!--Quatro em Linha Historico Script -->
+    let fourInLineHistorico = document.getElementById("fourinline-container-historico");
+    let lastWinnerName = localStorage.getItem("last winner");
+    let dateVictory = localStorage.getItem("date");
+    fourInLineHistorico.innerHTML = `
+                                        <div>Quatro em Linha</div>
+                                         <div id="fourinline-date-game">${dateVictory}</div>
+                                         <div id="fourinline-last-winner">${lastWinnerName}</div>
+                                     `;
+
+
+</script>
 
 </body>
 </html>
