@@ -199,11 +199,11 @@ function displayWinnerName(cell) {
 
     if(cell === 'redCell'){
         nameWinner = boxPlayerRed.innerHTML;
-        localStorage.setItem("last winner", nameWinner);
     } else {
         nameWinner = boxPlayerYellow.innerHTML;
-        localStorage.setItem("last winner", nameWinner);
     }
+    localStorage.setItem("last winner", nameWinner);
+
     winnerName.innerHTML = `<div>
                                     ${nameWinner} wins! 
                                 </div> 
@@ -236,6 +236,13 @@ function formatDate(date){
 
 //formatTime() receives new Date() of victory and format it to show only time: hours and minutes
 function formatTime(time){
-
-
+    let hour = time.getHours();
+    if(hour<10){
+        hour = '0'+hour;
+    }
+    let minutes = time.getMinutes();
+    if(minutes<10){
+        minutes = '0'+minutes;
+    }
+    return `${hour}h${minutes}`;
 }
