@@ -1,38 +1,33 @@
-//Load landing page WITHOUT the game
+// Target and load landing page WITHOUT the game
 let landingPage = document.querySelector(".lp-4inline");
 let gamePage = document.querySelector(".game-4inline");
 gamePage.style.display = 'none';
 
-let playerNames = document.querySelector(".current-players");
-let winnerName = document.querySelector(".winner-name");
-winnerName.style.display = 'none';
-
-//get player names values (then we'll show them on game page):
+//Target player names from initial inputs (then we'll show them on game page):
 let playerRedName = document.querySelector("#playerRedName");
-let boxPlayerRed = document.querySelector("#name-playerRed");
-
 let playerYellowName = document.querySelector("#playerYellowName");
+
+//Target boxes that will display the current players' names
+let boxPlayerRed = document.querySelector("#name-playerRed");
 let boxPlayerYellow = document.querySelector("#name-playerYellow");
 
+//EventListeners: when we fill player names, they are displayed in their respective boxes
 playerRedName.addEventListener("input", function (e) {
     boxPlayerRed.innerHTML = e.target.value;
-
 })
 playerYellowName.addEventListener("input", function (e) {
     boxPlayerYellow.innerHTML = e.target.value;
 })
 
-//On clicking start button, the landing-page disappears and the game is on display
+//EventListener: on clicking start button, the landing-page disappears and the game is on display
 //startButton also starts the stopwatch(timer)!
-
 let startButton = document.querySelector("#start-button");
 let timerElement = document.querySelector("#timer");
 let interval = null;
 let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
 
-
 startButton.addEventListener("click", function startPlaying() {
-    landingPage.style.display = 'none';
+    landingPage.style.display = 'none'; //landing-page now hidden
     gamePage.style.display = "block";
     interval = setInterval(updateTimer, 1000);//the delay is set to 1000 ms (1sc)
     function updateTimer() {
@@ -55,28 +50,36 @@ startButton.addEventListener("click", function startPlaying() {
 
         timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
     }
-
 });
 
-//Clicking cells and playing the game:
+// Targeting div that shows the current player names. It will hide when there is a winner
+let playerNames = document.querySelector(".current-players");
+
+// Targeting div that shows the winner name. It will pop up when there is a winner
+let winnerName = document.querySelector(".winner-name");
+winnerName.style.display = 'none';
+
+
+//Initializing the game: each player has a string associated to them
+//Then this string will help us create a class for each red or yellow cell
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
 
-//The initial CurrentPlayer is defined by random number:
+//Initializing CurrentPlayer (will play first) by a random number:
 let currentPlayer;
 let randomNumber = Math.random() * 10;
 if (randomNumber < 5) {
     currentPlayer = playerRed;
     boxPlayerRed.style.backgroundColor = "red";
-
 } else {
     currentPlayer = playerYellow;
     boxPlayerYellow.style.backgroundColor = "yellow";
 }
 
-//new variable columnList that stores all columns from document
-//adding an event for each column (calling colorCells() function)
-let columnList = document.querySelectorAll(".div-col");//array with 7 columns
+//Interacting with the DOM: columnList stores all columns from document
+let columnList = document.querySelectorAll(".div-col");//(array with 7 columns)
+
+//EventListener: for each column, calling colorCells() function, passing the column as argument
 columnList.forEach(function (column) {
     column.addEventListener("click", function () {
         colorCells(column)
@@ -84,16 +87,25 @@ columnList.forEach(function (column) {
     //anonymous function needed to prevent the default behavior;
 })
 
+
+//Interacting with the DOM: colCellsList will store all cells from each column from columnList
+//allows us to access later the state of each cell (contains red or yellow?)
+let colCellsList = [];
+for (let j = 0; j < columnList.length; j++) {
+    colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
+}
+
 function colorCells(column) {
-    //creating locally an array of cells for the column from columnList:
+    //creating locally an array of cells for the column from columnList that is being iterated:
     let cells = column.querySelectorAll(".div-cell");
-    //looping through all cells:
+    /* reading the column from bottom to top: if the last index of the cells array doesn't contain a class
+    with player color, then we add it: playerRed or playerYellow */
     for (let i = cells.length - 1; i >= 0; i--) {
         if (!cells[i].classList.contains(playerRed) && !cells[i].classList.contains(playerYellow)) {
             cells[i].classList.add(currentPlayer);
+            //each time we fill a cell it also receives a new attribute:
             cells[i].setAttribute("player_color", currentPlayer);
-            /*reading document from bottom to top: if the last indice of the cells array doesn't contain class
-            with player color, then we add it: playerRed or playerYellow*/
+
             if (currentPlayer === playerRed) {
                 currentPlayer = playerYellow;
                 boxPlayerYellow.style.backgroundColor = "yellow";
@@ -107,25 +119,18 @@ function colorCells(column) {
             break;
         }
     }
-    getWinner();
-}
-
-//new variable colCellsList that store for each column its n cells
-//allows us to access later the state of each cell (red or yellow?)
-let colCellsList = [];
-for (let j = 0; j < columnList.length; j++) {
-    colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
+    getWinner(); //getWinner called to see if there is a 4 in line
 }
 
 
 function getWinner() {
     let rowsLength = 6; // creating a variable for rows, to iterate through them easily
+    //The attribute "player_color" that was set at colorCells() allows us to compare the cells:
+
     //Vertical four in line
     for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
         for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
-            // console.log(colCellsList[i][j], colCellsList[i][j].getAttribute('player_color'));
             if (colCellsList[i][j].getAttribute('player_color') !== null) {
-                //Vertical victory:
                 if (colCellsList[i][j].getAttribute('player_color') === colCellsList[i][j + 1].getAttribute('player_color')
                     && colCellsList[i][j + 1].getAttribute('player_color') === colCellsList[i][j + 2].getAttribute('player_color')
                     && colCellsList[i][j + 2].getAttribute('player_color') === colCellsList[i][j + 3].getAttribute('player_color')) {
@@ -177,7 +182,12 @@ function getWinner() {
     }
 }
 
-//Display winner name on screen and go back to Menu or Play Again:
+//function displayWinnerName() tasks:
+// display winner name,
+// hide current player names,
+// go back to Menu or Play Again,
+// store date+time of victory + winner name in LocalStorage.
+// It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
     let dateVictory = new Date();
     let redWinner = boxPlayerRed.innerHTML;
@@ -216,10 +226,6 @@ function displayWinnerName(cell) {
         localStorage.setItem("last winner", yellowWinner);
         console.log(localStorage);
     }
-    //LocalStorage of last victory:
-    //PROBLEM: need to reach historico.html which is another DOM
-    /*let fourInLineHistorico = document.getElementById("fourinline-container-historico");
-    fourInLineHistorico.innerHTML = "Hello";*/
 }
 
 
