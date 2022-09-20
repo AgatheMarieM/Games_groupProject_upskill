@@ -179,6 +179,7 @@ function getWinner() {
 
 //Display winner name on screen and go back to Menu or Play Again:
 function displayWinnerName(cell) {
+    let dateVictory = new Date();
     let redWinner = boxPlayerRed.innerHTML;
     let yellowWinner = boxPlayerYellow.innerHTML;
     winnerName.style.display = 'flex';
@@ -195,6 +196,9 @@ function displayWinnerName(cell) {
                                 </a>                            
                                 `;
         currentPlayer = playerRed; //tried to change currentPlayer value with winner color
+        localStorage.setItem("date", dateVictory);
+        localStorage.setItem("last winner", redWinner);
+        console.log(localStorage);
     } else {
 
         winnerName.innerHTML = `<div>
@@ -208,6 +212,15 @@ function displayWinnerName(cell) {
                                 </a>                           
                                 `;
         currentPlayer = playerYellow;//tried to change currentPlayer value with winner color
+        localStorage.setItem("date", dateVictory);
+        localStorage.setItem("last winner", yellowWinner);
+        console.log(localStorage);
     }
+    //LocalStorage of last victory:
+    //PROBLEM: need to reach historico.html which is another DOM
+    /*let fourInLineHistorico = document.getElementById("fourinline-container-historico");
+    fourInLineHistorico.innerHTML = "Hello";*/
 }
+
+
 
