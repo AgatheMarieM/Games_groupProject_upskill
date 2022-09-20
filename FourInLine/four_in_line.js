@@ -189,7 +189,8 @@ function getWinner() {
 // store date+time of victory + winner name in LocalStorage.
 // It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
-    let dateVictory = new Date();
+    let dateVictory = formatDate(new Date());
+    // let timeVictory = formatTime(new Date));
     let redWinner = boxPlayerRed.innerHTML;
     let yellowWinner = boxPlayerYellow.innerHTML;
     winnerName.style.display = 'flex';
@@ -207,6 +208,7 @@ function displayWinnerName(cell) {
                                 `;
         currentPlayer = playerRed; //tried to change currentPlayer value with winner color
         localStorage.setItem("date", dateVictory);
+        // localStorage.setItem("time", timeVictory);
         localStorage.setItem("last winner", redWinner);
         console.log(localStorage);
     } else {
@@ -223,10 +225,28 @@ function displayWinnerName(cell) {
                                 `;
         currentPlayer = playerYellow;//tried to change currentPlayer value with winner color
         localStorage.setItem("date", dateVictory);
+        // localStorage.setItem("time", timeVictory);
         localStorage.setItem("last winner", yellowWinner);
         console.log(localStorage);
     }
 }
 
+
+//formatDate() receives new Date() of victory and format it to show only day/month/year
+function formatDate(date){
+    let dayOfMonth = date.getDate();
+    if (dayOfMonth<10){
+        dayOfMonth = '0'+dayOfMonth;
+    }
+    let month = date.getMonth()+1;
+    if(month<10){
+        month = '0'+month;
+    }
+    let year = date.getFullYear();
+    return `${dayOfMonth}/${month}/${year}`;
+
+}
+
+//formatTime() receives new Date() of victory and format it to show only time: hours and minutes
 
 
