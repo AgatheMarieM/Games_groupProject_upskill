@@ -22,6 +22,8 @@ function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
             document.querySelector(".player").innerHTML = `${name.value} is now playing`
+            //TESTING THIS POSSIBILITY
+            document.querySelector(".menu-container").innerHTML=""
             startGame(cardsForGrids[i])
         })
     }
@@ -109,7 +111,8 @@ function startGame(cards_board) {
                     }, 1)
                 } else {
                     document.querySelector(".winner-container").classList.add("test")
-
+                    //TESTING THIS POSSIBILITY
+                    document.querySelector(".game-container").innerHTML=""
                     //window.alert("CONGRATULATIONS!")
                     // Necessary? Just to hide cards after the final move, so that all the board looks the same
                     setTimeout(function () {
