@@ -189,32 +189,23 @@ function getWinner() {
 // store date+time of victory + winner name in LocalStorage.
 // It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
-    let dateVictory = formatDate(new Date());
-    // let timeVictory = formatTime(new Date));
-    let redWinner = boxPlayerRed.innerHTML;
-    let yellowWinner = boxPlayerYellow.innerHTML;
+    let nameWinner;
     winnerName.style.display = 'flex';
     playerNames.style.display = 'none';
-    if (cell === 'redCell') {
-        winnerName.innerHTML = `<div>
-                                    ${redWinner} wins! 
-                                </div>   
-                                <a href="/index.html">
-                                    Menu
-                                </a>
-                                <a href="four_in_a_line.html">
-                                    Play again?
-                                </a>                            
-                                `;
-        currentPlayer = playerRed; //tried to change currentPlayer value with winner color
-        localStorage.setItem("date", dateVictory);
-        // localStorage.setItem("time", timeVictory);
-        localStorage.setItem("last winner", redWinner);
-        console.log(localStorage);
-    } else {
+    let dateVictory = formatDate(new Date());
+    let timeVictory = formatTime(new Date());
+    localStorage.setItem("date", dateVictory);
+    localStorage.setItem("time", timeVictory);
 
-        winnerName.innerHTML = `<div>
-                                    ${yellowWinner} wins! 
+    if(cell === 'redCell'){
+        nameWinner = boxPlayerRed.innerHTML;
+        localStorage.setItem("last winner", nameWinner);
+    } else {
+        nameWinner = boxPlayerYellow.innerHTML;
+        localStorage.setItem("last winner", nameWinner);
+    }
+    winnerName.innerHTML = `<div>
+                                    ${nameWinner} wins! 
                                 </div> 
                                 <a href="/index.html">
                                     Menu
@@ -223,12 +214,8 @@ function displayWinnerName(cell) {
                                     Play again?
                                 </a>                           
                                 `;
-        currentPlayer = playerYellow;//tried to change currentPlayer value with winner color
-        localStorage.setItem("date", dateVictory);
-        // localStorage.setItem("time", timeVictory);
-        localStorage.setItem("last winner", yellowWinner);
-        console.log(localStorage);
-    }
+
+    console.log(localStorage);
 }
 
 
@@ -248,5 +235,7 @@ function formatDate(date){
 }
 
 //formatTime() receives new Date() of victory and format it to show only time: hours and minutes
+function formatTime(time){
 
 
+}
