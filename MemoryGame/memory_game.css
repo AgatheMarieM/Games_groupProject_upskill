@@ -5,6 +5,10 @@ h1, h2, div, .player-name {
 }
 
 .main-container {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+
     border-style: dotted;
     border-color: gray;
 }
@@ -52,6 +56,24 @@ h1, h2, div, .player-name {
     opacity: 1;
 }
 
+.winner-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    position: relative;
+    opacity: 1;
+    background-color: white;
+    border-style: dotted;
+    border-color: gray;
+    width: 300px;
+    /*top: 200px;
+    right: 100px;*/
+}
+
+.test{
+    opacity: 0;
+}
+
 /*menu-button is only used in the end of the game*/
 .menu-button{
     background-color: greenyellow;
@@ -59,3 +81,4 @@ h1, h2, div, .player-name {
     padding: 10px;
     border-radius: 12px;
 }
+

@@ -108,7 +108,9 @@ function startGame(cards_board) {
                         array[1].classList.remove("visible");
                     }, 1)
                 } else {
-                    window.alert("GANHOU!")
+                    document.querySelector(".winner-container").classList.add("test")
+
+                    //window.alert("CONGRATULATIONS!")
                     // Necessary? Just to hide cards after the final move, so that all the board looks the same
                     setTimeout(function () {
                         array[0].classList.remove("visible");
