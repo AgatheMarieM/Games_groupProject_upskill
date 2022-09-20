@@ -110,9 +110,14 @@ function startGame(cards_board) {
                         array[1].classList.remove("visible");
                     }, 1)
                 } else {
-                    document.querySelector(".winner-container").classList.add("test")
+                    document.querySelector(".winner-container").classList.add("visible")
                     //TESTING THIS POSSIBILITY
                     document.querySelector(".game-container").innerHTML=""
+                    // TESTING THIS POSSIBILITY
+                    let menuButton = document.querySelector(".menu-button")
+                    menuButton.addEventListener("click", function (e) {
+                        window.location.reload()
+                        })
                     //window.alert("CONGRATULATIONS!")
                     // Necessary? Just to hide cards after the final move, so that all the board looks the same
                     setTimeout(function () {

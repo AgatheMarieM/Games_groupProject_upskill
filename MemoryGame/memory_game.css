@@ -8,13 +8,7 @@ h1, h2, div, .player-name {
     display: block;
     margin: 0 auto;
     width: 100%;
-    border-style: dotted;
-    border-color: gray;
 }
-
-/*.game-container {
-    display: flex;
-}*/
 
 .grid-type, .grid-game {
     display: flex;
@@ -69,7 +63,7 @@ h1, h2, div, .player-name {
     right: 100px;*/
 }
 
-.test{
+.visible{
     opacity: 1;
 }
 
