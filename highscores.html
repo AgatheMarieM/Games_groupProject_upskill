@@ -15,21 +15,24 @@
 
 
 <!--Quatro em Linha Historico -->
-<div id="fourinline-container-historico"></div>
+<div id="fourinline-container"></div>
 
 
 <script>
     <!--Quatro em Linha Historico Script -->
-    let fourInLineHistorico = document.getElementById("fourinline-container-historico");
-    let lastWinnerName = localStorage.getItem("last winner");
-    let dateVictory = localStorage.getItem("date");
-    let timeVictory = localStorage.getItem("time");
-
-    fourInLineHistorico.innerHTML = `
+    let fourInLineContainer = document.getElementById("fourinline-container");
+    let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
+    for(let i=0; i<fourInLineArray.length; i++){
+        fourInLineContainer.innerHTML += `
                                         <div>Quatro em Linha</div>
-                                         <div id="fourinline-date-game">${dateVictory} at ${timeVictory}</div>
-                                         <div id="fourinline-last-winner">Last winner: ${lastWinnerName}</div>
+                                         <div id="fourinline-date-game">${fourInLineArray[i].date} às ${fourInLineArray[i].time}</div>
+                                         <div id="fourinline-date-game">winner: ${fourInLineArray[i].winner}</div>
+                                         </br>
                                      `;
+    }
+
+
+
 
 
 </script>
