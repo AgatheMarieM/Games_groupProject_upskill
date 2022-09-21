@@ -115,10 +115,8 @@ function startGame(cards_board) {
                 let cardsSolved = document.querySelectorAll(".game-item.solved")
                 //CHECK if the game is over
                 if (cardsSolved.length !== allCards.length) {
-                    setTimeout(function () {
-                        array[0].classList.remove("visible");
-                        array[1].classList.remove("visible");
-                    }, 1)
+                    array[0].classList.remove("visible");
+                    array[1].classList.remove("visible");
                 } else {
                     document.querySelector(".game-container").classList.add("hidden")
                     document.querySelector(".winner-container").classList.remove("hidden")
@@ -134,7 +132,6 @@ function startGame(cards_board) {
                         /*OLD menuButton.innerHTML =
                             `<a href="../index.html">Menu</a>`*/
                     })
-                    //window.alert("CONGRATULATIONS!")
                     // Necessary? Just to hide cards after the final move, so that all the board looks the same
                     setTimeout(function () {
                         array[0].classList.remove("visible");
