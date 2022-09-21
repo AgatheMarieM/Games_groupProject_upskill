@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="game_name">
-    <h3>Tic-Tac-Toe</h3>
+    <h1>Tic-Tac-Toe</h1>
 </div>
 
 <div id="rounds">
@@ -19,10 +19,14 @@
     Let's start the game!
 </div>
 
-
 <div id="players">
-    <div class="player1">Player 1</div>
+    <div class="player1"> Player 1</div>
     <div class="player2"> Player 2</div>
+</div>
+
+<div id="icons">
+    <img src="cruz.png">
+    <img src="bola.png">
 </div>
 
 
@@ -40,16 +44,22 @@
 
 <div class="popup">
     <div class="popup-content">
-        <img src="silver-close-button.png" alt="Close" class="close">
-        <input type="text" placeholder="Player 1" class="player-name1">
-        <input type="text" placeholder="Player 2" class="player-name2">
+        <a href="./index.html">
+            <img src="silver-close-button.png" alt="Close" class="close">
+        </a>
+        <h2>Who is playing?</h2>
+        <input type="text" placeholder="Player of X" class="player-name1">
+        <input type="text" placeholder="Player of O" class="player-name2">
         <a href="#" class="button">START</a>
     </div>
 </div>
 
 <div class="popup2">
     <div class="winner-content">
-        <p> The winner is </p>
+        <a href="./index.html">
+            <img src="silver-close-button.png" alt="Close" class="close">
+        </a>
+        <p> The winner is... </p>
         <a href="#" class="button2" >Play again</a>
     </div>
 </div>
@@ -59,6 +69,8 @@
 
     let input_name1 = document.querySelector(".player-name1");
     let input_name2 = document.querySelector(".player-name2");
+    nRounds = document.getElementById("rounds");
+
 
     document.querySelector(".button").addEventListener("click", function () {
         if(input_name1.value === '' || input_name2=== '') {
@@ -67,15 +79,23 @@
             document.querySelector(".popup").style.display = "none";
             document.querySelector(".player1").innerHTML = input_name1.value;
             document.querySelector(".player2").innerHTML = input_name2.value;
+            nRounds.innerHTML = 1;
         }
+        smCount()
     })
 
-
     let time = document.getElementById("timer")
-    for(let i = 1; i <= 60; i=i+1) {
-        setTimeout(function() {
-            time.innerHTML = i;
-        }, 1000 * i)
+    let s = 0
+    let m = 0
+
+    interval = setInterval(smCount, 1000);
+
+    function smCount() {
+        if (s < 60) {
+            s = s + 1
+            time.innerHTML = m + ":" + s
+        }
+        //m = m + 1
     }
 
 
@@ -87,21 +107,25 @@
     function tictactoe() {
         g.forEach(function (e) {
             e.addEventListener("click", function () {
-                if (playerTurn === true) {
-                    A.push(e.getAttribute("number"));
-                    console.log(A)
-                    e.innerHTML = `<img src="cruz.png"/>`;
-                    winner(A)
-                    playerTurn = !playerTurn
-                } else {
-                    B.push(e.getAttribute("number"));
-                    console.log(B)
-                    e.innerHTML = `<img src="bola.png"/>`;
-                    winner(B)
-                    playerTurn = !playerTurn
+                if(e.innerHTML === '') {
+                    if (playerTurn === true) {
+
+                        A.push(e.getAttribute("number"));
+                        console.log(A)
+                        e.innerHTML = `<img src="cruz.png"/>`;
+                        winner(A)
+                        playerTurn = !playerTurn
+                    } else {
+
+                        B.push(e.getAttribute("number"));
+                        console.log(B)
+                        e.innerHTML = `<img src="bola.png"/>`;
+                        winner(B)
+                        playerTurn = !playerTurn
+                    }
                 }
-            }, {once: true})
-        }, {once: true})
+            })
+        })
     }
 
     console.log(tictactoe())
@@ -119,18 +143,27 @@
             ["1", "5", "9"],
             ["3", "5", "7"]
         ]
+
+        if (A.length >= 4 && B.length >= 5 || B.length >= 4 && A.length >= 5 ){
+            document.querySelector(".winner-content > p").innerHTML = `Nobody win!`
+            document.querySelector(".popup2").style.display = "flex";
+        }
+
         win_comb.forEach(function (comb) {
             let nameWin = " "
             console.log(comb)
                     if (list.includes(comb[0]) && list.includes(comb[1]) && list.includes(comb[2])){
                         if (playerTurn === true){
                             console.log(`${input_name1.value} wins!`);
+                            nameWin = input_name1.value
+                            document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
                             document.querySelector(".popup2").style.display = "flex";
-                            nameWin = input_name2.value
+
                         } else {
                             console.log(`${input_name2.value} wins!`);
-                            document.querySelector(".popup2").style.display = "flex";
                             nameWin = input_name2.value
+                            document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
+                            document.querySelector(".popup2").style.display = "flex";
                         }
                     } else {
                         console.log("Try again")
@@ -138,26 +171,27 @@
          })
     }
 
+
+
+
     document.querySelector(".button2").addEventListener("click", function () {
         document.querySelector(".popup2").style.display = "none";
             A.length = 0
             B.length = 0
                 g.forEach(function (e) {
                     e.innerHTML=""
-             })
+                })
+        nextRound()
+
+
+
     })
 
-
-    /*
-    let time = document.getElementById("rounds")
-    for(let i = 1; i <= 5; i=i+1) {
-        time.innerHTML = i = +i;
+    let round = 2;
+    function nextRound(){
+            nRounds.innerHTML = round;
+            round = round +1;
     }
-
-
-
-
-     */
 
 
 

@@ -2,7 +2,18 @@ body {
     align-items: center;
     text-align: center;
     height: 100vh;
+    font-family: "Cooper Black";
+    font-size: 17px;
 }
+
+#rounds {
+   font-size: 150%;
+}
+
+#timer {
+    font-family: "Rockwell";
+}
+
 
 .popup {
     background: rgba(0, 0, 0, 0.6);
@@ -16,7 +27,7 @@ body {
 }
 
 .popup-content {
-    height: 250px;
+    height: 270px;
     width: 500px;
     background: white;
     padding: 20px;
@@ -79,7 +90,6 @@ body {
 }
 
 
-
 .close{
     position: absolute;
     top: -15px;
@@ -112,10 +122,23 @@ input {
     justify-content: space-evenly;
 }
 
+#icons {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#icons > img {
+    width: 2%;
+    height: 2%;
+}
+
 #game-container {
     display: grid;
     grid-template-columns: repeat(3, 120px);
     grid-template-rows: repeat(3, 120px);
+    justify-content: center;
+    padding-top: 2%;
 }
 
 #game-container > div {
@@ -124,6 +147,7 @@ input {
     display: grid;
     place-items: center;
     border-style: solid;
+    border-radius: 6px;
 }
 
 #game-container > div > p {
