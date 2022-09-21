@@ -10,7 +10,7 @@ h1, h2, div, .player-name {
     width: 100%;
 }
 
-.menu-container{
+.menu-container {
     display: block;
     alignment: center;
 }
@@ -37,24 +37,24 @@ h1, h2, div, .player-name {
     /*padding: 10px;*/
 }
 
-.game-item span{
+.game-item span {
     /*Inverted just for testing
     opacity: 0;*/
     opacity: 0;
     font-size: 60px;
 }
 
-.solved{
+.solved {
     background-color: lightgrey;
 }
 
-.game-item.visible span{
+.game-item.visible span {
     /*Inverted just for testing
     opacity: 1;*/
     opacity: 1;
 }
 
-.winner-container{
+.winner-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -68,12 +68,18 @@ h1, h2, div, .player-name {
     right: 100px;*/
 }
 
-.visible{
+/*Check if it is being used*/
+.visible {
     opacity: 1;
 }
 
+/* Possibility to show and hide sections
+.hidden {
+    display: none
+}*/
+
 /*menu-button is only used in the end of the game*/
-.menu-button, .play-again{
+.menu-button, .play-again {
     background-color: greenyellow;
     border-style: outset;
     padding: 10px;
