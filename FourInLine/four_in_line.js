@@ -97,10 +97,6 @@ for (let j = 0; j < columnList.length; j++) {
 
 let counter = 0;
 let gameOver = false;
-let verticalVictory = false;
-let horizontalVictory = false;
-let diagonalVictory = false;
-let antidiagonalVictory = false;
 
 function colorCells(column) {
     //if the game is over already, impossible to fill any cell:
@@ -150,7 +146,7 @@ function getWinner() {
                     && colCellsList[i][j + 1].getAttribute('player_color') === colCellsList[i][j + 2].getAttribute('player_color')
                     && colCellsList[i][j + 2].getAttribute('player_color') === colCellsList[i][j + 3].getAttribute('player_color')) {
                     displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
-                    verticalVictory = true;
+                    gameOver = true;
                     return;
                 }
             }
@@ -164,7 +160,7 @@ function getWinner() {
                     && colCellsList[i + 1][j].getAttribute('player_color') === colCellsList[i + 2][j].getAttribute('player_color')
                     && colCellsList[i + 2][j].getAttribute('player_color') === colCellsList[i + 3][j].getAttribute('player_color')) {
                     displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
-                    horizontalVictory = true;
+                    gameOver = true;
                     return;
                 }
             }
@@ -178,7 +174,7 @@ function getWinner() {
                     && colCellsList[i + 1][j + 1].getAttribute('player_color') === colCellsList[i + 2][j + 2].getAttribute('player_color')
                     && colCellsList[i + 2][j + 2].getAttribute('player_color') === colCellsList[i + 3][j + 3].getAttribute('player_color')) {
                     displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
-                    antidiagonalVictory = true;
+                    gameOver = true;
                     return;
                 }
             }
@@ -193,15 +189,15 @@ function getWinner() {
                     && colCellsList[i + 1][j - 1].getAttribute('player_color') === colCellsList[i + 2][j - 2].getAttribute('player_color')
                     && colCellsList[i + 2][j - 2].getAttribute('player_color') === colCellsList[i + 3][j - 3].getAttribute('player_color')) {
                     displayWinnerName(colCellsList[i][j].getAttribute('player_color'));
-                    diagonalVictory = true;
+                    gameOver = true;
                     return;
                 }
             }
         }
     }
 
-    //No winner situation: if there's no four in line and all cells filled (counter = 42), game stops
-    if (!verticalVictory && !horizontalVictory && !diagonalVictory && !antidiagonalVictory && counter === 42) {
+    //No winner situation: if gameOver wasn't set to true && and all cells filled (counter = 42), the game stops
+    if (!gameOver && counter === 42) {
         console.log("empate"); //will be a pop up with link towards menu or play again
     }
 }
@@ -220,8 +216,6 @@ if (!scores) {
 // store date+time of victory+winner name in LocalStorage.
 // It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
-    //Setting gameOver to true if there is a winner. We cannot fill cells anymore.
-    gameOver = true;
     let nameWinner;
     winnerName.style.display = 'flex';
     playerNames.style.display = 'none';
