@@ -35,15 +35,15 @@ startButton.addEventListener("click", function startPlaying() {
         if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
-            if (seconds < 10) {
-                seconds = '0' + seconds;
-                if (seconds === 60) {
-                    seconds = 0;
-                    minutes++;
-                    if (minutes === 60) {
-                        minutes = 0;
-                        hours++;
-                    }
+            /*if (seconds < 10) {
+                seconds = '0' + seconds;*/
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                    // }
                 }
             }
         }
@@ -95,9 +95,11 @@ for (let j = 0; j < columnList.length; j++) {
     colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
 }
 
+
 function colorCells(column) {
     //creating locally an array of cells for the column from columnList that is being iterated:
     let cells = column.querySelectorAll(".div-cell");
+
     /* reading the column from bottom to top: if the last index of the cells array doesn't contain a class
     with player color, then we add it: playerRed or playerYellow */
     for (let i = cells.length - 1; i >= 0; i--) {
@@ -118,6 +120,7 @@ function colorCells(column) {
             }
             break;
         }
+
     }
     getWinner(); //getWinner called to see if there is a 4 in line
 }
@@ -180,13 +183,22 @@ function getWinner() {
             }
         }
     }
+
+
+}
+
+
+//Create scores array in LocalStorage
+let scores = JSON.parse(localStorage.getItem("scores"));
+if (!scores) {
+    scores = [];
 }
 
 //function displayWinnerName() tasks:
 // display winner name,
 // hide current player names,
 // go back to Menu or Play Again,
-// store date+time of victory + winner name in LocalStorage.
+// store date+time of victory+winner name in LocalStorage.
 // It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
     let nameWinner;
@@ -194,16 +206,12 @@ function displayWinnerName(cell) {
     playerNames.style.display = 'none';
     let dateVictory = formatDate(new Date());
     let timeVictory = formatTime(new Date());
-    localStorage.setItem("date", dateVictory);
-    localStorage.setItem("time", timeVictory);
 
-    if(cell === 'redCell'){
+    if (cell === 'redCell') {
         nameWinner = boxPlayerRed.innerHTML;
     } else {
         nameWinner = boxPlayerYellow.innerHTML;
     }
-    localStorage.setItem("last winner", nameWinner);
-
     winnerName.innerHTML = `<div>
                                     ${nameWinner} wins! 
                                 </div> 
@@ -215,19 +223,27 @@ function displayWinnerName(cell) {
                                 </a>                           
                                 `;
 
-    console.log(localStorage);
-}
+    //pushing data from the last game into the scores array:
+        let newScore =
+            {
+                "date": dateVictory,
+                "time": timeVictory,
+                "winner": nameWinner
+            }
+        ;
+    scores.push(newScore);
+    localStorage.setItem("scores", JSON.stringify(scores)); }
 
 
 //formatDate() receives new Date() of victory and format it to show only day/month/year
-function formatDate(date){
+function formatDate(date) {
     let dayOfMonth = date.getDate();
-    if (dayOfMonth<10){
-        dayOfMonth = '0'+dayOfMonth;
+    if (dayOfMonth < 10) {
+        dayOfMonth = '0' + dayOfMonth;
     }
-    let month = date.getMonth()+1;
-    if(month<10){
-        month = '0'+month;
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+        month = '0' + month;
     }
     let year = date.getFullYear();
     return `${dayOfMonth}/${month}/${year}`;
@@ -235,14 +251,14 @@ function formatDate(date){
 }
 
 //formatTime() receives new Date() of victory and format it to show only time: hours and minutes
-function formatTime(time){
+function formatTime(time) {
     let hour = time.getHours();
-    if(hour<10){
-        hour = '0'+hour;
+    if (hour < 10) {
+        hour = '0' + hour;
     }
     let minutes = time.getMinutes();
-    if(minutes<10){
-        minutes = '0'+minutes;
+    if (minutes < 10) {
+        minutes = '0' + minutes;
     }
     return `${hour}h${minutes}`;
 }
