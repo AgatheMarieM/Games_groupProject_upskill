@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Historico</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<div class="all-scores-container">
+    <a class="menu-link" href="index.html">Back to Menu</a>
+    <h2>Last Games:</h2>
+    <!--Jogo do Galo Historico -->
 
-<!--Jogo do Galo Historico -->
+
+    <!--Jogo da Memoria Historico -->
 
 
-<!--Jogo da Memoria Historico -->
+    <!--Quatro em Linha Historico -->
+    <div id="fourinline-container"></div>
 
 
-<!--Quatro em Linha Historico -->
-<div id="fourinline-container"></div>
+</div>
+
 
 
 <script>
     <!--Quatro em Linha Historico Script -->
     let fourInLineContainer = document.getElementById("fourinline-container");
     let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
-    for(let i=0; i<fourInLineArray.length; i++){
+    for(let i=fourInLineArray.length-1; i>=0; i--){
         fourInLineContainer.innerHTML += `
                                         <div>Quatro em Linha</div>
                                          <div id="fourinline-date-game">${fourInLineArray[i].date} às ${fourInLineArray[i].time}</div>

@@ -1,10 +1,30 @@
-/* Four in Line*/
-#fourinline-container {
+
+
+h1, h2 {
+    font-family: "Arial Narrow";
+}
+
+
+.all-scores-container {
     align-items: center;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
-    max-width: 40%;
+    max-width: 30%;
     margin: 0 auto;
 
+}
+
+.menu-link {
+    background-color: blue;
+    border: 1px solid blue;
+    border-radius: 10%;
+    color: white;
+    padding: 10px;
+    margin: 10px auto;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    background-color:white;
+    color: blue;
 }
