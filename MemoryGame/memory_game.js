@@ -2,7 +2,7 @@
 
 //Get the name inserted by the player
 let name = document.querySelector("#player-name")
-name.addEventListener("input",function (e){
+name.addEventListener("input", function (e) {
     console.log(name.value)
 })
 
@@ -18,12 +18,13 @@ let cards = ["☀️", "☀️", "🐻", "🐻", "🐣", "🐣", "🐸", "🐸",
 //Create grid
 let gridsAvailable = document.querySelectorAll(".grid-item")
 let cardsForGrids = [cards.slice(0, 12), cards.slice(0, 16), cards]
+
 function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
             document.querySelector(".player").innerHTML = `${name.value} is now playing`
             //TESTING THIS POSSIBILITY
-            document.querySelector(".menu-container").innerHTML=""
+            document.querySelector(".menu-container").innerHTML = ""
             startGame(cardsForGrids[i])
         })
     }
@@ -35,14 +36,15 @@ function startGame(cards_board) {
 
     //Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
     setInterval(countUpTime, 1000)
-        let start = 0
-        function countUpTime() {
-            start++
-            let hours = Math.floor(start / 3600)
-            let minutes = Math.floor(start/ 60)
-            let seconds = start- (hours * 3600 + minutes * 60);
-            document.querySelector(".counter p").innerHTML = `${hours}:${minutes}:${seconds}`
-        }
+    let start = 0
+
+    function countUpTime() {
+        start++
+        let hours = Math.floor(start / 3600)
+        let minutes = Math.floor(start / 60)
+        let seconds = start - (hours * 3600 + minutes * 60);
+        document.querySelector(".counter p").innerHTML = `${hours}:${minutes}:${seconds}`
+    }
 
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
@@ -112,21 +114,27 @@ function startGame(cards_board) {
                 } else {
                     document.querySelector(".winner-container").classList.add("visible")
                     //TESTING THIS POSSIBILITY
-                    document.querySelector(".game-container").innerHTML=""
+                    document.querySelector(".game-container").innerHTML = ""
                     // TESTING THIS POSSIBILITY
+                    let playAgainButton = document.querySelector(".play-again")
+                    playAgainButton.addEventListener("click", function (e) {
+                        window.location.reload()
+                    })
                     let menuButton = document.querySelector(".menu-button")
                     menuButton.addEventListener("click", function (e) {
-                        window.location.reload()
-                        })
+                        window.location.assign("../index.html")
+                        /*OLD menuButton.innerHTML =
+                            `<a href="../index.html">Menu</a>`*/
+                    })
                     //window.alert("CONGRATULATIONS!")
                     // Necessary? Just to hide cards after the final move, so that all the board looks the same
                     setTimeout(function () {
                         array[0].classList.remove("visible");
                         array[1].classList.remove("visible");
-                    }, 1)
+                    }, 1000)
                 }
             }
-        }, 500)
+        }, 1)
     }
 }
 

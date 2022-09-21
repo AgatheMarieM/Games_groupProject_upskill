@@ -10,6 +10,11 @@ h1, h2, div, .player-name {
     width: 100%;
 }
 
+.menu-container{
+    display: block;
+    alignment: center;
+}
+
 .grid-type, .grid-game {
     display: flex;
     flex-wrap: wrap;
@@ -56,8 +61,8 @@ h1, h2, div, .player-name {
     position: relative;
     opacity: 0;
     background-color: white;
-    border-style: dotted;
-    border-color: gray;
+    border-style: outset;
+    border-radius: 12px;
     width: 300px;
     /*top: 200px;
     right: 100px;*/
@@ -68,7 +73,7 @@ h1, h2, div, .player-name {
 }
 
 /*menu-button is only used in the end of the game*/
-.menu-button{
+.menu-button, .play-again{
     background-color: greenyellow;
     border-style: outset;
     padding: 10px;
