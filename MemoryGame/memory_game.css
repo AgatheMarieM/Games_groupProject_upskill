@@ -1,18 +1,35 @@
-h1, h2, div, .player-name {
-    text-align: center;
-    margin: 10px;
+html{
     font-family: 'Montserrat', sans-serif;
 }
 
+h1, h2, .player-name {
+    text-align: center;
+    padding: 20px;
+}
+
+div{
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+
 .main-container {
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
 .menu-container {
     display: block;
-    alignment: center;
+    margin: 0 auto;
+    width: 500px;
+    border-style: outset;
+    border-radius: 12px;
+}
+
+.game-container {
+    border-style: outset;
+    border-radius: 12px;
 }
 
 .grid-type, .grid-game {
@@ -71,12 +88,11 @@ h1, h2, div, .player-name {
     opacity: 1;
 }
 
- /*Possibility to show and hide sections*/
+/*Possibility to show and hide sections*/
 .hidden {
     display: none
 }
 
-/*menu-button is only used in the end of the game*/
 .menu-button, .play-again {
     background-color: greenyellow;
     border-style: outset;
