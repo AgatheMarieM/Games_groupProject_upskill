@@ -115,7 +115,6 @@ function startGame(cards_board) {
                     document.querySelector(".winner-container").classList.add("visible")
                     //TESTING THIS POSSIBILITY
                     document.querySelector(".game-container").innerHTML = ""
-                    // TESTING THIS POSSIBILITY
                     let playAgainButton = document.querySelector(".play-again")
                     playAgainButton.addEventListener("click", function (e) {
                         window.location.reload()
@@ -134,7 +133,7 @@ function startGame(cards_board) {
                     }, 1000)
                 }
             }
-        }, 1)
+        }, 1000)
     }
 }
 

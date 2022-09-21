@@ -40,6 +40,8 @@ h1, h2, div, .player-name {
 .game-item span {
     /*Inverted just for testing
     opacity: 0;*/
+    display: block;
+    margin: 0 auto;
     opacity: 0;
     font-size: 60px;
 }
