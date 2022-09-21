@@ -4,17 +4,6 @@
 let name = document.querySelector("#player-name")
 
 //PART 2 - GAME
-
-// TESTING LOCAL STORAGE
-/*let pNames = localStorage.getItem()
-console.log("INITIAL historyvalues",historyValues)
-let newList=[]
-newList.push(localStorage.getItem("player"))
-console.log("newlist",newList)
-let checkEachPlayerName = localStorage.getItem("player")
-console.log("eachplayerlocalstoragename",checkEachPlayerName)
-console.log("historyValues",historyValues)*/
-
 // All the available cards
 let cards = ["☀️", "☀️", "🐻", "🐻", "🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "🌻", "🌻", "🦴", "🦴", "🌍", "🌍", "👩‍", "👩‍"]
 
@@ -39,10 +28,6 @@ selectGrid()
 
 function startGame(cards_board) {
 
-    //LOCAL STORAGE
-/*    let lala = newList.push(localStorage.setItem("player",name.value))
-    console.log(lala)*/
-
     // Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
     setInterval(countUpTime, 1000)
     let start = 0
@@ -51,8 +36,13 @@ function startGame(cards_board) {
         start++
         let hours = Math.floor(start / 3600)
         let minutes = Math.floor(start / 60)
+        console.log(minutes)
         let seconds = start - (hours * 3600 + minutes * 60);
-        document.querySelector(".counter p").innerHTML = `${hours}:${minutes}:${seconds}`
+        if (seconds < 10) {
+            document.querySelector(".counter p").innerHTML = `${minutes}:0${seconds}`
+        } else {
+            document.querySelector(".counter p").innerHTML = `${minutes}:${seconds}`
+        }
     }
 
     // Function to shuffle obtained in the www
@@ -113,11 +103,13 @@ function startGame(cards_board) {
                 array[1].classList.add("solved");
                 //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
                 let cardsSolved = document.querySelectorAll(".game-item.solved")
-                //CHECK if the game is over
+                // PART 3 - END OF GAME
+                // CHECK if the game is over
                 if (cardsSolved.length !== allCards.length) {
                     array[0].classList.remove("visible");
                     array[1].classList.remove("visible");
                 } else {
+
                     document.querySelector(".game-container").classList.add("hidden")
                     document.querySelector(".winner-container").classList.remove("hidden")
                     //TESTING THIS POSSIBILITY
@@ -141,10 +133,36 @@ function startGame(cards_board) {
             }
         }, 1000)
     }
+
+    //LOCAL STORAGE
+
+
+    console.log("name.value", name.value);
+    let lol = name.value
+    console.log("lol", lol)
+
+    /*    let highScore = JSON.parse(localStorage.getItem("result"));
+        console.log(highScore)
+        if (!highScore) {
+            highScore = []
+            let highName = localStorage.setItem("result", name.value)
+            console.log("highscore just created", highName)
+            console.log(localStorage)
+        } else {
+            localStorage.setItem("result", name.value)
+            let know = localStorage.getItem("result")
+            console.log("know", know)
+        }*/
 }
 
-//PART 3 - END OF GAME
 
-
-
+// TESTING LOCAL STORAGE
+/*let pNames = localStorage.getItem()
+console.log("INITIAL historyvalues",historyValues)
+let newList=[]
+newList.push(localStorage.getItem("player"))
+console.log("newlist",newList)
+let checkEachPlayerName = localStorage.getItem("player")
+console.log("eachplayerlocalstoragename",checkEachPlayerName)
+console.log("historyValues",historyValues)*/
 
