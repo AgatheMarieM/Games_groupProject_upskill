@@ -60,14 +60,10 @@ h1, h2, div, .player-name {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    position: relative;
-    opacity: 0;
     background-color: white;
     border-style: outset;
     border-radius: 12px;
     width: 300px;
-    /*top: 200px;
-    right: 100px;*/
 }
 
 /*Check if it is being used*/
@@ -75,10 +71,10 @@ h1, h2, div, .player-name {
     opacity: 1;
 }
 
-/* Possibility to show and hide sections
+ /*Possibility to show and hide sections*/
 .hidden {
     display: none
-}*/
+}
 
 /*menu-button is only used in the end of the game*/
 .menu-button, .play-again {

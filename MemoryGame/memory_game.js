@@ -2,15 +2,18 @@
 
 //Get the name inserted by the player
 let name = document.querySelector("#player-name")
-name.addEventListener("input", function (e) {
-    console.log(name.value)
-})
 
 //PART 2 - GAME
 
-//Show the name of who is playing
-let showPlayer = document.querySelector(".player").innerHTML += name.value
-console.log(showPlayer)
+// TESTING LOCAL STORAGE
+/*let pNames = localStorage.getItem()
+console.log("INITIAL historyvalues",historyValues)
+let newList=[]
+newList.push(localStorage.getItem("player"))
+console.log("newlist",newList)
+let checkEachPlayerName = localStorage.getItem("player")
+console.log("eachplayerlocalstoragename",checkEachPlayerName)
+console.log("historyValues",historyValues)*/
 
 // All the available cards
 let cards = ["☀️", "☀️", "🐻", "🐻", "🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "🌻", "🌻", "🦴", "🦴", "🌍", "🌍", "👩‍", "👩‍"]
@@ -23,8 +26,10 @@ function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
             document.querySelector(".player").innerHTML = `${name.value} is now playing`
-            //TESTING THIS POSSIBILITY
-            document.querySelector(".menu-container").innerHTML = ""
+            //TESTING THIS POSSIBILITY?! IS IT OK?
+            //document.querySelector(".menu-container").innerHTML = ""
+            document.querySelector(".menu-container").classList.add("hidden")
+            document.querySelector(".game-container").classList.remove("hidden")
             startGame(cardsForGrids[i])
         })
     }
@@ -34,7 +39,11 @@ selectGrid()
 
 function startGame(cards_board) {
 
-    //Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
+    //LOCAL STORAGE
+/*    let lala = newList.push(localStorage.setItem("player",name.value))
+    console.log(lala)*/
+
+    // Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
     setInterval(countUpTime, 1000)
     let start = 0
 
@@ -86,7 +95,6 @@ function startGame(cards_board) {
                     allCards[i].classList.add("visible");
                     let visibleCards = document.querySelectorAll(".visible");
                     checkEqualCards(visibleCards);
-                    console.log("visiblecards", visibleCards)
                 }
             })
         }
@@ -112,9 +120,10 @@ function startGame(cards_board) {
                         array[1].classList.remove("visible");
                     }, 1)
                 } else {
-                    document.querySelector(".winner-container").classList.add("visible")
+                    document.querySelector(".game-container").classList.add("hidden")
+                    document.querySelector(".winner-container").classList.remove("hidden")
                     //TESTING THIS POSSIBILITY
-                    document.querySelector(".game-container").innerHTML = ""
+                    // document.querySelector(".game-container").innerHTML = ""
                     let playAgainButton = document.querySelector(".play-again")
                     playAgainButton.addEventListener("click", function (e) {
                         window.location.reload()
