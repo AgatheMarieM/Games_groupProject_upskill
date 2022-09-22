@@ -91,7 +91,6 @@
 
 
     // Time counter
-
     let timerVariable = setInterval(countUpTimer, 1000);
     let totalSeconds = 0;
 
@@ -103,6 +102,7 @@
         let duration = hour + ":" + minute + ":" + seconds;
         boxtime.innerHTML = duration
     }
+
 
     let g = document.querySelectorAll("#game-container > div");
     let playerTurn = true
@@ -201,7 +201,7 @@
 
         let obj = {
             "game": "Tic Tac Toe",
-            "date": `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
+            "date": `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`,
             "time": `${date.getHours()}:${date.getMinutes()}`,
             "duration": duration,
             "name": winner
