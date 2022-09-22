@@ -88,6 +88,8 @@ function startGame(cards_board) {
 
     //Function to check if cards match
     function checkEqualCards(array) {
+
+
         setTimeout(function () {
             if (array[0].innerHTML !== array[1].innerHTML) {
                 array[0].classList.remove("visible");
@@ -136,7 +138,7 @@ function startGame(cards_board) {
                     localStorage.setItem("scores", JSON.stringify(highScore));
                 }
             }
-        }, 1500)
+        }, 1000)
     }
 }
 
