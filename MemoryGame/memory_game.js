@@ -103,15 +103,11 @@ function startGame(cards_board) {
                     array[0].classList.remove("visible");
                     array[1].classList.remove("visible");
                 } else {
-
                     //Stop counter time
                     clearInterval(gameCounter)
 
-                    setTimeout(function () {
-                            array[0].classList.remove("visible");
-                            array[1].classList.remove("visible");
-                        }
-                        , 1500)
+                    array[0].classList.remove("visible");
+                    array[1].classList.remove("visible");
 
                     // Hide the game and show the final window
                     document.querySelector(".game-container").classList.add("hidden");
