@@ -52,13 +52,13 @@
     }
 
     //Tic tac toe highscores Script
-    let TicTacToe = document.getElementById("scores");
-    fourInLineContainer.innerHTML = `<h2>Tic-Tac-Toe</h2>`;
-    let TicTacToe = JSON.parse(localStorage.getItem("scores"));
-    for (let i = TicTacToe.length - 1; i >= 0; i--) {
-        TicTacToe.innerHTML += `
-                                         <div id="fourinline-date-game">${TicTacToe[i].date} at ${TicTacToe[i].time}</div>
-                                         <div id="fourinline-date-game">winner: ${TicTacToe[i].name}</div>
+    let tictactoeContainer = document.getElementById("tictactoe-container");
+    tictactoeContainer.innerHTML = `<h2>Tic-Tac-Toe</h2>`;
+    let TicTacToeArray = JSON.parse(localStorage.getItem("scores"));
+    for (let i = TicTacToeArray.length - 1; i >= 0; i--) {
+        tictactoeContainer.innerHTML += `
+                                         <div>${TicTacToeArray[i].date} at ${TicTacToeArray[i].time}</div>
+                                         <div>winner: ${TicTacToeArray[i].name}</div>
                                          </br>
                                      `;
     }
