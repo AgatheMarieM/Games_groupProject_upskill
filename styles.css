@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     height: 100%;
+    padding: 0;
 }
 
 
@@ -10,8 +11,23 @@ h1, h2 {
     text-align: center;
 }
 
-header {
-    margin-bottom: 60px;
+a {
+    text-decoration: none;
+}
+
+footer {
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.footer-links {
+    color: rgba(255, 0, 0, 0.65);
 }
 
 .menu-titles a {
@@ -31,12 +47,6 @@ header {
     font-size: 160%;
     transition-duration: 50ms;
 }
-
-a {
-    text-decoration: none;
-}
-
-
 .menu {
     align-items: center;
     display: flex;
@@ -64,22 +74,21 @@ a {
     background-color: white;
     border: 1px solid blue;
     border-radius: 5px;
+    box-sizing: content-box;
     color: rgb(0, 0, 255);
+    display: block;
     font-family: 'Montserrat', sans-serif;
-    margin: 0 auto;
+    font-size: 15px;
+    margin: 10px auto;
     max-width: 15%;
-    padding: 15px;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    padding: 10px 0;
     text-align: center;
     text-decoration: none;
 }
 
 .menu-link:hover {
     box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
-    font-size: 130%;
+    font-size: 16px;
     transition-duration: 50ms;
 }
 
@@ -89,3 +98,4 @@ a {
     justify-content: center;
     align-items: center;
 }
+
