@@ -85,11 +85,27 @@ body {
     font-size: 20px
 }
 
-.button:hover{
+.button2:hover{
     background: coral;
     color: white;
 }
 
+.menu {
+    background: lightgray;
+    padding: 10px 15px;
+    color: black;
+    font-weight: bolder;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-decoration: none;
+    transition: 0.4s;
+    font-size: 20px
+}
+
+.menu:hover{
+    background: coral;
+    color: white;
+}
 
 .close{
     position: absolute;

@@ -56,11 +56,9 @@
 
 <div class="popup2">
     <div class="winner-content">
-        <a href="../index.html">
-            <img src="silver-close-button.png" alt="Close" class="close">
-        </a>
         <p> The winner is... </p>
         <a href="#" class="button2">Play again</a>
+        <a href="../index.html" class="menu">Menu</a>
     </div>
 </div>
 
@@ -99,8 +97,7 @@
         let hour = Math.floor(totalSeconds / 3600);
         let minute = Math.floor((totalSeconds - hour * 3600) / 60);
         let seconds = totalSeconds - (hour * 3600 + minute * 60);
-        let duration = hour + ":" + minute + ":" + seconds;
-        boxtime.innerHTML = duration
+        boxtime.innerHTML = hour + ":" + minute + ":" + seconds;
     }
 
 
@@ -166,7 +163,6 @@
         }
 
 
-
         //Announce the winner
         win_comb.forEach(function (comb) {
             let nameWin = " "
@@ -180,10 +176,9 @@
                 } else {
                     console.log(`${input_name2.value} wins!`);
                     nameWin = input_name2.value
+                    document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
+                    document.querySelector(".popup2").style.display = "flex";
                 }
-
-                document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
-                document.querySelector(".popup2").style.display = "flex";
                 saveHistory(nameWin)
             } else {
                 console.log("Try again")
@@ -192,7 +187,9 @@
         })
     }
 
-    function saveHistory(winner, duration) {
+    //Localstorage
+    function saveHistory(winner) {
+        let duration = boxtime.innerHTML
         let date = new Date ();
         let scores = JSON.parse(localStorage.getItem("scores"));
         if (!scores) {
@@ -203,15 +200,13 @@
             "game": "Tic Tac Toe",
             "date": `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`,
             "time": `${date.getHours()}:${date.getMinutes()}`,
-            "duration": duration,
+            "duration": `${duration}`,
             "name": winner
         };
 
         scores.push(obj);
         localStorage.setItem("scores", JSON.stringify(scores))
     }
-    //LocalStorage
-
 
 
     //Restart the game
@@ -227,8 +222,7 @@
     })
 
     //Next round
-    let round = 2;
-
+    round = 2;
     function nextRound() {
         nRounds.innerHTML = round;
         round = round + 1;
