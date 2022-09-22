@@ -216,6 +216,7 @@ if (!scores) {
 // store date+time of victory+winner name in LocalStorage.
 // It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
+    clearInterval(interval);
     let nameWinner;
     winnerName.style.display = 'flex';
     playerNames.style.display = 'none';
