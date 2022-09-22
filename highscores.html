@@ -18,10 +18,8 @@
     <div id="tictactoe-container"></div>
 
 
-
     <!--Jogo da Memoria Historico -->
     <div id="memorygame-container"></div>
-
 
 
     <!--Quatro em Linha Historico -->
@@ -38,7 +36,7 @@
     let fourInLineContainer = document.getElementById("fourinline-container");
     fourInLineContainer.innerHTML = `<h2>Four in Line</h2>`;
     let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
-    for(let i=fourInLineArray.length-1; i>=0; i--){
+    for (let i = fourInLineArray.length - 1; i >= 0; i--) {
         fourInLineContainer.innerHTML += `
                                          <div id="fourinline-date-game">${fourInLineArray[i].date} at ${fourInLineArray[i].time}</div>
                                          <div id="fourinline-date-game">winner: ${fourInLineArray[i].winner}</div>
@@ -46,16 +44,19 @@
                                      `;
     }
 
+    //MEMORY GAME Script
+    let memoryGameContainer = document.getElementById("memorygame-container");
+    memoryGameContainer.innerHTML = `<h2>Memory Game</h2>`;
+    let memoryGameArray = JSON.parse(localStorage.getItem("memoryGameResults"));
+    for (let i = memoryGameArray.length - 1; i >= 0; i--) {
+        memoryGameContainer.innerHTML += `
+                                         <div>${memoryGameArray[i].date} at ${memoryGameArray[i].time}</div>
+                                         <div>player: ${memoryGameArray[i].name}</div>
+                                         </br>
+                                     `;
+    }
 
     //Jogo do Galo Historico Script
-
-
-
-
-
-    //Jogo da Memoria Historico Script
-
-
 
 
 </script>
