@@ -99,8 +99,8 @@
     function smCount() {
         if (seconds < 60 || minutes < 60) {
             seconds = seconds + 1
-            let time = minutes + ":" + seconds
-            boxtime.innerHTML = time
+            let duration = minutes + ":" + seconds
+            boxtime.innerHTML = duration
         }
         //minutes = minutes + 1
     }
@@ -204,6 +204,7 @@
         let obj = {
             date: `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
             time: `${date.getHours()}:${date.getMinutes()}`,
+            duration: "duration",
             name: winner
         };
 
