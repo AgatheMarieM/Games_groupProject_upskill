@@ -168,6 +168,7 @@
         }
 
 
+
         //Announce the winner
         win_comb.forEach(function (comb) {
             let nameWin = " "
@@ -194,14 +195,15 @@
     }
 
     function saveHistory(winner) {
+        let date = new Date ();
         let scores = JSON.parse(localStorage.getItem("scores"));
         if (!scores) {
             scores = [];
         }
 
         let obj = {
-            date: "",
-            time: "",
+            date: `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
+            time: `${date.getHours()}:${date.getMinutes()}`,
             name: winner
         };
 
