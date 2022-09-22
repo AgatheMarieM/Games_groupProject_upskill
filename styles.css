@@ -1,9 +1,37 @@
 
-
 h1, h2 {
-    font-family: "Arial Narrow";
+    font-family: "Montserrat";
+
 }
 
+
+.menu-titles h2 {
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.menu-titles h2:hover {
+    background-color: white;
+    box-shadow: 2px 3px antiquewhite;
+}
+
+a {
+    color: rgba(0, 0, 0, 0.82);
+    text-decoration: none;
+}
+
+
+.menu {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 10px;
+}
 
 .all-scores-container {
     align-items: center;
@@ -25,6 +53,6 @@ h1, h2 {
 }
 
 .menu-link:hover {
-    background-color:white;
+    background-color: white;
     color: blue;
 }
