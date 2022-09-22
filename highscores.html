@@ -30,8 +30,8 @@
     let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
     for(let i=fourInLineArray.length-1; i>=0; i--){
         fourInLineContainer.innerHTML += `
-                                        <div>Quatro em Linha</div>
-                                         <div id="fourinline-date-game">${fourInLineArray[i].date} às ${fourInLineArray[i].time}</div>
+                                        <div>Four in Line</div>
+                                         <div id="fourinline-date-game">${fourInLineArray[i].date} at ${fourInLineArray[i].time}</div>
                                          <div id="fourinline-date-game">winner: ${fourInLineArray[i].winner}</div>
                                          </br>
                                      `;
