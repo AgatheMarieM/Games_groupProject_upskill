@@ -23,27 +23,24 @@
     for (let i = allScoresArray.length - 1; i >= 0; i--) {
         if (allScoresArray[i].game === "Four in Line") {
             scoresContainer.innerHTML += `
-                                          <div>Four in Line</div>
-                                          <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
-                                          <div>winner: ${allScoresArray[i].winner}</div>
+                                          <div><strong>Four in Line, </strong>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
+                                          <div>winner: ${allScoresArray[i].winner}!</div>
                                           </br>`;
 
         }
         if (allScoresArray[i].game === "Memory Game") {
             scoresContainer.innerHTML += `
-                                          <div>Memory Game</div>
-                                          <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
+                                          <div><strong>Memory Game, </strong>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
                                           <div>duration: ${allScoresArray[i].duration}</div>
-                                          <div>player: ${allScoresArray[i].name}</div>
+                                          <div>player: ${allScoresArray[i].name}!</div>
                                           </br>
                                       `;
 
         }
         if (allScoresArray[i].game === "Tic Tac Toe") {
             scoresContainer.innerHTML += `
-                                          <div>Tic Tac Toe</div>
-                                          <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
-                                          <div>winner: ${allScoresArray[i].name}</div>
+                                          <div><strong>Tic Tac Toe, </strong>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
+                                          <div>winner: ${allScoresArray[i].name}!</div>
                                           </br>
                                       `;
         }
