@@ -1,64 +1,74 @@
-html{
+html {
     font-family: 'Montserrat', sans-serif;
 }
 
 h1, h2, .player-name {
     text-align: center;
-    /* DELETE COMMENT AND ALLOW PADDING IN BIGGER SCREEEN
-    padding: 20px;*/
+    padding: 20px;
+    color: #588116;
 }
 
-div{
+div {
     text-align: center;
-    /* DELETE COMMENT AND ALLOW PADDING IN BIGGER SCREEEN
-    padding: 5px;*/
+    padding: 5px;
     margin: 5px;
 }
 
 .main-container {
-display: flex;
-flex-direction: column;
-width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .menu-container {
-display: block;
-margin: 0 auto;
-width: 500px;
-border-style: outset;
-border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    width: 500px;
+    border-style: outset;
+    border-radius: 12px;
+    background-color: #eef8dd;
 }
 
 .game-container {
-border-style: outset;
-border-radius: 12px;
+    width: 1000px;
+    margin: 0 auto;
+    border-style: outset;
+    border-radius: 12px;
+    background-color: #e9facd;
 }
 
-.grid-type, .grid-game {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
+.grid-type {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.grid-game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
 }
 
 .grid-item {
-background-color: greenyellow;
-border-style: outset;
-padding: 10px;
-border-radius: 12px;
+    background-color: greenyellow;
+    border-style: outset;
+    padding: 10px;
+    border-radius: 12px;
+    color: #565555;
 }
 
 .game-item {
-display: flex;
-background-color: greenyellow;
-border-style: outset;
-border-radius: 12px;
-width: 20%;
-/*padding: 10px;*/
+    display: flex;
+    background-color: white;
+    /*background-color: greenyellow;*/
+    border-style: outset;
+    border-radius: 12px;
+    width: 19%;
+    padding: 10px;
 }
 
 .game-item span {
-    /*Inverted just for testing
-    opacity: 0;*/
     display: block;
     margin: 0 auto;
     opacity: 0;
@@ -66,12 +76,11 @@ width: 20%;
 }
 
 .solved {
-    background-color: lightgrey;
+    /*background-color: lightgrey;*/
+    background-color: greenyellow;
 }
 
 .game-item.visible span {
-    /*Inverted just for testing
-    opacity: 1;*/
     opacity: 1;
 }
 
@@ -82,15 +91,15 @@ width: 20%;
     background-color: white;
     border-style: outset;
     border-radius: 12px;
-    width: 300px;
+    width: 400px;
+    background-color: #eef8dd;
+
 }
 
-/*Check if it is being used*/
 .visible {
     opacity: 1;
 }
 
-/*Possibility to show and hide sections*/
 .hidden {
     display: none
 }
