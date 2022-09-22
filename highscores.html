@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Historico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h2>Last Games:</h2>
+<header>
+    <h1>Last Games</h1>
+</header>
 <div class="all-scores-container">
 
     <!--Jogo do Galo Historico -->
@@ -31,10 +36,10 @@
 <script>
     <!--Quatro em Linha Historico Script -->
     let fourInLineContainer = document.getElementById("fourinline-container");
+    fourInLineContainer.innerHTML = `<h2>Four in Line</h2>`;
     let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
     for(let i=fourInLineArray.length-1; i>=0; i--){
         fourInLineContainer.innerHTML += `
-                                        <div>Four in Line</div>
                                          <div id="fourinline-date-game">${fourInLineArray[i].date} at ${fourInLineArray[i].time}</div>
                                          <div id="fourinline-date-game">winner: ${fourInLineArray[i].winner}</div>
                                          </br>
