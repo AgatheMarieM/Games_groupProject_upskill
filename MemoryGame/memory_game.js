@@ -133,6 +133,7 @@ function startGame(cards_board) {
                     let duration = document.querySelector(".counter p").innerHTML
                     highScore.push(
                         {
+                            "game": "Memory Game",
                             "name": name.value,
                             "date": `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
                             "time": `${date.getHours()}:${date.getMinutes()}`,

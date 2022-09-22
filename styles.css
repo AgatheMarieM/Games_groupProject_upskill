@@ -54,7 +54,7 @@ a {
 .all-scores-container {
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     max-width: 60%;
     margin: 0 auto;
 

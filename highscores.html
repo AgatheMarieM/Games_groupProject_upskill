@@ -12,56 +12,93 @@
 <header>
     <h1>Last Games</h1>
 </header>
-<div class="all-scores-container">
-    <!--Tic tac toe highscores-->
+<div class="all-scores-container"></div>
+
+
+
+<!--
+    &lt;!&ndash;Tic tac toe highscores&ndash;&gt;
     <div id="tictactoe-container"></div>
 
-    <!--Memory game highscores-->
+    &lt;!&ndash;Memory game highscores&ndash;&gt;
     <div id="memorygame-container"></div>
 
-    <!--Four in line highscores-->
-    <div id="fourinline-container"></div>
-</div>
+    &lt;!&ndash;Four in line highscores&ndash;&gt;
+    <div id="fourinline-container"></div>-->
 
 <a class="menu-link" href="index.html">Back to Menu</a>
 
 <script>
+    let scoresContainer = document.querySelector(".all-scores-container");
+    scoresContainer.innerHTML = ``;
+
+    let allScoresArray = JSON.parse(localStorage.getItem("scores"));
+    for (let i = allScoresArray.length - 1; i >= 0; i--) {
+        if(allScoresArray[i].game === "Four in Line"){
+            scoresContainer.innerHTML += `
+                                          <div>Four in Line</div>
+                                          <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
+                                          <div>winner: ${allScoresArray[i].winner}</div>
+                                          </br>`;
+
+        } 
+        if(allScoresArray[i].game === "Memory Game"){
+            scoresContainer.innerHTML += `
+                                          <div>Memory Game</div>
+                                          <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
+                                          <div>duration: ${allScoresArray[i].duration}</div>
+                                          <div>player: ${allScoresArray[i].name}</div>
+                                          </br>
+                                      `;
+
+        }
+        if(allScoresArray[i].game === "Tic Tac Toe"){
+            scoresContainer.innerHTML += `
+                                          <div>Tic Tac Toe</div>
+                                          <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
+                                          <div>winner: ${allScoresArray[i].name}</div>
+                                          </br>
+                                      `;
+
+        }
+    }
+
     //Four in line highscores Script
-    let fourInLineContainer = document.getElementById("fourinline-container");
-    fourInLineContainer.innerHTML = `<h2>Four in Line</h2>`;
-    let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
-    for (let i = fourInLineArray.length - 1; i >= 0; i--) {
-        fourInLineContainer.innerHTML += `
-                                         <div id="fourinline-date-game">${fourInLineArray[i].date} at ${fourInLineArray[i].time}</div>
-                                         <div id="fourinline-date-game">winner: ${fourInLineArray[i].winner}</div>
-                                         </br>
-                                     `;
-    }
+    /* let fourInLineContainer = document.getElementById("fourinline-container");
+     fourInLineContainer.innerHTML = `<h2>Four in Line</h2>`;
+     let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
+     for (let i = fourInLineArray.length - 1; i >= 0; i--) {
+         fourInLineContainer.innerHTML += `
+                                          <div id="fourinline-date-game">${fourInLineArray[i].date} at ${fourInLineArray[i].time}</div>
+                                          <div id="fourinline-date-game">winner: ${fourInLineArray[i].winner}</div>
+                                          </br>
+                                      `;
+     }
 
-    //Memory game highscores script
-    let memoryGameContainer = document.getElementById("memorygame-container");
-    memoryGameContainer.innerHTML = `<h2>Memory Game</h2>`;
-    let memoryGameArray = JSON.parse(localStorage.getItem("scores"));
-    for (let i = memoryGameArray.length - 1; i >= 0; i--) {
-        memoryGameContainer.innerHTML += `
-                                         <div>${memoryGameArray[i].date} at ${memoryGameArray[i].time}</div>
-                                         <div>duration: ${memoryGameArray[i].duration}</div>
-                                         <div>player: ${memoryGameArray[i].name}</div>
-                                         </br>
-                                     `;
-    }
+     //Memory game highscores script
+     let memoryGameContainer = document.getElementById("memorygame-container");
+     memoryGameContainer.innerHTML = `<h2>Memory Game</h2>`;
+     let memoryGameArray = JSON.parse(localStorage.getItem("scores"));
+     for (let i = memoryGameArray.length - 1; i >= 0; i--) {
+         memoryGameContainer.innerHTML += `
+                                          <div>${memoryGameArray[i].date} at ${memoryGameArray[i].time}</div>
+                                          <div>duration: ${memoryGameArray[i].duration}</div>
+                                          <div>player: ${memoryGameArray[i].name}</div>
+                                          </br>
+                                      `;
+     }
 
-    //Tic tac toe highscores Script
-    let tictactoeContainer = document.getElementById("tictactoe-container");
-    tictactoeContainer.innerHTML = `<h2>Tic-Tac-Toe</h2>`;
-    let TicTacToeArray = JSON.parse(localStorage.getItem("scores"));
-    for (let i = TicTacToeArray.length - 1; i >= 0; i--) {
-        tictactoeContainer.innerHTML += `
-                                         <div>${TicTacToeArray[i].date} at ${TicTacToeArray[i].time}</div>
-                                         <div>winner: ${TicTacToeArray[i].name}</div>
-                                         </br>
-                                     `;
-    }
+     //Tic tac toe highscores Script
+     let tictactoeContainer = document.getElementById("tictactoe-container");
+     tictactoeContainer.innerHTML = `<h2>Tic-Tac-Toe</h2>`;
+     let TicTacToeArray = JSON.parse(localStorage.getItem("scores"));
+     for (let i = TicTacToeArray.length - 1; i >= 0; i--) {
+         tictactoeContainer.innerHTML += `
+                                          <div>${TicTacToeArray[i].date} at ${TicTacToeArray[i].time}</div>
+                                          <div>winner: ${TicTacToeArray[i].name}</div>
+                                          </br>
+                                      `;
+     }*/
 
 
 </script>

@@ -250,6 +250,7 @@ function displayWinnerName(cell) {
     //pushing data from the last game into the scores array:
     let newScore =
         {
+            "game": "Four in Line",
             "date": dateVictory,
             "time": timeVictory,
             "winner": nameWinner
