@@ -36,7 +36,6 @@ function startGame(cards_board) {
         start++
         let hours = Math.floor(start / 3600)
         let minutes = Math.floor(start / 60)
-        console.log(minutes)
         let seconds = start - (hours * 3600 + minutes * 60);
         if (seconds < 10) {
             document.querySelector(".counter p").innerHTML = `${minutes}:0${seconds}`
@@ -109,7 +108,6 @@ function startGame(cards_board) {
                     array[0].classList.remove("visible");
                     array[1].classList.remove("visible");
                 } else {
-
                     document.querySelector(".game-container").classList.add("hidden")
                     document.querySelector(".winner-container").classList.remove("hidden")
                     //TESTING THIS POSSIBILITY
@@ -120,7 +118,7 @@ function startGame(cards_board) {
                     })
                     let menuButton = document.querySelector(".menu-button")
                     menuButton.addEventListener("click", function (e) {
-                        window.location.assign("../index.html")
+                        window.location = "../index.html"
                         /*OLD menuButton.innerHTML =
                             `<a href="../index.html">Menu</a>`*/
                     })
@@ -129,40 +127,28 @@ function startGame(cards_board) {
                         array[0].classList.remove("visible");
                         array[1].classList.remove("visible");
                     }, 1000)
+
+                    let date = new Date()
+                    console.log(date)
+
+                    highScore.push(
+                        {
+                            "name": name.value,
+                            "date": date.getFullYear(),
+                            "time": date.getMonth(),
+                            "duration": "duration"
+                        })
+                    localStorage.setItem("result", JSON.stringify(highScore));
+                    console.log("newhighscore", highScore)
                 }
             }
         }, 1000)
     }
-
-    //LOCAL STORAGE
-
-
-    console.log("name.value", name.value);
-    let lol = name.value
-    console.log("lol", lol)
-
-    /*    let highScore = JSON.parse(localStorage.getItem("result"));
-        console.log(highScore)
-        if (!highScore) {
-            highScore = []
-            let highName = localStorage.setItem("result", name.value)
-            console.log("highscore just created", highName)
-            console.log(localStorage)
-        } else {
-            localStorage.setItem("result", name.value)
-            let know = localStorage.getItem("result")
-            console.log("know", know)
-        }*/
 }
 
-
-// TESTING LOCAL STORAGE
-/*let pNames = localStorage.getItem()
-console.log("INITIAL historyvalues",historyValues)
-let newList=[]
-newList.push(localStorage.getItem("player"))
-console.log("newlist",newList)
-let checkEachPlayerName = localStorage.getItem("player")
-console.log("eachplayerlocalstoragename",checkEachPlayerName)
-console.log("historyValues",historyValues)*/
-
+//LOCAL STORAGE - Create new clean array to store the highscores for the fisrt time it is accessed
+let highScore = JSON.parse(localStorage.getItem("result"));
+if (!highScore) {
+    highScore = [];
+    console.log("highscorearray", highScore)
+}

@@ -4,54 +4,56 @@ html{
 
 h1, h2, .player-name {
     text-align: center;
-    padding: 20px;
+    /* DELETE COMMENT AND ALLOW PADDING IN BIGGER SCREEEN
+    padding: 20px;*/
 }
 
 div{
     text-align: center;
-    padding: 5px;
+    /* DELETE COMMENT AND ALLOW PADDING IN BIGGER SCREEEN
+    padding: 5px;*/
     margin: 5px;
 }
 
 .main-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+display: flex;
+flex-direction: column;
+width: 100%;
 }
 
 .menu-container {
-    display: block;
-    margin: 0 auto;
-    width: 500px;
-    border-style: outset;
-    border-radius: 12px;
+display: block;
+margin: 0 auto;
+width: 500px;
+border-style: outset;
+border-radius: 12px;
 }
 
 .game-container {
-    border-style: outset;
-    border-radius: 12px;
+border-style: outset;
+border-radius: 12px;
 }
 
 .grid-type, .grid-game {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 .grid-item {
-    background-color: greenyellow;
-    border-style: outset;
-    padding: 10px;
-    border-radius: 12px;
+background-color: greenyellow;
+border-style: outset;
+padding: 10px;
+border-radius: 12px;
 }
 
 .game-item {
-    display: flex;
-    background-color: greenyellow;
-    border-style: outset;
-    border-radius: 12px;
-    width: 20%;
-    /*padding: 10px;*/
+display: flex;
+background-color: greenyellow;
+border-style: outset;
+border-radius: 12px;
+width: 20%;
+/*padding: 10px;*/
 }
 
 .game-item span {
