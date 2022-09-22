@@ -44,7 +44,7 @@
 
 <div class="popup">
     <div class="popup-content">
-        <a href="./index.html">
+        <a href="../index.html">
             <img src="silver-close-button.png" alt="Close" class="close">
         </a>
         <h2>Who is playing?</h2>
@@ -56,7 +56,7 @@
 
 <div class="popup2">
     <div class="winner-content">
-        <a href="./index.html">
+        <a href="../index.html">
             <img src="silver-close-button.png" alt="Close" class="close">
         </a>
         <p> The winner is... </p>
@@ -64,18 +64,20 @@
     </div>
 </div>
 
-<div class="scores">
+<div class="box-scores">
 
 </div>
 
 </body>
+
 <script>
 
     let input_name1 = document.querySelector(".player-name1");
     let input_name2 = document.querySelector(".player-name2");
     nRounds = document.getElementById("rounds");
+    boxtime = document.querySelector("#timer")
 
-
+    //Display players names
     document.querySelector(".button").addEventListener("click", function () {
         if(input_name1.value === '' || input_name2=== '') {
             return;
@@ -85,20 +87,21 @@
             document.querySelector(".player2").innerHTML = input_name2.value;
             nRounds.innerHTML = 1;
         }
-        smCount()
     })
 
-    let time = document.getElementById("timer")
-    let s = 0
-    let m = 0
+
+    // Time counter
+    let seconds = 0
+    let minutes = 0
 
     interval = setInterval(smCount, 1000);
     function smCount() {
-        if (s < 60) {
-            s = s + 1
-            time.innerHTML = m + ":" + s
+        if (seconds < 60 || minutes < 60) {
+            seconds = seconds + 1
+            let time = minutes + ":" + seconds
+            boxtime.innerHTML = time
         }
-        //m = m + 1
+        minutes = minutes + 1
     }
 
 
@@ -111,7 +114,7 @@
     let boxPlayerA = document.querySelector(".player1");
     let boxPlayerB = document.querySelector(".player2");
 
-
+    //TicTacToe game
     function tictactoe() {
         boxPlayerA.valueOf().style.color = "#cc5200"
         g.forEach(function (e) {
@@ -143,6 +146,7 @@
     console.log(tictactoe())
 
 
+    //Possibilities of winning
     function winner(list) {
 
         let win_comb = [
@@ -183,7 +187,44 @@
          })
     }
 
+/*
+    //LocalStorage
 
+    let scores = JSON.parse(localStorage.getItem("scoresTTT"));
+    if (!scoresTTT){
+        scoresTTT = []
+    }
+
+    //dentro funcao
+    let obj = {
+        name: input_name1,
+        date: Date,
+        time: "tempo"
+    };
+
+    scoresTTT.push(obj);
+    localStorage.setItem("scoresTTT", JSON.stringify(scoresTTT));
+
+
+
+
+ */
+
+/*
+    scoresTTT.forEach(function (score) {
+        scores.innerHTML += `
+    <tr>
+        <td>${score.name}</td>
+        <td>${score.date}</td>
+        <td>${score.time}</td>
+    </tr>`;
+    });
+
+
+ */
+
+
+    //Restart the game
     document.querySelector(".button2").addEventListener("click", function () {
         document.querySelector(".popup2").style.display = "none";
             A.length = 0
@@ -191,57 +232,17 @@
                 g.forEach(function (e) {
                     e.innerHTML=""
                 })
+        seconds = 0;
+        minutes = 0;
         nextRound()
-
-
-
     })
 
+    //Next round
     let round = 2;
     function nextRound(){
             nRounds.innerHTML = round;
             round = round +1;
     }
-
-
-
-
-    let lastScores = [
-        {
-            game: "TicTacToe",
-            name: "Maria",
-            time: "2:05",
-        }
-
-    ]
-
-    let displayScores = document.querySelector(".scores");
-    let valor_name = input_name1.value;
-    let valor_game = "Tic-Tac-Toe";
-    let valor_time = Date;
-
-    let novo_score = {
-        name: valor_name,
-        game: valor_game,
-        time: valor_time,
-    }
-
-    lastScores.forEach(function (field) {
-        displayScores.innerHTML += `
-    <tr>
-        <td>${field.game}</td>
-        <td>${field.name}</td>
-        <td>${field.time}</td>
-    </tr>`;
-    });
-
-
-    //localStorage.setItem("keyName", input_name1.value);
-    //displayScores.innerHTML = localStorage.getItem(input_name1)
-
-
-
-
 
 </script>
 </html>
