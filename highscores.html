@@ -12,12 +12,18 @@
 
 <h1>Last scores</h1>
 <a class="menu-link" href="index.html">Back to Menu</a>
+<button id="clear-button">Clear all</button>
 
 <div class="all-scores-container"></div>
 
 <script>
     let scoresContainer = document.querySelector(".all-scores-container");
     scoresContainer.innerHTML = ``;
+    let clearButton = document.querySelector("#clear-button");
+    clearButton.addEventListener("click", function(){
+        localStorage.clear();
+       window.location.reload();
+    })
 
     let allScoresArray = JSON.parse(localStorage.getItem("scores"));
     for (let i = allScoresArray.length - 1; i >= 0; i--) {
