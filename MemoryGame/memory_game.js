@@ -30,14 +30,7 @@ function startGame(cards_board) {
 
     // Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
     let gameCounter = setInterval(countUpTime, 1000)
-    //console.log(typeof gameCounter)
     let start = 0
-    let date = new Date()
-    //let gameStartMinutes = date.getMinutes()
-    //let gameStartSeconds = date.getSeconds()
-    //let gameStart = `${gameStartMinutes}:${gameStartSeconds}`
-    //console.log("time of game start", gameStart)
-
     function countUpTime() {
         start++
         let hours = Math.floor(start / 3600)
@@ -115,16 +108,19 @@ function startGame(cards_board) {
                     array[0].classList.remove("visible");
                     array[1].classList.remove("visible");
                 } else {
-                    array[0].classList.remove("visible");
-                    array[1].classList.remove("visible");
 
                     //Stop counter time
                     clearInterval(gameCounter)
 
+                    setTimeout(function () {
+                            array[0].classList.remove("visible");
+                            array[1].classList.remove("visible");
+                        }
+                        , 1000)
+
                     // Hide the game and show the final window
                     document.querySelector(".game-container").classList.add("hidden");
                     document.querySelector(".winner-container").classList.remove("hidden")
-
 
                     let playAgainButton = document.querySelector(".play-again")
                     playAgainButton.addEventListener("click", function (e) {
@@ -135,20 +131,16 @@ function startGame(cards_board) {
                         window.location = "../index.html"
                     })
 
-
-                    //MISSING PART - Determine the duration of the game to send to highscores
-/*                    let endDate = new Date()
-                    console.log("endDate", endDate)
-                    let interval = endDate - date
-                    console.log("interval", interval)*/
-
                     // Collect data from each game and save it to local storage
+                    let date = new Date()
+                    let duration = document.querySelector(".counter p").innerHTML
+                    console.log("duration",duration)
                     highScore.push(
                         {
                             "name": name.value,
                             "date": `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
                             "time": `${date.getHours()}:${date.getMinutes()}`,
-                            "duration": "duration"
+                            "duration": `${duration}`
                         })
                     localStorage.setItem("scores", JSON.stringify(highScore));
                     console.log(localStorage)
