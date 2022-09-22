@@ -7,11 +7,12 @@ body {
 }
 
 #rounds {
-   font-size: 150%;
+   font-size: 130%;
 }
 
 #timer {
-    font-family: "Rockwell";
+    font-family: "Bauhaus 93";
+    background-color: azure;
 }
 
 
@@ -109,7 +110,7 @@ input {
 }
 
 #game_name {
-    background-color: aqua;
+    background-color: lightblue;
 }
 
 #rounds {
@@ -117,13 +118,11 @@ input {
 }
 
 #players {
-    background-color: aquamarine;
     display: flex;
     justify-content: space-evenly;
 }
 
 #icons {
-    background-color: aquamarine;
     display: flex;
     justify-content: space-evenly;
 }

@@ -64,6 +64,10 @@
     </div>
 </div>
 
+<div class="scores">
+
+</div>
+
 </body>
 <script>
 
@@ -89,7 +93,6 @@
     let m = 0
 
     interval = setInterval(smCount, 1000);
-
     function smCount() {
         if (s < 60) {
             s = s + 1
@@ -104,24 +107,33 @@
     let A = []
     let B = []
 
+    //Select divs that will display the current players names
+    let boxPlayerA = document.querySelector(".player1");
+    let boxPlayerB = document.querySelector(".player2");
+
+
     function tictactoe() {
+        boxPlayerA.valueOf().style.color = "#cc5200"
         g.forEach(function (e) {
             e.addEventListener("click", function () {
                 if(e.innerHTML === '') {
                     if (playerTurn === true) {
-
+                        boxPlayerA.valueOf().style.color = ""
                         A.push(e.getAttribute("number"));
                         console.log(A)
                         e.innerHTML = `<img src="cruz.png"/>`;
                         winner(A)
                         playerTurn = !playerTurn
+                        boxPlayerB.valueOf().style.color = "#3973ac"
                     } else {
-
+                        boxPlayerB.valueOf().style.color = ""
                         B.push(e.getAttribute("number"));
                         console.log(B)
                         e.innerHTML = `<img src="bola.png"/>`;
                         winner(B)
                         playerTurn = !playerTurn
+                        boxPlayerA.valueOf().style.color = "#cc5200"
+
                     }
                 }
             })
@@ -145,7 +157,7 @@
         ]
 
         if (A.length >= 4 && B.length >= 5 || B.length >= 4 && A.length >= 5 ){
-            document.querySelector(".winner-content > p").innerHTML = `Nobody win!`
+            document.querySelector(".winner-content > p").innerHTML = `Nobody wins!`
             document.querySelector(".popup2").style.display = "flex";
         }
 
@@ -172,8 +184,6 @@
     }
 
 
-
-
     document.querySelector(".button2").addEventListener("click", function () {
         document.querySelector(".popup2").style.display = "none";
             A.length = 0
@@ -192,6 +202,44 @@
             nRounds.innerHTML = round;
             round = round +1;
     }
+
+
+
+
+    let lastScores = [
+        {
+            game: "TicTacToe",
+            name: "Maria",
+            time: "2:05",
+        }
+
+    ]
+
+    let displayScores = document.querySelector(".scores");
+    let valor_name = input_name1.value;
+    let valor_game = "Tic-Tac-Toe";
+    let valor_time = Date;
+
+    let novo_score = {
+        name: valor_name,
+        game: valor_game,
+        time: valor_time,
+    }
+
+    lastScores.forEach(function (field) {
+        displayScores.innerHTML += `
+    <tr>
+        <td>${field.game}</td>
+        <td>${field.name}</td>
+        <td>${field.time}</td>
+    </tr>`;
+    });
+
+
+    //localStorage.setItem("keyName", input_name1.value);
+    //displayScores.innerHTML = localStorage.getItem(input_name1)
+
+
 
 
 
