@@ -24,7 +24,7 @@ playerYellowName.addEventListener("input", function (e) {
 let startButton = document.querySelector("#start-button");
 let timerElement = document.querySelector("#timer");
 let interval = null;
-let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
+let [minutes, seconds, milliseconds] = [0, 0, 0];
 
 startButton.addEventListener("click", function startPlaying() {
     landingPage.style.display = 'none'; //landing-page now hidden
@@ -35,20 +35,22 @@ startButton.addEventListener("click", function startPlaying() {
         if (milliseconds === 1000) {
             milliseconds = 0;
             seconds++;
-            /*if (seconds < 10) {
-                seconds = '0' + seconds;*/
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
             if (seconds === 60) {
                 seconds = 0;
                 minutes++;
+                if (minutes < 10) {
+                    minutes = '0' + minutes;
+                }
                 if (minutes === 60) {
                     minutes = 0;
-                    hours++;
-                    // }
                 }
             }
         }
 
-        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+        timerElement.innerHTML = `${minutes}:${seconds}`;
     }
 });
 
@@ -100,7 +102,7 @@ let gameOver = false;
 
 function colorCells(column) {
     //if the game is over already, impossible to fill any cell:
-    if(gameOver){
+    if (gameOver) {
         return;
     }
 
@@ -216,7 +218,7 @@ if (!scores) {
 // store date+time of victory+winner name in LocalStorage.
 // It receives a cell as a parameter, that contains an attribute with the winning color
 function displayWinnerName(cell) {
-    clearInterval(interval);
+    clearInterval(interval);//stops timer when game over
     let nameWinner;
     winnerName.style.display = 'flex';
     playerNames.style.display = 'none';
@@ -241,7 +243,7 @@ function displayWinnerName(cell) {
                                 `;
 
 
-    if(cell === "") {
+    if (cell === "") {
         nameWinner = `No winner, 0-0`;
         winnerName.innerHTML = `<div>
                                    You're too smart!
@@ -256,15 +258,16 @@ function displayWinnerName(cell) {
     }
 
     //pushing data from the last game into the scores array:
-        let newScore =
-            {
-                "date": dateVictory,
-                "time": timeVictory,
-                "winner": nameWinner
-            }
-        ;
+    let newScore =
+        {
+            "date": dateVictory,
+            "time": timeVictory,
+            "winner": nameWinner
+        }
+    ;
     scores.push(newScore);
-    localStorage.setItem("scores", JSON.stringify(scores)); }
+    localStorage.setItem("scores", JSON.stringify(scores));
+}
 
 
 //formatDate() receives new Date() of victory and format it to show only day/month/year
