@@ -13,26 +13,20 @@
     <h1>Last Games</h1>
 </header>
 <div class="all-scores-container">
-
-    <!--Jogo do Galo Historico -->
+    <!--Tic tac toe highscores-->
     <div id="tictactoe-container"></div>
 
-
-    <!--Jogo da Memoria Historico -->
+    <!--Memory game highscores-->
     <div id="memorygame-container"></div>
 
-
-    <!--Quatro em Linha Historico -->
+    <!--Four in line highscores-->
     <div id="fourinline-container"></div>
-
-
 </div>
 
 <a class="menu-link" href="index.html">Back to Menu</a>
 
-
 <script>
-    //Quatro em Linha Historico Script
+    //Four in line highscores Script
     let fourInLineContainer = document.getElementById("fourinline-container");
     fourInLineContainer.innerHTML = `<h2>Four in Line</h2>`;
     let fourInLineArray = JSON.parse(localStorage.getItem("scores"));
@@ -44,19 +38,20 @@
                                      `;
     }
 
-    //MEMORY GAME Script
+    //Memory game highscores script
     let memoryGameContainer = document.getElementById("memorygame-container");
     memoryGameContainer.innerHTML = `<h2>Memory Game</h2>`;
     let memoryGameArray = JSON.parse(localStorage.getItem("memoryGameResults"));
     for (let i = memoryGameArray.length - 1; i >= 0; i--) {
         memoryGameContainer.innerHTML += `
                                          <div>${memoryGameArray[i].date} at ${memoryGameArray[i].time}</div>
+                                         <div>duration: ${memoryGameArray[i].duration}</div>
                                          <div>player: ${memoryGameArray[i].name}</div>
                                          </br>
                                      `;
     }
 
-    //Jogo do Galo Historico Script
+    //Tic tac toe highscores Script
 
 
 </script>
