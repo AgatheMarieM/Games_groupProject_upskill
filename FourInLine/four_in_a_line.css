@@ -21,7 +21,12 @@ h1, p {
     padding: 30px 0;
 }
 
-/*segunda tabela feita com div:*/
+.menu-link {
+    color: blue;
+    font-size: 13px;
+    text-align: center;
+}
+
 .game-container {
     background-color: rgba(0, 0, 255, 0.8);
     border: 1px solid navy;
@@ -167,5 +172,5 @@ h1, p {
     justify-content: center;
     margin: 0 auto;
     width: 25%;
-
 }
+
