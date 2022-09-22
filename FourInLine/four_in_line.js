@@ -49,7 +49,6 @@ startButton.addEventListener("click", function startPlaying() {
                 }
             }
         }
-
         timerElement.innerHTML = `${minutes}:${seconds}`;
     }
 });
@@ -67,7 +66,7 @@ winnerName.style.display = 'none';
 let playerRed = "redCell";
 let playerYellow = "yellowCell";
 
-//Initializing CurrentPlayer (will play first) by a random number:
+//Initializing CurrentPlayer (will play first) with a random number:
 let currentPlayer;
 let randomNumber = Math.random() * 10;
 if (randomNumber < 5) {
@@ -97,15 +96,14 @@ for (let j = 0; j < columnList.length; j++) {
     colCellsList[j] = columnList[j].querySelectorAll(".div-cell");
 }
 
-let counter = 0;
-let gameOver = false;
+let counter = 0; //will keep track of the cells already filled
+let gameOver = false; //will allow change of behavior when someone wins or 0-0
 
 function colorCells(column) {
     //if the game is over already, impossible to fill any cell:
     if (gameOver) {
         return;
     }
-
     //creating locally an array of cells for the column from columnList that is being iterated:
     let cells = column.querySelectorAll(".div-cell");
 
@@ -131,15 +129,12 @@ function colorCells(column) {
             break;
         }
     }
-    getWinner(); //getWinner called to see if there is a 4 in line
-
+    getWinner(); //check if 4 in line
 }
 
-
 function getWinner() {
-    let rowsLength = 6; // creating a variable for rows, to iterate through them easily
+    let rowsLength = 6; //ease iteration through rows
     //The attribute "player_color" that was set at colorCells() allows us to compare the cells:
-
     //Vertical four in line
     for (let i = 0; i < colCellsList.length; i++) { // 7 columns in colCellsList, i goes until 6
         for (let j = 0; j < colCellsList[i].length - 3; j++) { // each column has 6 elements, j goes to 5
@@ -197,13 +192,11 @@ function getWinner() {
             }
         }
     }
-
     //No winner situation: if gameOver wasn't set to true && and all cells filled (counter = 42), the game stops
     if (!gameOver && counter === 42) {
         displayWinnerName("");
     }
 }
-
 
 //Create scores array in LocalStorage
 let scores = JSON.parse(localStorage.getItem("scores"));
@@ -216,7 +209,7 @@ if (!scores) {
 // hide current player names,
 // go back to Menu or Play Again,
 // store date+time of victory+winner name in LocalStorage.
-// It receives a cell as a parameter, that contains an attribute with the winning color
+// parameter cell contains an attribute with the winning color
 function displayWinnerName(cell) {
     clearInterval(interval);//stops timer when game over
     let nameWinner;
@@ -230,7 +223,6 @@ function displayWinnerName(cell) {
     } else {
         nameWinner = boxPlayerYellow.innerHTML;
     }
-    //Ideally would be a pop-up window:
     winnerName.innerHTML = `<div>
                                     ${nameWinner} wins! 
                                 </div> 
@@ -241,8 +233,6 @@ function displayWinnerName(cell) {
                                     Play again?
                                 </a>                           
                                 `;
-
-
     if (cell === "") {
         nameWinner = `No winner, 0-0`;
         winnerName.innerHTML = `<div>
