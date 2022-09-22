@@ -7,7 +7,7 @@ let name = document.querySelector("#player-name")
 // All the available cards
 let cards = ["☀️", "☀️", "🐻", "🐻", "🐣", "🐣", "🐸", "🐸", "🐶", "🐶", "😸", "😸", "🌻", "🌻", "🦴", "🦴", "🌍", "🌍", "👩‍", "👩‍"]
 
-//Create grid
+//Create three grids - Easy(3x4), Medium(4x4) and Hard(5x4)
 let gridsAvailable = document.querySelectorAll(".grid-item")
 let cardsForGrids = [cards.slice(0, 12), cards.slice(0, 16), cards]
 
@@ -30,13 +30,13 @@ function startGame(cards_board) {
 
     // Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
     let gameCounter = setInterval(countUpTime, 1000)
-    console.log(typeof gameCounter)
+    //console.log(typeof gameCounter)
     let start = 0
     let date = new Date()
-    let gameStartMinutes = date.getMinutes()
-    let gameStartSeconds = date.getSeconds()
-    let gameStart = `${gameStartMinutes}:${gameStartSeconds}`
-    console.log("time of game start", gameStart)
+    //let gameStartMinutes = date.getMinutes()
+    //let gameStartSeconds = date.getSeconds()
+    //let gameStart = `${gameStartMinutes}:${gameStartSeconds}`
+    //console.log("time of game start", gameStart)
 
     function countUpTime() {
         start++
@@ -48,7 +48,7 @@ function startGame(cards_board) {
         } else {
             document.querySelector(".counter p").innerHTML = `${minutes}:${seconds}`
         }
-        console.log(gameCounter)
+        //console.log(gameCounter)
     }
 
     // Function to shuffle obtained in the www
@@ -107,20 +107,25 @@ function startGame(cards_board) {
             } else {
                 array[0].classList.add("solved");
                 array[1].classList.add("solved");
-                //QUESTION - HOW to return this number to be used in another function to define if the game has ended, or not??! If test===12...GANHOU!
                 let cardsSolved = document.querySelectorAll(".game-item.solved")
+
                 // PART 3 - END OF GAME
                 // CHECK if the game is over
                 if (cardsSolved.length !== allCards.length) {
                     array[0].classList.remove("visible");
                     array[1].classList.remove("visible");
                 } else {
+                    array[0].classList.remove("visible");
+                    array[1].classList.remove("visible");
+
+                    //Stop counter time
+                    clearInterval(gameCounter)
+
                     // Hide the game and show the final window
-                    document.querySelector(".game-container").classList.add("hidden")
+                    document.querySelector(".game-container").classList.add("hidden");
                     document.querySelector(".winner-container").classList.remove("hidden")
 
-                    //TESTING THIS POSSIBILITY
-                    // document.querySelector(".game-container").innerHTML = ""
+
                     let playAgainButton = document.querySelector(".play-again")
                     playAgainButton.addEventListener("click", function (e) {
                         window.location.reload()
@@ -128,20 +133,10 @@ function startGame(cards_board) {
                     let menuButton = document.querySelector(".menu-button")
                     menuButton.addEventListener("click", function (e) {
                         window.location = "../index.html"
-                        /*OLD menuButton.innerHTML =
-                            `<a href="../index.html">Menu</a>`*/
                     })
-                    // Necessary? Just to hide cards after the final move, so that all the board looks the same
-                    setTimeout(function () {
-                        array[0].classList.remove("visible");
-                        array[1].classList.remove("visible");
-                    }, 1500)
 
 
-                    //Stop counter time
-                    clearInterval(gameCounter)
-
-                    //Determin the length of the game to send to highscores
+                    //MISSING PART - Determine the duration of the game to send to highscores
 /*                    let endDate = new Date()
                     console.log("endDate", endDate)
                     let interval = endDate - date
