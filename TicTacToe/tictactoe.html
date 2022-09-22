@@ -12,7 +12,7 @@
 </div>
 
 <div id="rounds">
-    <div class="count-round"> Round </div>
+    <div class="count-round"> Round</div>
 </div>
 
 <div id="timer">
@@ -60,7 +60,7 @@
             <img src="silver-close-button.png" alt="Close" class="close">
         </a>
         <p> The winner is... </p>
-        <a href="#" class="button2" >Play again</a>
+        <a href="#" class="button2">Play again</a>
     </div>
 </div>
 
@@ -79,7 +79,7 @@
 
     //Display players names
     document.querySelector(".button").addEventListener("click", function () {
-        if(input_name1.value === '' || input_name2=== '') {
+        if (input_name1.value === '' || input_name2 === '') {
             return;
         } else {
             document.querySelector(".popup").style.display = "none";
@@ -95,13 +95,14 @@
     let minutes = 0
 
     interval = setInterval(smCount, 1000);
+
     function smCount() {
         if (seconds < 60 || minutes < 60) {
             seconds = seconds + 1
             let time = minutes + ":" + seconds
             boxtime.innerHTML = time
         }
-        minutes = minutes + 1
+        //minutes = minutes + 1
     }
 
 
@@ -119,7 +120,7 @@
         boxPlayerA.valueOf().style.color = "#cc5200"
         g.forEach(function (e) {
             e.addEventListener("click", function () {
-                if(e.innerHTML === '') {
+                if (e.innerHTML === '') {
                     if (playerTurn === true) {
                         boxPlayerA.valueOf().style.color = ""
                         A.push(e.getAttribute("number"));
@@ -160,78 +161,65 @@
             ["3", "5", "7"]
         ]
 
-        if (A.length >= 4 && B.length >= 5 || B.length >= 4 && A.length >= 5 ){
+        //No winner
+        if (A.length >= 4 && B.length >= 5 || B.length >= 4 && A.length >= 5) {
             document.querySelector(".winner-content > p").innerHTML = `Nobody wins!`
             document.querySelector(".popup2").style.display = "flex";
         }
 
+
+        //Announce the winner
         win_comb.forEach(function (comb) {
             let nameWin = " "
             console.log(comb)
-                    if (list.includes(comb[0]) && list.includes(comb[1]) && list.includes(comb[2])){
-                        if (playerTurn === true){
-                            console.log(`${input_name1.value} wins!`);
-                            nameWin = input_name1.value
-                            document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
-                            document.querySelector(".popup2").style.display = "flex";
-
-                        } else {
-                            console.log(`${input_name2.value} wins!`);
-                            nameWin = input_name2.value
-                            document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
-                            document.querySelector(".popup2").style.display = "flex";
-                        }
-                    } else {
-                        console.log("Try again")
+            if (list.includes(comb[0]) && list.includes(comb[1]) && list.includes(comb[2])) {
+                if (playerTurn === true) {
+                    console.log(`${input_name1.value} wins!`);
+                    nameWin = input_name1.value
+                    document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
+                    document.querySelector(".popup2").style.display = "flex";
+                } else {
+                    console.log(`${input_name2.value} wins!`);
+                    nameWin = input_name2.value
                 }
-         })
+
+                document.querySelector(".winner-content > p").innerHTML = `The winner is ${nameWin}!`
+                document.querySelector(".popup2").style.display = "flex";
+                saveHistory(nameWin)
+            } else {
+                console.log("Try again")
+            }
+
+        })
     }
 
-/*
+    function saveHistory(winner) {
+        let scores = JSON.parse(localStorage.getItem("scores"));
+        if (!scores) {
+            scores = [];
+        }
+
+        let obj = {
+            date: "",
+            time: "",
+            name: winner
+        };
+
+        scores.push(obj);
+        localStorage.setItem("scoresTTT", JSON.stringify(scores))
+    }
     //LocalStorage
 
-    let scores = JSON.parse(localStorage.getItem("scoresTTT"));
-    if (!scoresTTT){
-        scoresTTT = []
-    }
-
-    //dentro funcao
-    let obj = {
-        name: input_name1,
-        date: Date,
-        time: "tempo"
-    };
-
-    scoresTTT.push(obj);
-    localStorage.setItem("scoresTTT", JSON.stringify(scoresTTT));
-
-
-
-
- */
-
-/*
-    scoresTTT.forEach(function (score) {
-        scores.innerHTML += `
-    <tr>
-        <td>${score.name}</td>
-        <td>${score.date}</td>
-        <td>${score.time}</td>
-    </tr>`;
-    });
-
-
- */
 
 
     //Restart the game
     document.querySelector(".button2").addEventListener("click", function () {
         document.querySelector(".popup2").style.display = "none";
-            A.length = 0
-            B.length = 0
-                g.forEach(function (e) {
-                    e.innerHTML=""
-                })
+        A.length = 0
+        B.length = 0
+        g.forEach(function (e) {
+            e.innerHTML = ""
+        })
         seconds = 0;
         minutes = 0;
         nextRound()
@@ -239,9 +227,10 @@
 
     //Next round
     let round = 2;
-    function nextRound(){
-            nRounds.innerHTML = round;
-            round = round +1;
+
+    function nextRound() {
+        nRounds.innerHTML = round;
+        round = round + 1;
     }
 
 </script>
