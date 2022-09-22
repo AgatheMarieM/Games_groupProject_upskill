@@ -79,7 +79,7 @@ div {
     margin: 0 auto;
     opacity: 0;
     font-size: 60px;
-    transition: 2000ms;
+    transition: 1000ms;
 }
 
 .solved {
@@ -90,14 +90,13 @@ div {
 
 .game-item.visible span {
     opacity: 1;
-    transition: 2000ms;
+    transition: 1000ms;
 }
 
 .winner-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    background-color: white;
     border-style: outset;
     border-radius: 12px;
     width: 400px;
