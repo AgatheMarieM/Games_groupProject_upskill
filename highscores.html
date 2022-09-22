@@ -39,9 +39,9 @@
     }
 
     //Memory game highscores script
-    let memoryGameContainer = document.getElementById("memorygame-container");
+    let memoryGameContainer = document.getElementById("scores");
     memoryGameContainer.innerHTML = `<h2>Memory Game</h2>`;
-    let memoryGameArray = JSON.parse(localStorage.getItem("memoryGameResults"));
+    let memoryGameArray = JSON.parse(localStorage.getItem("scores"));
     for (let i = memoryGameArray.length - 1; i >= 0; i--) {
         memoryGameContainer.innerHTML += `
                                          <div>${memoryGameArray[i].date} at ${memoryGameArray[i].time}</div>

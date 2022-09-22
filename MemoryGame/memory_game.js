@@ -150,7 +150,7 @@ function startGame(cards_board) {
                             "time": `${date.getHours()}:${date.getMinutes()}`,
                             "duration": "duration"
                         })
-                    localStorage.setItem("memoryGameResults", JSON.stringify(highScore));
+                    localStorage.setItem("scores", JSON.stringify(highScore));
                     console.log(localStorage)
                 }
             }
@@ -159,7 +159,7 @@ function startGame(cards_board) {
 }
 
 //LOCAL STORAGE - Create new clean array to store the highscores for the fisrt time it is accessed by each browser (locall sotrage save data for a "considerable period" of time)
-let highScore = JSON.parse(localStorage.getItem("memoryGameResults"));
+let highScore = JSON.parse(localStorage.getItem("scores"));
 if (!highScore) {
     highScore = [];
     console.log("highscorearray", highScore)
