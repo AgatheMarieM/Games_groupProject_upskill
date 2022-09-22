@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Historico</title>
+    <title>Scores</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-    <h1>Last Games</h1>
-</header>
-<div class="all-scores-container"></div>
+
+<h1>Last scores</h1>
 <a class="menu-link" href="index.html">Back to Menu</a>
+
+<div class="all-scores-container"></div>
 
 <script>
     let scoresContainer = document.querySelector(".all-scores-container");
@@ -21,7 +21,7 @@
 
     let allScoresArray = JSON.parse(localStorage.getItem("scores"));
     for (let i = allScoresArray.length - 1; i >= 0; i--) {
-        if(allScoresArray[i].game === "Four in Line"){
+        if (allScoresArray[i].game === "Four in Line") {
             scoresContainer.innerHTML += `
                                           <div>Four in Line</div>
                                           <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
@@ -29,7 +29,7 @@
                                           </br>`;
 
         }
-        if(allScoresArray[i].game === "Memory Game"){
+        if (allScoresArray[i].game === "Memory Game") {
             scoresContainer.innerHTML += `
                                           <div>Memory Game</div>
                                           <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
@@ -39,7 +39,7 @@
                                       `;
 
         }
-        if(allScoresArray[i].game === "Tic Tac Toe"){
+        if (allScoresArray[i].game === "Tic Tac Toe") {
             scoresContainer.innerHTML += `
                                           <div>Tic Tac Toe</div>
                                           <div>${allScoresArray[i].date} at ${allScoresArray[i].time}</div>
