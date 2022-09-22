@@ -68,20 +68,29 @@ div {
     padding: 10px;
 }
 
+.grid-item:hover{
+    box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
+    font-size: 110%;
+    transition-duration: 50ms;
+}
+
 .game-item span {
     display: block;
     margin: 0 auto;
     opacity: 0;
     font-size: 60px;
+    transition: 2000ms;
 }
 
 .solved {
     /*background-color: lightgrey;*/
     background-color: greenyellow;
+    transition: 1000ms;
 }
 
 .game-item.visible span {
     opacity: 1;
+    transition: 2000ms;
 }
 
 .winner-container {
@@ -93,7 +102,6 @@ div {
     border-radius: 12px;
     width: 400px;
     background-color: #eef8dd;
-
 }
 
 .visible {
@@ -109,5 +117,17 @@ div {
     border-style: outset;
     padding: 10px;
     border-radius: 12px;
+    color: #565555;
 }
 
+.menu-button:hover{
+    box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
+    font-size: 110%;
+    transition-duration: 50ms;
+}
+
+.play-again:hover{
+    box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
+    font-size: 110%;
+    transition-duration: 50ms;
+}
