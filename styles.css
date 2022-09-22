@@ -1,24 +1,31 @@
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
 
 h1, h2 {
-    color: rgba(0, 0, 255, 0.85);
+    color: rgb(0, 0, 255);
     font-family: "Montserrat";
 
 }
 
 .menu-titles a {
-    color: rgba(0, 0, 255, 0.85);
+    color: rgb(0, 0, 255);
 }
 
 .menu-titles h2 {
-    border-radius: 10px;
-    box-shadow: 2px 3px rgba(0, 0, 255, 0.48);
+    border-radius: 5px;
+    box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
     padding: 15px;
     text-align: center;
 }
 
 .menu-titles h2:hover {
-    background-color: rgba(0, 0, 255, 0.48);
-    box-shadow: 2px 3px rgba(0, 0, 255, 0.48);
+    background-color: rgba(255, 255, 0, 0.21);
+    box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
+    font-size: 160%;
+    transition-duration: 50ms;
 }
 
 a {
@@ -40,22 +47,30 @@ a {
     align-items: center;
     display: flex;
     flex-direction: column;
-    max-width: 30%;
+    max-width: 60%;
     margin: 0 auto;
 
 }
 
 .menu-link {
-    background-color: blue;
+    background-color: white;
     border: 1px solid blue;
-    border-radius: 10%;
-    color: white;
-    padding: 10px;
-    margin: 10px auto;
+    border-radius: 5px;
+    color: rgb(0, 0, 255);
+    font-family: "Montserrat";
+    margin: 0 auto;
+    max-width: 15%;
+    padding: 15px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
     text-decoration: none;
 }
 
 .menu-link:hover {
-    background-color: white;
-    color: blue;
+    background-color: rgba(255, 255, 0, 0.21);
+    box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
+    transition-duration: 50ms;
 }
