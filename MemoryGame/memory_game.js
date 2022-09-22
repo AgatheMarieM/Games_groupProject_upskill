@@ -113,7 +113,7 @@ function startGame(cards_board) {
                             array[0].classList.remove("visible");
                             array[1].classList.remove("visible");
                         }
-                        , 1000)
+                        , 1500)
 
                     // Hide the game and show the final window
                     document.querySelector(".game-container").classList.add("hidden");
@@ -142,7 +142,7 @@ function startGame(cards_board) {
                     localStorage.setItem("scores", JSON.stringify(highScore));
                 }
             }
-        }, 1000)
+        }, 1500)
     }
 }
 
