@@ -91,20 +91,18 @@
 
 
     // Time counter
-    let seconds = 0
-    let minutes = 0
 
-    interval = setInterval(smCount, 1000);
+    let timerVariable = setInterval(countUpTimer, 1000);
+    let totalSeconds = 0;
 
-    function smCount() {
-        if (seconds < 60 || minutes < 60) {
-            seconds = seconds + 1
-            let duration = minutes + ":" + seconds
-            boxtime.innerHTML = duration
-        }
-        //minutes = minutes + 1
+    function countUpTimer() {
+        ++totalSeconds;
+        let hour = Math.floor(totalSeconds / 3600);
+        let minute = Math.floor((totalSeconds - hour * 3600) / 60);
+        let seconds = totalSeconds - (hour * 3600 + minute * 60);
+        let duration = hour + ":" + minute + ":" + seconds;
+        boxtime.innerHTML = duration
     }
-
 
     let g = document.querySelectorAll("#game-container > div");
     let playerTurn = true
@@ -194,7 +192,7 @@
         })
     }
 
-    function saveHistory(winner) {
+    function saveHistory(winner, duration) {
         let date = new Date ();
         let scores = JSON.parse(localStorage.getItem("scores"));
         if (!scores) {
@@ -204,7 +202,7 @@
         let obj = {
             date: `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
             time: `${date.getHours()}:${date.getMinutes()}`,
-            duration: "duration",
+            duration: duration,
             name: winner
         };
 
@@ -218,13 +216,12 @@
     //Restart the game
     document.querySelector(".button2").addEventListener("click", function () {
         document.querySelector(".popup2").style.display = "none";
-        A.length = 0
-        B.length = 0
+        A.length = 0;
+        B.length = 0;
         g.forEach(function (e) {
             e.innerHTML = ""
         })
-        seconds = 0;
-        minutes = 0;
+        totalSeconds = 0;
         nextRound()
     })
 
