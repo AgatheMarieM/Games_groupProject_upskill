@@ -29,8 +29,14 @@ selectGrid()
 function startGame(cards_board) {
 
     // Time counter - Inspiration gotten from https://www.delftstack.com/howto/javascript/javascript-count-up-timer/
-    setInterval(countUpTime, 1000)
+    let gameCounter = setInterval(countUpTime, 1000)
+    console.log(typeof gameCounter)
     let start = 0
+    let date = new Date()
+    let gameStartMinutes = date.getMinutes()
+    let gameStartSeconds = date.getSeconds()
+    let gameStart = `${gameStartMinutes}:${gameStartSeconds}`
+    console.log("time of game start", gameStart)
 
     function countUpTime() {
         start++
@@ -42,6 +48,7 @@ function startGame(cards_board) {
         } else {
             document.querySelector(".counter p").innerHTML = `${minutes}:${seconds}`
         }
+        console.log(gameCounter)
     }
 
     // Function to shuffle obtained in the www
@@ -108,8 +115,10 @@ function startGame(cards_board) {
                     array[0].classList.remove("visible");
                     array[1].classList.remove("visible");
                 } else {
+                    // Hide the game and show the final window
                     document.querySelector(".game-container").classList.add("hidden")
                     document.querySelector(".winner-container").classList.remove("hidden")
+
                     //TESTING THIS POSSIBILITY
                     // document.querySelector(".game-container").innerHTML = ""
                     let playAgainButton = document.querySelector(".play-again")
@@ -126,28 +135,36 @@ function startGame(cards_board) {
                     setTimeout(function () {
                         array[0].classList.remove("visible");
                         array[1].classList.remove("visible");
-                    }, 1000)
+                    }, 1500)
 
-                    let date = new Date()
-                    console.log(date)
 
+                    //Stop counter time
+                    clearInterval(gameCounter)
+
+                    //Determin the length of the game to send to highscores
+/*                    let endDate = new Date()
+                    console.log("endDate", endDate)
+                    let interval = endDate - date
+                    console.log("interval", interval)*/
+
+                    // Collect data from each game and save it to local storage
                     highScore.push(
                         {
                             "name": name.value,
-                            "date": date.getFullYear(),
-                            "time": date.getMonth(),
+                            "date": `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
+                            "time": `${date.getHours()}:${date.getMinutes()}`,
                             "duration": "duration"
                         })
-                    localStorage.setItem("result", JSON.stringify(highScore));
-                    console.log("newhighscore", highScore)
+                    localStorage.setItem("memoryGameResults", JSON.stringify(highScore));
+                    console.log(localStorage)
                 }
             }
         }, 1000)
     }
 }
 
-//LOCAL STORAGE - Create new clean array to store the highscores for the fisrt time it is accessed
-let highScore = JSON.parse(localStorage.getItem("result"));
+//LOCAL STORAGE - Create new clean array to store the highscores for the fisrt time it is accessed by each browser (locall sotrage save data for a "considerable period" of time)
+let highScore = JSON.parse(localStorage.getItem("memoryGameResults"));
 if (!highScore) {
     highScore = [];
     console.log("highscorearray", highScore)
