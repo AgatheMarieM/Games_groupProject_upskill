@@ -44,7 +44,7 @@ function startGame(cards_board) {
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
         //DELETE - Used only for testing and is defining that the cards show in original array order
-        return array;
+        //return array;
         let curId = array.length;
         while (0 !== curId) { // There remain elements to shuffle
             let randId = Math.floor(Math.random() * curId); // Pick a remaining element
