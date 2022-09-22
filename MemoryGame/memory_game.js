@@ -15,8 +15,6 @@ function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
             document.querySelector(".player").innerHTML = `${name.value} is now playing`
-            //TESTING THIS POSSIBILITY?! IS IT OK?
-            //document.querySelector(".menu-container").innerHTML = ""
             document.querySelector(".menu-container").classList.add("hidden")
             document.querySelector(".game-container").classList.remove("hidden")
             startGame(cardsForGrids[i])
@@ -41,7 +39,6 @@ function startGame(cards_board) {
         } else {
             document.querySelector(".counter p").innerHTML = `${minutes}:${seconds}`
         }
-        //console.log(gameCounter)
     }
 
     // Function to shuffle obtained in the www
@@ -134,7 +131,6 @@ function startGame(cards_board) {
                     // Collect data from each game and save it to local storage
                     let date = new Date()
                     let duration = document.querySelector(".counter p").innerHTML
-                    console.log("duration",duration)
                     highScore.push(
                         {
                             "name": name.value,
@@ -143,14 +139,13 @@ function startGame(cards_board) {
                             "duration": `${duration}`
                         })
                     localStorage.setItem("scores", JSON.stringify(highScore));
-                    console.log(localStorage)
                 }
             }
         }, 1000)
     }
 }
 
-//LOCAL STORAGE - Create new clean array to store the highscores for the fisrt time it is accessed by each browser (locall sotrage save data for a "considerable period" of time)
+//LOCAL STORAGE - Create new clean array to store the highscores for the fisrt time it is accessed by each browser (localstorage saves data for a "considerable period" of time)
 let highScore = JSON.parse(localStorage.getItem("scores"));
 if (!highScore) {
     highScore = [];
