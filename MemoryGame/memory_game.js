@@ -44,7 +44,7 @@ function startGame(cards_board) {
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
         //DELETE - Used only for testing and is defining that the cards show in original array order
-        //return array;
+        return array;
         let curId = array.length;
         while (0 !== curId) { // There remain elements to shuffle
             let randId = Math.floor(Math.random() * curId); // Pick a remaining element
@@ -75,8 +75,6 @@ function startGame(cards_board) {
     function showEachCard() {
         for (let i = 0; i < allCards.length; i++) {
             allCards[i].addEventListener("click", function (e) {
-                //QUESTION - Changed "toggle" to "add". What would be better?
-                //QUESTION - This condition can only verify if !== visible, or both?
                 if (!allCards[i].classList.contains("solved")) {
                     allCards[i].classList.add("visible");
                     let visibleCards = document.querySelectorAll(".visible");
