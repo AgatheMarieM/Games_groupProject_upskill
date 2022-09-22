@@ -199,7 +199,6 @@ function getWinner() {
     //No winner situation: if gameOver wasn't set to true && and all cells filled (counter = 42), the game stops
     if (!gameOver && counter === 42) {
         displayWinnerName("");
-        console.log("empate"); //will be a pop up with link towards menu or play again
     }
 }
 
@@ -228,10 +227,11 @@ function displayWinnerName(cell) {
     } else {
         nameWinner = boxPlayerYellow.innerHTML;
     }
+    //Ideally would be a pop-up window:
     winnerName.innerHTML = `<div>
                                     ${nameWinner} wins! 
                                 </div> 
-                                <a href="/index.html">
+                                <a href="../index.html">
                                     Menu
                                 </a>   
                                 <a href="four_in_a_line.html">
@@ -245,7 +245,7 @@ function displayWinnerName(cell) {
         winnerName.innerHTML = `<div>
                                    You're too smart!
                                 </div> 
-                                <a href="/index.html">
+                                <a href="../index.html">
                                     Menu
                                 </a>   
                                 <a href="four_in_a_line.html">
