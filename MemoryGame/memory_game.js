@@ -14,10 +14,16 @@ let cardsForGrids = [cards.slice(0, 12), cards.slice(0, 16), cards]
 function selectGrid() {
     for (let i = 0; i < gridsAvailable.length; i++) {
         gridsAvailable[i].addEventListener("click", function (e) {
-            document.querySelector(".player").innerHTML = `${name.value} is now playing`
-            document.querySelector(".menu-container").classList.add("hidden")
-            document.querySelector(".game-container").classList.remove("hidden")
-            startGame(cardsForGrids[i])
+            if (name.value === ''){
+                return
+            } else {
+                document.querySelector(".player").innerHTML = `${name.value} is now playing`
+                document.querySelector(".menu-container").classList.add("hidden")
+                document.querySelector(".game-container").classList.remove("hidden")
+                startGame(cardsForGrids[i])
+            }
+
+
         })
     }
 }
@@ -44,7 +50,7 @@ function startGame(cards_board) {
     // Function to shuffle obtained in the www
     function shuffleArray(array) {
         //DELETE - Used only for testing and is defining that the cards show in original array order
-        return array;
+        //return array;
         let curId = array.length;
         while (0 !== curId) { // There remain elements to shuffle
             let randId = Math.floor(Math.random() * curId); // Pick a remaining element
@@ -131,7 +137,7 @@ function startGame(cards_board) {
                         {
                             "game": "Memory Game",
                             "name": name.value,
-                            "date": `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`,
+                            "date": `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`,
                             "time": `${date.getHours()}:${date.getMinutes()}`,
                             "duration": `${duration}`
                         })
