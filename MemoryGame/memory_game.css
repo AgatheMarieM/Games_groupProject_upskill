@@ -70,7 +70,7 @@ div {
 
 .grid-item:hover{
     box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
-    font-size: 110%;
+    background-color: white;
     transition-duration: 50ms;
 }
 
@@ -121,12 +121,12 @@ div {
 
 .menu-button:hover{
     box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
-    font-size: 110%;
+    background-color: white;
     transition-duration: 50ms;
 }
 
 .play-again:hover{
     box-shadow: 1px 1px rgba(0, 0, 255, 0.37);
-    font-size: 110%;
+    background-color: white;
     transition-duration: 50ms;
 }
