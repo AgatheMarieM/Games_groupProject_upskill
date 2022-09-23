@@ -84,12 +84,13 @@
             document.querySelector(".player1").innerHTML = input_name1.value;
             document.querySelector(".player2").innerHTML = input_name2.value;
             nRounds.innerHTML = 1;
+            let timerVariable = setInterval(countUpTimer, 1000);
+
         }
     })
 
 
     // Time counter
-    let timerVariable = setInterval(countUpTimer, 1000);
     let totalSeconds = 0;
 
     function countUpTimer() {
