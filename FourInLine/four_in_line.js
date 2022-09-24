@@ -12,6 +12,7 @@ let boxPlayerRed = document.querySelector("#name-playerRed");
 let boxPlayerYellow = document.querySelector("#name-playerYellow");
 
 //EventListeners: when we fill player names, they are displayed in their respective boxes
+//ALTERAR: criar uma função que preenche as caixas, e se o input for vazio, fazer return
 playerRedName.addEventListener("input", function (e) {
     boxPlayerRed.innerHTML = e.target.value;
 })
