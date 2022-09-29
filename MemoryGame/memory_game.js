@@ -124,6 +124,7 @@ function startGame(cards_board) {
                         window.location.reload()
                     })
 
+
                     // Collect data from each game and save it to local storage
                     let date = new Date()
                     let duration = document.querySelector(".counter p").innerHTML
