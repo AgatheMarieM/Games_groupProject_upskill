@@ -22,8 +22,6 @@ function selectGrid() {
                 document.querySelector(".game-container").classList.remove("hidden")
                 startGame(cardsForGrids[i])
             }
-
-
         })
     }
 }
@@ -124,10 +122,6 @@ function startGame(cards_board) {
                     let playAgainButton = document.querySelector(".play-again")
                     playAgainButton.addEventListener("click", function (e) {
                         window.location.reload()
-                    })
-                    let menuButton = document.querySelector(".menu-button")
-                    menuButton.addEventListener("click", function (e) {
-                        window.location = "../index.html"
                     })
 
                     // Collect data from each game and save it to local storage
